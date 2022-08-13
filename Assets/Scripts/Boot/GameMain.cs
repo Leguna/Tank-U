@@ -1,11 +1,11 @@
 using System.Collections;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
-using Leguna.ExampleMVC.Module.SaveGame;
+using SpacePlan.Module.SaveGame;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Leguna.ExampleMVC.Boot
+namespace SpacePlan.Boot
 {
     public class GameMain : BaseMain<GameMain>, IMain
     {

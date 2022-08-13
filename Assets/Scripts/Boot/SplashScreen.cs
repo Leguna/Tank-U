@@ -1,7 +1,7 @@
 ﻿using Agate.MVC.Base;
 using Agate.MVC.Core;
 
-namespace Leguna.ExampleMVC.Boot
+namespace SpacePlan.Boot
 {
     public class SplashScreen : BaseSplash<SplashScreen>
     {

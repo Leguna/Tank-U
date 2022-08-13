@@ -2,7 +2,7 @@ using System.Collections;
 using Agate.MVC.Base;
 using UnityEngine;
 
-namespace Leguna.ExampleMVC.Module.SaveGame
+namespace SpacePlan.Module.SaveGame
 {
     public class SaveDataController : DataController<SaveDataController, SaveDataModel, ISaveDataModel>
     {

@@ -1,6 +1,6 @@
 using Agate.MVC.Base;
 
-namespace Leguna.ExampleMVC.Module.SaveGame
+namespace SpacePlan.Module.SaveGame
 {
     public class SaveDataModel : BaseModel,ISaveDataModel
     {

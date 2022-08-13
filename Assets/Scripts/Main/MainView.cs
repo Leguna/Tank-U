@@ -1,10 +1,9 @@
 ﻿using Agate.MVC.Base;
-using Leguna.ExampleMVC.Boot;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Leguna.ExampleMVC.Main
+namespace SpacePlan.Main
 {
     public class MainView : BaseSceneView
     {

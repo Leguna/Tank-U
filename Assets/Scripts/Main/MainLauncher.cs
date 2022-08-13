@@ -1,9 +1,9 @@
 using System.Collections;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
-using Leguna.ExampleMVC.Boot;
+using SpacePlan.Boot;
 
-namespace Leguna.ExampleMVC.Main
+namespace SpacePlan.Main
 {
     public class MainLauncher : SceneLauncher<MainLauncher, MainView>
 

@@ -1,4 +1,4 @@
-﻿namespace Leguna.ExampleMVC.Message
+﻿namespace SpacePlan.Message
 {
     public struct UpdateCoinMessage
     {

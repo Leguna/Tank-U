@@ -1,12 +1,12 @@
 using System.Collections;
 using Agate.MVC.Base;
-using Leguna.ExampleMVC.Boot;
-using Leguna.ExampleMVC.Message;
-using Leguna.ExampleMVC.Module.SaveGame;
+using SpacePlan.Boot;
+using SpacePlan.Message;
+using SpacePlan.Module.SaveGame;
 
 #pragma warning disable CS0465
 
-namespace Leguna.ExampleMVC.Module.ClickGame
+namespace SpacePlan.Module.ClickGame
 {
     public class ClickGameController : ObjectController<ClickGameController, ClickGameModel, IClickGameModel, ClickGameView>
     {

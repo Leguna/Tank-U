@@ -1,6 +1,6 @@
 using Agate.MVC.Base;
 
-namespace Leguna.ExampleMVC.Boot
+namespace SpacePlan.Boot
 {
     public class SceneLoader : BaseLoader<SceneLoader>
 

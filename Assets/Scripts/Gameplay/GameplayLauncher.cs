@@ -1,11 +1,11 @@
 using System.Collections;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
-using Leguna.ExampleMVC.Boot;
-using Leguna.ExampleMVC.Module.ClickGame;
-using Leguna.ExampleMVC.Module.SoundFx;
+using SpacePlan.Boot;
+using SpacePlan.Module.ClickGame;
+using SpacePlan.Module.SoundFx;
 
-namespace Leguna.ExampleMVC.Gameplay
+namespace SpacePlan.Gameplay
 {
     public class GameplayLauncher : SceneLauncher<GameplayLauncher, GameplayView>
     {

@@ -1,6 +1,6 @@
 ﻿using Agate.MVC.Base;
 
-namespace Leguna.ExampleMVC.Module.ClickGame
+namespace SpacePlan.Module.ClickGame
 {
     public interface IClickGameModel : IBaseModel
     {

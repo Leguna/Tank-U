@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Leguna.ExampleMVC.Module.ClickGame
+namespace SpacePlan.Module.ClickGame
 {
     public class ClickGameView : ObjectView<IClickGameModel>
     {

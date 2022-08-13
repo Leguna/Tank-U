@@ -1,9 +1,9 @@
 ﻿using Agate.MVC.Base;
-using Leguna.ExampleMVC.Message;
-using Leguna.ExampleMVC.Module.SaveGame;
-using Leguna.ExampleMVC.Module.SoundFx;
+using SpacePlan.Message;
+using SpacePlan.Module.SaveGame;
+using SpacePlan.Module.SoundFx;
 
-namespace Leguna.ExampleMVC.Gameplay
+namespace SpacePlan.Gameplay
 {
     public class GameplayConnector : BaseConnector
     {

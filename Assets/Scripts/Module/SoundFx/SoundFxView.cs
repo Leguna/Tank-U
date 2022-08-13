@@ -1,7 +1,7 @@
 ﻿using Agate.MVC.Base;
 using UnityEngine;
 
-namespace Leguna.ExampleMVC.Module.SoundFx
+namespace SpacePlan.Module.SoundFx
 {
     public class SoundFxView : BaseView
     {
