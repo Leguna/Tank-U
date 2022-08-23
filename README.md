@@ -1,2 +1,1 @@
-# SpacePlan
-Space Invaders Clone Game 
+# Thank-U
