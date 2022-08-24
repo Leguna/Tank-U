@@ -1,6 +1,7 @@
 using Agate.MVC.Base;
 using SpacePlan.Module.ClickGame;
 using SpacePlan.Module.SoundFx;
+using TankU.Gameplay;
 using UnityEngine;
 
 namespace SpacePlan.Gameplay
@@ -9,5 +10,6 @@ namespace SpacePlan.Gameplay
     {
         [SerializeField] public ClickGameView ClickGameView;
         [SerializeField] public SoundFxView SoundFxView;
+        [SerializeField] public PlayerView PlayerView;
     }
 }

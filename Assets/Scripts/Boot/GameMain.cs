@@ -4,6 +4,7 @@ using Agate.MVC.Core;
 using SpacePlan.Module.SaveGame;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 
 namespace SpacePlan.Boot
 {
@@ -31,7 +32,7 @@ namespace SpacePlan.Boot
         {
             GameObject obj = new GameObject("Event System");
             obj.AddComponent<EventSystem>();
-            obj.AddComponent<StandaloneInputModule>();
+            obj.AddComponent<InputSystemUIInputModule>();
             GameObject.DontDestroyOnLoad(obj);
         }
     }

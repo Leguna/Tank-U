@@ -4,6 +4,7 @@ using Agate.MVC.Core;
 using SpacePlan.Boot;
 using SpacePlan.Module.ClickGame;
 using SpacePlan.Module.SoundFx;
+using TankU.Gameplay;
 
 namespace SpacePlan.Gameplay
 {
@@ -13,13 +14,15 @@ namespace SpacePlan.Gameplay
 
         private ClickGameController _clickGame;
         private SoundFxController _soundFx;
+        private PlayerController _playerController;
 
         protected override IController[] GetSceneDependencies()
         {
             return new IController[]
             {
                 new ClickGameController(),
-                new SoundFxController()
+                new SoundFxController(),
+                new PlayerController()
             };
         }
 
@@ -27,6 +30,7 @@ namespace SpacePlan.Gameplay
         {
             _clickGame.SetView(_view.ClickGameView);
             _soundFx.SetView(_view.SoundFxView);
+            _playerController.SetView(_view.PlayerView);
             yield return null;
         }
 
