@@ -13,9 +13,8 @@ namespace TankU.Gameplay
         {
             base.SetView(view);
             view.SetCallbacks(Move, Init);
-            view._playerInput = new PlayerInput();
-            view.v = view._playerInput._PlayerMapInput.move.ReadValue<Vector3>();
             view.TryGetComponent(out _rigidbody);
+            
         }
 
         public override IEnumerator Initialize()
@@ -33,7 +32,9 @@ namespace TankU.Gameplay
         private void Move()
         {
             Debug.Log($"move = {_model.Position}, speed = {_model.Speed}");
+            _view.v = _view._playerInput._PlayerMapInput.move.ReadValue<Vector3>();
             _view.rg.velocity = _model.Position * _model.Speed;
+            _view.v = _view.rg.velocity;
             _model.SetPosition(_view.v);
         }
 

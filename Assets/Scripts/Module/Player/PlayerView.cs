@@ -22,6 +22,10 @@ namespace TankU.Gameplay
             _onMove = Move;
             _onInit = Init;
         }
+        private void Awake()
+        {
+            _playerInput = new PlayerInput();
+        }
 
         protected override void InitRenderModel(IPlayerModel model)
         {
