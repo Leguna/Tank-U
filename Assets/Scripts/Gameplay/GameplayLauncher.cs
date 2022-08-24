@@ -23,19 +23,18 @@ namespace TankU.Gameplay
 
         protected override IController[] GetSceneDependencies()
         {
-            throw new System.NotImplementedException();
             /*return new IController[]
              * {
              * new SFXController()
              * };
              */
+            return null;
         }
 
         protected override IEnumerator InitSceneObject()
         {
-            throw new System.NotImplementedException();
             //_sfx.SetView(_view.SFXView);
-            //yield return null;
+            yield return null;
         }
 
         protected override IEnumerator LaunchScene()
