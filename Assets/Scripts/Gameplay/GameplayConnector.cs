@@ -11,12 +11,12 @@ namespace TankU.Gameplay
         
         protected override void Connect()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         protected override void Disconnect()
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }
