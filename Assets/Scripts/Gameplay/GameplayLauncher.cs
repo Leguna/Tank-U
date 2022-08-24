@@ -2,8 +2,7 @@ using System.Collections;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
 using SpacePlan.Boot;
-using SpacePlan.Module.ClickGame;
-using SpacePlan.Module.SoundFx;
+using TankU.PowerUp;
 
 namespace SpacePlan.Gameplay
 {
@@ -11,22 +10,20 @@ namespace SpacePlan.Gameplay
     {
         public override string SceneName => "Gameplay";
 
-        private ClickGameController _clickGame;
-        private SoundFxController _soundFx;
+        private PowerUpPoolerController _powerUpPooler;
 
         protected override IController[] GetSceneDependencies()
         {
             return new IController[]
             {
-                new ClickGameController(),
-                new SoundFxController()
+                new PowerUpPoolerController(),
+                new PowerUpController()
             };
         }
 
         protected override IEnumerator InitSceneObject()
         {
-            _clickGame.SetView(_view.ClickGameView);
-            _soundFx.SetView(_view.SoundFxView);
+            _powerUpPooler.SetView(_view.powerUpPooler);
             yield return null;
         }
 
@@ -35,7 +32,8 @@ namespace SpacePlan.Gameplay
         {
             return new IConnector[]
             {
-                new GameplayConnector()
+                new GameplayConnector(),
+                new PowerUpConnector()
             };
         }
 
