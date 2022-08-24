@@ -1,7 +1,7 @@
 ﻿using Agate.MVC.Base;
 using Agate.MVC.Core;
 
-namespace SpacePlan.Boot
+namespace TankU.Boot
 {
     public abstract class SceneLauncher<TLauncher, TView> : BaseLauncher<TLauncher, TView>
         where TLauncher : BaseLauncher<TLauncher, TView>

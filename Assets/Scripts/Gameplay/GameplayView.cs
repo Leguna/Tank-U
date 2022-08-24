@@ -1,13 +1,13 @@
 using Agate.MVC.Base;
-using SpacePlan.Module.ClickGame;
-using SpacePlan.Module.SoundFx;
+//using TankU.Module.SFX;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpacePlan.Gameplay
+namespace TankU.Gameplay
 {
     public class GameplayView : BaseSceneView
     {
-        [SerializeField] public ClickGameView ClickGameView;
-        [SerializeField] public SoundFxView SoundFxView;
+        //[SerializeField] public SFXView SFXView;
     }
 }
