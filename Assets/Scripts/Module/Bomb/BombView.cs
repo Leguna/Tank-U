@@ -8,7 +8,8 @@ namespace TankU.Module.Bomb
         [SerializeField] private float _explodeDelay = 4.0f;
         [SerializeField] private float _explodeDuration = 4.0f;
 
-        private float timer;
+        private float timer1;
+        private float timer2;
 
         [SerializeField] private GameObject Bomb1;
         [SerializeField] private GameObject Bomb2;
@@ -26,26 +27,42 @@ namespace TankU.Module.Bomb
 
         private void Start()
         {
-            timer = 0;
+            timer1 = 0;
         }
 
         private void Update()
         {
-            timer += Time.deltaTime;
-
-            if (timer >= _explodeDelay)
+            if (Bomb1.activeInHierarchy)
             {
-                Explode();
+                timer1 += Time.deltaTime;
+            }
+
+            if(Bomb2.activeInHierarchy)
+            {
+                timer2 += Time.deltaTime;
+            }
+
+            if (timer1 >= _explodeDelay)
+            {
+                Explode(Bomb1);
+            }
+
+            if (timer2 >= _explodeDelay)
+            {
+                Explode(Bomb2);
             }
         }
 
-        private void Explode()
+        private void Explode(GameObject bom)
         {
-            //TODO @ Mark, turn on Explosion objects
+            bom.GetComponent<MeshRenderer>().enabled = false;
+            
+            bom.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            bom.gameObject.transform.GetChild(1).gameObject.SetActive(true);
 
-            if(timer >= _explodeDelay + _explodeDuration)
+            if (timer1 >= _explodeDelay + _explodeDuration || timer2 >= _explodeDelay + _explodeDuration)
             {
-                gameObject.SetActive(false);
+                bom.gameObject.SetActive(false);
             }
         }
     }
