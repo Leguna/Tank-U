@@ -1,42 +1,41 @@
-using System.Collections;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
-using SpacePlan.Boot;
-using SpacePlan.Module.ClickGame;
-using SpacePlan.Module.SoundFx;
+using TankU.Boot;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-namespace SpacePlan.Gameplay
+namespace TankU.Gameplay
 {
     public class GameplayLauncher : SceneLauncher<GameplayLauncher, GameplayView>
     {
         public override string SceneName => "Gameplay";
 
-        private ClickGameController _clickGame;
-        private SoundFxController _soundFx;
-
-        protected override IController[] GetSceneDependencies()
-        {
-            return new IController[]
-            {
-                new ClickGameController(),
-                new SoundFxController()
-            };
-        }
-
-        protected override IEnumerator InitSceneObject()
-        {
-            _clickGame.SetView(_view.ClickGameView);
-            _soundFx.SetView(_view.SoundFxView);
-            yield return null;
-        }
-
+        //private SFXController _sfx;
 
         protected override IConnector[] GetSceneConnectors()
         {
             return new IConnector[]
-            {
-                new GameplayConnector()
-            };
+              {
+              new GameplayConnector()
+              };
+        }
+
+        protected override IController[] GetSceneDependencies()
+        {
+            throw new System.NotImplementedException();
+            /*return new IController[]
+             * {
+             * new SFXController()
+             * };
+             */
+        }
+
+        protected override IEnumerator InitSceneObject()
+        {
+            throw new System.NotImplementedException();
+            //_sfx.SetView(_view.SFXView);
+            //yield return null;
         }
 
         protected override IEnumerator LaunchScene()

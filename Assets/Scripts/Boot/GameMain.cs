@@ -5,7 +5,7 @@ using SpacePlan.Module.SaveGame;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace SpacePlan.Boot
+namespace TankU.Boot
 {
     public class GameMain : BaseMain<GameMain>, IMain
     {
