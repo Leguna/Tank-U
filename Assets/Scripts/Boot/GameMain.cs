@@ -4,6 +4,7 @@ using Agate.MVC.Core;
 using SpacePlan.Module.SaveGame;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 
 namespace TankU.Boot
 {
@@ -11,7 +12,8 @@ namespace TankU.Boot
     {
         protected override IController[] GetDependencies()
         {
-            return new IController[]{
+            return new IController[]
+            {
                 new SaveDataController()
             };
         }
@@ -31,8 +33,8 @@ namespace TankU.Boot
         {
             GameObject obj = new GameObject("Event System");
             obj.AddComponent<EventSystem>();
-            obj.AddComponent<StandaloneInputModule>();
-            GameObject.DontDestroyOnLoad(obj);
+            obj.AddComponent<InputSystemUIInputModule>();
+            DontDestroyOnLoad(obj);
         }
     }
 }
