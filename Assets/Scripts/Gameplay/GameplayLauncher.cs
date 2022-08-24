@@ -1,11 +1,8 @@
 using System.Collections;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
-using TankU.Module.Timer;
 using TankU.Boot;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using TankU.Module.Timer;
 
 namespace TankU.Gameplay
 {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace TankU.Module.Timer
 {
+    // TODO @Leguna: Remove debug code
     public class TimerController : ObjectController<TimerController, TimerModel, ITimerModel, TimerView>
     {
         private bool _isAlreadyPublishCountDown;
