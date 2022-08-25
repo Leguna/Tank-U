@@ -31,19 +31,22 @@ namespace TankU.Gameplay
             }
 
             EditorGUILayout.LabelField("Color Sample", EditorStyles.boldLabel);
-            if (GUILayout.Button("Add Player Color"))
-            {
-                gc.AddPlayer();
-            }
 
             if (GUILayout.Button("Start Picking Player"))
             {
                 gc.StartPickingPlayer();
             }
+
+            if (GUILayout.Button("Add Player Color"))
+            {
+                gc.AddPlayer();
+            }
+
             if (GUILayout.Button("Finish Picking Player"))
             {
                 gc.FinishPickingPlayer();
             }
+
             if (GUILayout.Button("Cancel Picking Player"))
             {
                 gc.CancelPickingPlayer();

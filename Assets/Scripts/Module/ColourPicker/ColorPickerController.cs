@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Agate.MVC.Base;
 using TankU.Message;
 using TankU.Module.Base;
@@ -22,6 +23,9 @@ namespace TankU.Module.ColourPicker
             _colorSelectInput.SelectColorKeyboardLeft.Confirm.performed += _ => Confirm(InputLayout.KeyboardLeft);
             _colorSelectInput.SelectColorKeyboardRight.Confirm.performed += _ => Confirm(InputLayout.KeyboardRight);
             _colorSelectInput.SelectColorKeyboardGamepad.Confirm.performed += _ => Confirm(InputLayout.Gamepad);
+            _colorSelectInput.SelectColorKeyboardLeft.Cancel.performed += _ => Cancel(InputLayout.KeyboardLeft);
+            _colorSelectInput.SelectColorKeyboardRight.Cancel.performed += _ => Cancel(InputLayout.KeyboardRight);
+            _colorSelectInput.SelectColorKeyboardGamepad.Cancel.performed += _ => Cancel(InputLayout.Gamepad);
             _colorSelectInput.SelectColorKeyboardLeft.Next.performed += _ => Next(InputLayout.KeyboardLeft);
             _colorSelectInput.SelectColorKeyboardLeft.Prev.performed += _ => Prev(InputLayout.KeyboardLeft);
             _colorSelectInput.SelectColorKeyboardRight.Next.performed += _ => Next(InputLayout.KeyboardRight);
@@ -30,16 +34,48 @@ namespace TankU.Module.ColourPicker
             _colorSelectInput.SelectColorKeyboardGamepad.Prev.performed += _ => Prev(InputLayout.Gamepad);
         }
 
-        public void Confirm(InputLayout inputLayout)
+        private void Confirm(InputLayout inputLayout)
         {
+            if (_model.ListInputLayout.Contains(inputLayout))
+            {
+                if (CheckAllPlayerPickColor())
+                    FinishPickingCharacter();
+                _model.ConfirmColor(inputLayout);
+                Debug.Log($"Confirm {inputLayout}");
+            }
+            else AddColorPlayer(inputLayout);
         }
 
-        public void Prev(InputLayout inputLayout)
+        private void Cancel(InputLayout inputLayout)
         {
+            if (_model.ListInputLayout.Count == 0)
+            {
+                CancelPickingCharacter();
+                return;
+            }
+
+            Debug.Log(_model);
         }
 
-        public void Next(InputLayout inputLayout)
+        private bool CheckAllPlayerPickColor()
         {
+            return _model.ListColorItemModel.All(colorItemModel => colorItemModel.IsConfirm);
+        }
+
+        private void Prev(InputLayout inputLayout)
+        {
+            if (!_model.ListInputLayout.Contains(inputLayout)) return;
+            var indexOf = _model.ListInputLayout.IndexOf(inputLayout);
+            if (_model.ListColorItemModel[_model.GetIndexInputLayout(inputLayout)].IsConfirm) return;
+            _model.ListColorItemModel[indexOf].PrevColor();
+        }
+
+        private void Next(InputLayout inputLayout)
+        {
+            if (!_model.ListInputLayout.Contains(inputLayout)) return;
+            var indexOf = _model.ListInputLayout.IndexOf(inputLayout);
+            if (_model.ListColorItemModel[_model.GetIndexInputLayout(inputLayout)].IsConfirm) return;
+            _model.ListColorItemModel[indexOf].NextColor();
         }
 
         public override IEnumerator Terminate()
@@ -55,7 +91,7 @@ namespace TankU.Module.ColourPicker
             _model.StartPicking();
         }
 
-        public void AddColorPlayer()
+        public void AddColorPlayer(InputLayout inputLayout)
         {
             if (!_model.IsPicking)
             {
@@ -70,12 +106,12 @@ namespace TankU.Module.ColourPicker
                 return;
             }
 
-            var newModel = new ColorItemModel($"Player {count + 1}", BaseColor.PlayerColors[count]);
+            var newModel = new ColorItemModel($"Player {count + 1}", BaseColor.PlayerColors[count], false);
             var itemSubView = Object.Instantiate(_model.ColorPickerViewTemplate, Vector3.zero,
                 Quaternion.identity,
                 _view.colorPickerGroupTransform);
             itemSubView.SetModel(newModel);
-            _model.AddItem(itemSubView, newModel);
+            _model.AddItem(itemSubView, newModel, inputLayout);
 
             Debug.Log($"Player {count + 1} added");
         }
@@ -87,6 +123,8 @@ namespace TankU.Module.ColourPicker
                 Debug.Log("Can't cancel picking color. Start First!");
                 return;
             }
+
+            Debug.Log("Cancel picking player.");
 
             _view.HideView();
             Publish(new ColorPickingMessage(PickingState.Cancel, new List<Color>()));
@@ -100,15 +138,10 @@ namespace TankU.Module.ColourPicker
                 return;
             }
 
+            Debug.Log("Finish Picking Player");
             _model.FinishPicking();
             Publish(new ColorPickingMessage(PickingState.Finish, _model.GetPickedColor()));
+            Debug.Log($"Color picked {string.Join(", ", _model.GetPickedColor().ToArray())}");
         }
-    }
-
-    public enum InputLayout
-    {
-        KeyboardLeft,
-        KeyboardRight,
-        Gamepad,
     }
 }

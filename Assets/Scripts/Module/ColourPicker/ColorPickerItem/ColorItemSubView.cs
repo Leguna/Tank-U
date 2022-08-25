@@ -9,6 +9,7 @@ namespace TankU.Module.ColourPicker.ColorPickerItem
     {
         [SerializeField] private TMP_Text _playerText;
         [SerializeField] private Image _colorImage;
+        [SerializeField] private GameObject confirmCheck;
 
         protected override void InitRenderModel(IColorItemModel model)
         {
@@ -18,6 +19,7 @@ namespace TankU.Module.ColourPicker.ColorPickerItem
         {
             _playerText.text = model.PlayerName;
             _colorImage.color = model.Color;
+            confirmCheck.SetActive(model.IsConfirm);
         }
     }
 }

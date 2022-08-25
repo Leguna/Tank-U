@@ -53,6 +53,15 @@ public partial class @ColorSelectInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""b206df38-b770-45dc-b103-7bccfc55e533"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -88,6 +97,17 @@ public partial class @ColorSelectInput : IInputActionCollection2, IDisposable
                     ""action"": ""Next"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b8a851f1-6f1a-4579-9f46-091d63c6ab0c"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -117,6 +137,15 @@ public partial class @ColorSelectInput : IInputActionCollection2, IDisposable
                     ""name"": ""Confirm"",
                     ""type"": ""Button"",
                     ""id"": ""4cec401f-e486-4f8e-91e6-773bb32b74a7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""ee2cff8f-a9a0-464c-b607-f0ae664738ce"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -156,6 +185,17 @@ public partial class @ColorSelectInput : IInputActionCollection2, IDisposable
                     ""action"": ""Next"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7df18afe-3a13-4216-99a2-6f65f60c23d8"",
+                    ""path"": ""<Keyboard>/rightShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -185,6 +225,15 @@ public partial class @ColorSelectInput : IInputActionCollection2, IDisposable
                     ""name"": ""Confirm"",
                     ""type"": ""Button"",
                     ""id"": ""c0805d74-baea-4d80-a7c1-06120b3aca32"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""05b9e225-cc5c-4f87-9bbf-dfd9b3ca9e40"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -224,6 +273,17 @@ public partial class @ColorSelectInput : IInputActionCollection2, IDisposable
                     ""action"": ""Next"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""75736748-dcd6-4bff-807b-93b45cc2f8ee"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -235,16 +295,19 @@ public partial class @ColorSelectInput : IInputActionCollection2, IDisposable
         m_SelectColorKeyboardLeft_Prev = m_SelectColorKeyboardLeft.FindAction("Prev", throwIfNotFound: true);
         m_SelectColorKeyboardLeft_Next = m_SelectColorKeyboardLeft.FindAction("Next", throwIfNotFound: true);
         m_SelectColorKeyboardLeft_Confirm = m_SelectColorKeyboardLeft.FindAction("Confirm", throwIfNotFound: true);
+        m_SelectColorKeyboardLeft_Cancel = m_SelectColorKeyboardLeft.FindAction("Cancel", throwIfNotFound: true);
         // SelectColorKeyboardRight
         m_SelectColorKeyboardRight = asset.FindActionMap("SelectColorKeyboardRight", throwIfNotFound: true);
         m_SelectColorKeyboardRight_Prev = m_SelectColorKeyboardRight.FindAction("Prev", throwIfNotFound: true);
         m_SelectColorKeyboardRight_Next = m_SelectColorKeyboardRight.FindAction("Next", throwIfNotFound: true);
         m_SelectColorKeyboardRight_Confirm = m_SelectColorKeyboardRight.FindAction("Confirm", throwIfNotFound: true);
+        m_SelectColorKeyboardRight_Cancel = m_SelectColorKeyboardRight.FindAction("Cancel", throwIfNotFound: true);
         // SelectColorKeyboardGamepad
         m_SelectColorKeyboardGamepad = asset.FindActionMap("SelectColorKeyboardGamepad", throwIfNotFound: true);
         m_SelectColorKeyboardGamepad_Prev = m_SelectColorKeyboardGamepad.FindAction("Prev", throwIfNotFound: true);
         m_SelectColorKeyboardGamepad_Next = m_SelectColorKeyboardGamepad.FindAction("Next", throwIfNotFound: true);
         m_SelectColorKeyboardGamepad_Confirm = m_SelectColorKeyboardGamepad.FindAction("Confirm", throwIfNotFound: true);
+        m_SelectColorKeyboardGamepad_Cancel = m_SelectColorKeyboardGamepad.FindAction("Cancel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -307,6 +370,7 @@ public partial class @ColorSelectInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_SelectColorKeyboardLeft_Prev;
     private readonly InputAction m_SelectColorKeyboardLeft_Next;
     private readonly InputAction m_SelectColorKeyboardLeft_Confirm;
+    private readonly InputAction m_SelectColorKeyboardLeft_Cancel;
     public struct SelectColorKeyboardLeftActions
     {
         private @ColorSelectInput m_Wrapper;
@@ -314,6 +378,7 @@ public partial class @ColorSelectInput : IInputActionCollection2, IDisposable
         public InputAction @Prev => m_Wrapper.m_SelectColorKeyboardLeft_Prev;
         public InputAction @Next => m_Wrapper.m_SelectColorKeyboardLeft_Next;
         public InputAction @Confirm => m_Wrapper.m_SelectColorKeyboardLeft_Confirm;
+        public InputAction @Cancel => m_Wrapper.m_SelectColorKeyboardLeft_Cancel;
         public InputActionMap Get() { return m_Wrapper.m_SelectColorKeyboardLeft; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -332,6 +397,9 @@ public partial class @ColorSelectInput : IInputActionCollection2, IDisposable
                 @Confirm.started -= m_Wrapper.m_SelectColorKeyboardLeftActionsCallbackInterface.OnConfirm;
                 @Confirm.performed -= m_Wrapper.m_SelectColorKeyboardLeftActionsCallbackInterface.OnConfirm;
                 @Confirm.canceled -= m_Wrapper.m_SelectColorKeyboardLeftActionsCallbackInterface.OnConfirm;
+                @Cancel.started -= m_Wrapper.m_SelectColorKeyboardLeftActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_SelectColorKeyboardLeftActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_SelectColorKeyboardLeftActionsCallbackInterface.OnCancel;
             }
             m_Wrapper.m_SelectColorKeyboardLeftActionsCallbackInterface = instance;
             if (instance != null)
@@ -345,6 +413,9 @@ public partial class @ColorSelectInput : IInputActionCollection2, IDisposable
                 @Confirm.started += instance.OnConfirm;
                 @Confirm.performed += instance.OnConfirm;
                 @Confirm.canceled += instance.OnConfirm;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
             }
         }
     }
@@ -356,6 +427,7 @@ public partial class @ColorSelectInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_SelectColorKeyboardRight_Prev;
     private readonly InputAction m_SelectColorKeyboardRight_Next;
     private readonly InputAction m_SelectColorKeyboardRight_Confirm;
+    private readonly InputAction m_SelectColorKeyboardRight_Cancel;
     public struct SelectColorKeyboardRightActions
     {
         private @ColorSelectInput m_Wrapper;
@@ -363,6 +435,7 @@ public partial class @ColorSelectInput : IInputActionCollection2, IDisposable
         public InputAction @Prev => m_Wrapper.m_SelectColorKeyboardRight_Prev;
         public InputAction @Next => m_Wrapper.m_SelectColorKeyboardRight_Next;
         public InputAction @Confirm => m_Wrapper.m_SelectColorKeyboardRight_Confirm;
+        public InputAction @Cancel => m_Wrapper.m_SelectColorKeyboardRight_Cancel;
         public InputActionMap Get() { return m_Wrapper.m_SelectColorKeyboardRight; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -381,6 +454,9 @@ public partial class @ColorSelectInput : IInputActionCollection2, IDisposable
                 @Confirm.started -= m_Wrapper.m_SelectColorKeyboardRightActionsCallbackInterface.OnConfirm;
                 @Confirm.performed -= m_Wrapper.m_SelectColorKeyboardRightActionsCallbackInterface.OnConfirm;
                 @Confirm.canceled -= m_Wrapper.m_SelectColorKeyboardRightActionsCallbackInterface.OnConfirm;
+                @Cancel.started -= m_Wrapper.m_SelectColorKeyboardRightActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_SelectColorKeyboardRightActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_SelectColorKeyboardRightActionsCallbackInterface.OnCancel;
             }
             m_Wrapper.m_SelectColorKeyboardRightActionsCallbackInterface = instance;
             if (instance != null)
@@ -394,6 +470,9 @@ public partial class @ColorSelectInput : IInputActionCollection2, IDisposable
                 @Confirm.started += instance.OnConfirm;
                 @Confirm.performed += instance.OnConfirm;
                 @Confirm.canceled += instance.OnConfirm;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
             }
         }
     }
@@ -405,6 +484,7 @@ public partial class @ColorSelectInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_SelectColorKeyboardGamepad_Prev;
     private readonly InputAction m_SelectColorKeyboardGamepad_Next;
     private readonly InputAction m_SelectColorKeyboardGamepad_Confirm;
+    private readonly InputAction m_SelectColorKeyboardGamepad_Cancel;
     public struct SelectColorKeyboardGamepadActions
     {
         private @ColorSelectInput m_Wrapper;
@@ -412,6 +492,7 @@ public partial class @ColorSelectInput : IInputActionCollection2, IDisposable
         public InputAction @Prev => m_Wrapper.m_SelectColorKeyboardGamepad_Prev;
         public InputAction @Next => m_Wrapper.m_SelectColorKeyboardGamepad_Next;
         public InputAction @Confirm => m_Wrapper.m_SelectColorKeyboardGamepad_Confirm;
+        public InputAction @Cancel => m_Wrapper.m_SelectColorKeyboardGamepad_Cancel;
         public InputActionMap Get() { return m_Wrapper.m_SelectColorKeyboardGamepad; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -430,6 +511,9 @@ public partial class @ColorSelectInput : IInputActionCollection2, IDisposable
                 @Confirm.started -= m_Wrapper.m_SelectColorKeyboardGamepadActionsCallbackInterface.OnConfirm;
                 @Confirm.performed -= m_Wrapper.m_SelectColorKeyboardGamepadActionsCallbackInterface.OnConfirm;
                 @Confirm.canceled -= m_Wrapper.m_SelectColorKeyboardGamepadActionsCallbackInterface.OnConfirm;
+                @Cancel.started -= m_Wrapper.m_SelectColorKeyboardGamepadActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_SelectColorKeyboardGamepadActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_SelectColorKeyboardGamepadActionsCallbackInterface.OnCancel;
             }
             m_Wrapper.m_SelectColorKeyboardGamepadActionsCallbackInterface = instance;
             if (instance != null)
@@ -443,6 +527,9 @@ public partial class @ColorSelectInput : IInputActionCollection2, IDisposable
                 @Confirm.started += instance.OnConfirm;
                 @Confirm.performed += instance.OnConfirm;
                 @Confirm.canceled += instance.OnConfirm;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
             }
         }
     }
@@ -452,17 +539,20 @@ public partial class @ColorSelectInput : IInputActionCollection2, IDisposable
         void OnPrev(InputAction.CallbackContext context);
         void OnNext(InputAction.CallbackContext context);
         void OnConfirm(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
     }
     public interface ISelectColorKeyboardRightActions
     {
         void OnPrev(InputAction.CallbackContext context);
         void OnNext(InputAction.CallbackContext context);
         void OnConfirm(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
     }
     public interface ISelectColorKeyboardGamepadActions
     {
         void OnPrev(InputAction.CallbackContext context);
         void OnNext(InputAction.CallbackContext context);
         void OnConfirm(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
     }
 }

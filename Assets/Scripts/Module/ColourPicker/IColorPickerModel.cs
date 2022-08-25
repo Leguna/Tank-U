@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Agate.MVC.Base;
+using TankU.Module.Base;
 using TankU.Module.ColourPicker.ColorPickerItem;
 
 namespace TankU.Module.ColourPicker
@@ -9,7 +10,7 @@ namespace TankU.Module.ColourPicker
         List<ColorItemSubView> ListColorItemSubView { get; }
         ColorItemSubView ColorPickerViewTemplate { get; }
         List<ColorItemModel> ListColorItemModel { get; }
-
+        List<InputLayout> ListInputLayout { get; }
         bool IsPicking { get; }
     }
 }
