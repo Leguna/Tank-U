@@ -28,6 +28,7 @@ namespace TankU.Module.Bomb
         private void Start()
         {
             timer1 = 0;
+            timer2 = 0;
         }
 
         private void Update()
