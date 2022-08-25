@@ -7,6 +7,6 @@ namespace TankU.PowerUp
 {
     public interface IPowerUpModel : IBaseModel
     {
-        public float SpawnTimer { get; }
+
     }
 }

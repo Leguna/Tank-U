@@ -11,6 +11,8 @@ namespace TankU.PowerUp
         private Action OnSpawnPowerUpHealth;
         private Action OnSpawnPowerUpBounce;
 
+        public List<Transform> spawnPoin = new List<Transform>();
+
         public void SetCallback(Action onSpawnPowerUpHealth, Action onSpawnPowerUpBounce)
         {
             OnSpawnPowerUpHealth = onSpawnPowerUpHealth;

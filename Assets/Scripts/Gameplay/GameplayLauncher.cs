@@ -32,8 +32,7 @@ namespace SpacePlan.Gameplay
         {
             return new IConnector[]
             {
-                new GameplayConnector(),
-                new PowerUpConnector()
+                new GameplayConnector()
             };
         }
 

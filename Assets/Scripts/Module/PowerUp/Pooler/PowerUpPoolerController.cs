@@ -13,7 +13,7 @@ namespace TankU.PowerUp
             if(index == 1)
             {
                 GameObject prefab = Resources.Load<GameObject>("Prefabs/PowerUpHealth");
-                PowerUpView powerUpView = Object.Instantiate(prefab).GetComponent<PowerUpView>();
+                PowerUpView powerUpView = Object.Instantiate(prefab, GetRandomSpawnPoin().position, Quaternion.identity).GetComponent<PowerUpView>();
                 powerUpView.transform.SetParent(_view.transform);
                 _model.AddToListHealth(powerUpView);
 
@@ -26,7 +26,7 @@ namespace TankU.PowerUp
             else if(index == 2)
             {
                 GameObject prefab = Resources.Load<GameObject>("Prefabs/PowerUpBounce");
-                PowerUpView powerUpView = Object.Instantiate(prefab).GetComponent<PowerUpView>();
+                PowerUpView powerUpView = Object.Instantiate(prefab, GetRandomSpawnPoin().position, Quaternion.identity).GetComponent<PowerUpView>();
                 powerUpView.transform.SetParent(_view.transform);
                 _model.AddToListBounce(powerUpView);
 
@@ -41,8 +41,24 @@ namespace TankU.PowerUp
         public override IEnumerator Initialize()
         {
             yield return base.Initialize();
-            _model.SetTimerSpawnHealth(2f);
-            _model.SetTimerSpawnBounce(6f);
+            _model.SetTimerSpawnHealth(8f);
+            _model.SetTimerSpawnBounce(5f);
+        }
+
+        public Transform GetRandomSpawnPoin()
+        {
+            int rand = Random.Range(0, _view.spawnPoin.Count);
+            if(rand == _model.TempRandomPosIndex)
+            {
+                if (rand <= _view.spawnPoin.Count - 2)
+                {
+                    rand += 1;
+                }
+            }
+
+            _model.SetTemporaryIndex(rand);
+
+            return _view.spawnPoin[_model.TempRandomPosIndex];
         }
 
         public void SpawnPowerUpHealth()
@@ -51,6 +67,10 @@ namespace TankU.PowerUp
             if (powerUp == null)
             {
                 CreatePowerUpObject(1);
+            }
+            else
+            {
+                powerUp.SetTransform(GetRandomSpawnPoin().position);
             }
         }
 
@@ -61,6 +81,10 @@ namespace TankU.PowerUp
             {
                 CreatePowerUpObject(2);
             }
+            else
+            {
+                powerUp.SetTransform(GetRandomSpawnPoin().position);
+            }
         }
 
         public void CountTimerSpawnHealth()
@@ -68,8 +92,7 @@ namespace TankU.PowerUp
             if (_model.TimerHealth <= 0)
             {
                 SpawnPowerUpHealth();
-                _model.SetTimerSpawnHealth(2f);
-                Publish<PowerupHealthPickupMessage>(new PowerupHealthPickupMessage());
+                _model.SetTimerSpawnHealth(8f);
             }
 
             _model.DecreaseTimeHealthByDeltatime();
@@ -80,7 +103,7 @@ namespace TankU.PowerUp
             if (_model.TimerBounce <= 0)
             {
                 SpawnPowerUpBounce();
-                _model.SetTimerSpawnBounce(6f);
+                _model.SetTimerSpawnBounce(5f);
             }
 
             _model.DecreaseTimeBounceByDeltatime();

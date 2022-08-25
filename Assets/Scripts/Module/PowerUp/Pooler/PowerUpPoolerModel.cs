@@ -7,27 +7,26 @@ namespace TankU.PowerUp
 {
     public class PowerUpPoolerModel : BaseModel
     {
-        private List<PowerUpView> powerUpHealth = new List<PowerUpView>();
-        private List<PowerUpView> powerUpBounce = new List<PowerUpView>();
+        private List<PowerUpView> _powerUpHealth = new List<PowerUpView>();
+        private List<PowerUpView> _powerUpBounce = new List<PowerUpView>();
 
         public float TimerHealth { get; private set; }
         public float TimerBounce { get; private set; }
+        public int TempRandomPosIndex { get; private set; }
 
         public void AddToListHealth(PowerUpView obj)
         {
-            powerUpHealth.Add(obj);
-            Debug.Log("Count health list : " + powerUpHealth.Count);
+            _powerUpHealth.Add(obj);
         }
 
         public void AddToListBounce(PowerUpView obj)
         {
-            powerUpBounce.Add(obj);
-            Debug.Log("Count bounce list : " + powerUpBounce.Count);
+            _powerUpBounce.Add(obj);
         }
 
         public PowerUpView GetPowerUpHealth()
         {
-            foreach(PowerUpView p in powerUpHealth)
+            foreach(PowerUpView p in _powerUpHealth)
             {
                 if (!p.gameObject.activeInHierarchy)
                 {
@@ -41,7 +40,7 @@ namespace TankU.PowerUp
 
         public PowerUpView GetPowerUpBounce()
         {
-            foreach (PowerUpView p in powerUpBounce)
+            foreach (PowerUpView p in _powerUpBounce)
             {
                 if (!p.gameObject.activeInHierarchy)
                 {
@@ -73,6 +72,12 @@ namespace TankU.PowerUp
         public void DecreaseTimeBounceByDeltatime()
         {
             TimerBounce -= Time.deltaTime;
+        }
+
+        public void SetTemporaryIndex(int temp)
+        {
+            TempRandomPosIndex = temp;
+            SetDataAsDirty();
         }
     }
 }
