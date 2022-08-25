@@ -2,6 +2,7 @@ using System.Collections;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
 using TankU.Boot;
+using TankU.Module.Bullet;
 using TankU.Module.ColourPicker;
 using TankU.Module.Timer;
 
@@ -12,7 +13,11 @@ namespace TankU.Gameplay
         public override string SceneName => "Gameplay";
 
         private TimerController _timerController;
+
         private ColorPickerController _colourPickerController;
+
+        // TODO @Leguna: Remove this after finish bullet spawner
+        private BulletController _bulletController;
 
         protected override IConnector[] GetSceneConnectors()
         {
@@ -27,7 +32,9 @@ namespace TankU.Gameplay
             return new IController[]
             {
                 new TimerController(),
-                new ColorPickerController()
+                new ColorPickerController(),
+                // TODO @Leguna: Remove this after finish bullet spawner
+                new BulletController()
             };
         }
 
@@ -35,6 +42,7 @@ namespace TankU.Gameplay
         {
             _timerController.SetView(_view.TimerView);
             _colourPickerController.SetView(_view.ColorPickerView);
+            _bulletController.SetView(_view.BulletView);
             yield return null;
         }
 

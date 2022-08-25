@@ -1,21 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
+using Agate.MVC.Base;
+using TankU.Module.Base;
 using UnityEngine;
 
-namespace TankU
+namespace TankU.Module.Bullet
 {
-    public class IBulletModel : MonoBehaviour
+    public interface IBulletModel : IBaseModel, IDoingDamageModel, IDamageableModel
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
+        bool IsDeath { get; }
+        float Speed { get; }
+        Vector3 SpawnPosition { get; }
+        void SetPosition(Vector3 pos);
+        Vector3 Velocity { get; }
+        void SetVelocity(Vector3 dir);
+        bool IsBouncingPowerUp { get; }
+        float PowerUpBounceTimeLeft { get; }
+        void ActivatePowerUpBounce(float duration);
+        void DeactivatePowerUpBounce();
+        void OnUpdateTime(float deltaTime);
     }
 }
