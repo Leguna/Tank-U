@@ -36,7 +36,7 @@ namespace TankU.PowerUp
         public override void SetView(PowerUpView view)
         {
             base.SetView(view);
-            _view.SetCallback(OnCountTimer);
+            _view.SetCallback(OnCountTimer, OnCollidePlayer);
         }
     }
 }

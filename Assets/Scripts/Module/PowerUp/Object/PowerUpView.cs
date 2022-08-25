@@ -9,6 +9,7 @@ namespace TankU.PowerUp
     public class PowerUpView : ObjectView<IPowerUpModel>
     {
         private Action OnCountTimer;
+        private Action OnCollidePlayer;
 
         protected override void InitRenderModel(IPowerUpModel model)
         {
@@ -20,9 +21,10 @@ namespace TankU.PowerUp
             
         }
 
-        public void SetCallback(Action onCountTimer)
+        public void SetCallback(Action onCountTimer, Action onCollidePlayer)
         {
             OnCountTimer = onCountTimer;
+            OnCollidePlayer = onCollidePlayer;
         }
 
         public void SetTransform(Vector3 pos)
@@ -39,6 +41,7 @@ namespace TankU.PowerUp
         {
             if (other.CompareTag("Player"))
             {
+                OnCollidePlayer?.Invoke();
                 gameObject.SetActive(false);
             }
         }
