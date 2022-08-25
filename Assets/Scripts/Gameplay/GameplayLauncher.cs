@@ -60,7 +60,7 @@ namespace TankU.Gameplay
 
         public void AddPlayer()
         {
-            _colourPickerController.AddColorPlayer();
+            _colourPickerController.AddColorPlayer(0);
         }
 
         public void StartPickingPlayer()

@@ -7,4 +7,11 @@
         Cancel,
         Finish
     }
+
+    public enum InputLayout
+    {
+        KeyboardLeft,
+        KeyboardRight,
+        Gamepad,
+    }
 }

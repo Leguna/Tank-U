@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Cancel",
+                    "type": "Button",
+                    "id": "b206df38-b770-45dc-b103-7bccfc55e533",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -66,6 +75,17 @@
                     "action": "Next",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b8a851f1-6f1a-4579-9f46-091d63c6ab0c",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -95,6 +115,15 @@
                     "name": "Confirm",
                     "type": "Button",
                     "id": "4cec401f-e486-4f8e-91e6-773bb32b74a7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Cancel",
+                    "type": "Button",
+                    "id": "ee2cff8f-a9a0-464c-b607-f0ae664738ce",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -134,6 +163,17 @@
                     "action": "Next",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7df18afe-3a13-4216-99a2-6f65f60c23d8",
+                    "path": "<Keyboard>/rightShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -163,6 +203,15 @@
                     "name": "Confirm",
                     "type": "Button",
                     "id": "c0805d74-baea-4d80-a7c1-06120b3aca32",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Cancel",
+                    "type": "Button",
+                    "id": "05b9e225-cc5c-4f87-9bbf-dfd9b3ca9e40",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -200,6 +249,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Next",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "75736748-dcd6-4bff-807b-93b45cc2f8ee",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
