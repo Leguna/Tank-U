@@ -10,6 +10,9 @@ namespace TankU.Module.Bomb
 
         private void OnDropBomb(GameObject bom)
         {
+            // TODO Mark: ambil pos dari Player
+            //bom pos = player pos
+            
             bom.SetActive(true);
         }
     }
