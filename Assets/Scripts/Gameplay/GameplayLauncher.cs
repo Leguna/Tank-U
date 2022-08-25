@@ -15,6 +15,7 @@ namespace SpacePlan.Gameplay
         private ClickGameController _clickGame;
         private SoundFxController _soundFx;
         private PlayerController _playerController;
+        private PlayerInputController _playerInputController;
 
         protected override IController[] GetSceneDependencies()
         {
@@ -22,7 +23,8 @@ namespace SpacePlan.Gameplay
             {
                 new ClickGameController(),
                 new SoundFxController(),
-                new PlayerController()
+                new PlayerController(),
+                new PlayerInputController()
             };
         }
 

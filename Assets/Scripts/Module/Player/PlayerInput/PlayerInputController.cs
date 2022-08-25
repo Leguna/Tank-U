@@ -14,13 +14,19 @@ namespace TankU.Gameplay
         public override IEnumerator Initialize()
         {
             yield return base.Initialize();
-            _playerInput._PlayerMapInput.Disable();
+            _playerInput._PlayerMapInput.Enable();
             _playerInput._PlayerMapInput.move.performed += OnMoveInput;
         }
 
         private void OnMoveInput(UnityEngine.InputSystem.InputAction.CallbackContext obj)
         {
+            Debug.Log(obj.ReadValue<Vector3>());
             Publish(new InputMoveMessage(obj.ReadValue<Vector3>()));
+        }
+
+        private void OnRotateInput(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+        {
+            Publish(new InputRotateMessage(obj.ReadValue<Vector2>()));
         }
 
         public override IEnumerator Terminate()

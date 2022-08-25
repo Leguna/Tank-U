@@ -1,4 +1,5 @@
 using Agate.MVC.Base;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,41 +8,38 @@ namespace TankU.Gameplay
 {
     public class PlayerController : ObjectController<PlayerController, PlayerModel, IPlayerModel, PlayerView>
     {
-        private Rigidbody _rigidbody;
-
+        private Rigidbody rg;
         public override void SetView(PlayerView view)
         {
+            view.SetCallbacks(Move, Init, OnMove);
+            view.TryGetComponent(out rg);
             base.SetView(view);
-            view.SetCallbacks(Move, Init);
-            view.TryGetComponent(out _rigidbody);
-            
         }
 
-        public override IEnumerator Initialize()
-        {
-            return base.Initialize();
-            _view._playerInput._PlayerMapInput.Enable();
-        }
-
-        public override IEnumerator Finalize()
-        {
-            return base.Finalize();
-            _view._playerInput._PlayerMapInput.Disable();
-        }
 
         private void Move()
         {
-            Debug.Log($"move = {_model.Position}, speed = {_model.Speed}");
-            _view.v = _view._playerInput._PlayerMapInput.move.ReadValue<Vector3>();
-            _view.rg.velocity = _model.Position * _model.Speed;
-            _view.v = _view.rg.velocity;
-            _model.SetPosition(_view.v);
+            rg.velocity = _model.Velocity * _model.Speed;
+            //Debug.Log($"{rg.velocity} , {_model.Velocity}");
+            _model.SetPosition(rg.velocity);
+            
+        }
+
+        public void OnMove(Vector3 direction)
+        {
+            _model.Move(direction);
+            //Debug.Log($"move = {direction}, speed = {_model.Speed}");
+        }
+
+        internal void OnRotate(Vector2 direction)
+        {
+            
         }
 
         public void Init()
         {
-            _model.SetSpeed(5);
-            _view.v = new Vector3(0, 0.3f, 0);
+            _model.SetSpeed(20);
+            _model.SetPosition(new Vector3(0, 0.3f, 0));
             
         }
     }

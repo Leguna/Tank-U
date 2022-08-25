@@ -10,21 +10,15 @@ namespace TankU.Gameplay
     public class PlayerView : ObjectView<IPlayerModel>
     {
 
-        [SerializeField]  public Rigidbody rg;
-        [HideInInspector] public Vector3 v;
-        public PlayerInput _playerInput;
-
-        private Action _onMove;
+        private Action _Move;
         private Action _onInit;
+        private Action<Vector3> _onMove;
 
-        internal void SetCallbacks(Action Move, Action Init)
+        internal void SetCallbacks(Action Move, Action Init, Action<Vector3> OnMove)
         {
-            _onMove = Move;
+            _Move = Move;
             _onInit = Init;
-        }
-        private void Awake()
-        {
-            _playerInput = new PlayerInput();
+            _onMove = OnMove;
         }
 
         protected override void InitRenderModel(IPlayerModel model)
@@ -36,9 +30,11 @@ namespace TankU.Gameplay
         {
         }
 
+
         private void FixedUpdate()
         {
-            _onMove?.Invoke();
+            _Move?.Invoke();
+            _onMove?.Invoke(Vector3.zero);
         }
 
 
