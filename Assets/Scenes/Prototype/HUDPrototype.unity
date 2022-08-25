@@ -210,6 +210,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!1 &69786429 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2280918963800931121, guid: e14660ac21715fd48b0133e52185fe2c, type: 3}
+  m_PrefabInstance: {fileID: 6161648785865980818}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &128985188
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,6 +504,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 231803948}
   m_CullTransparentMesh: 1
+--- !u!1 &346422778 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8828742512794186474, guid: 6f151647dfb8fc046a47db83cae31229, type: 3}
+  m_PrefabInstance: {fileID: 6058945551578752940}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &547444327
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,8 +1074,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79a1474a059316c4bbd04b0a803b0f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerHUD1: {fileID: 0}
-  PlayerHUD2: {fileID: 0}
+  PlayerHUD1: {fileID: 69786429}
+  PlayerHUD2: {fileID: 346422778}
 --- !u!114 &1345579524
 MonoBehaviour:
   m_ObjectHideFlags: 0
