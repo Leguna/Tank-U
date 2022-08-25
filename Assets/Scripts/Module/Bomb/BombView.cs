@@ -57,12 +57,19 @@ namespace TankU.Module.Bomb
         {
             bom.GetComponent<MeshRenderer>().enabled = false;
             
-            bom.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-            bom.gameObject.transform.GetChild(1).gameObject.SetActive(true);
+            bom.transform.GetChild(0).gameObject.SetActive(true);
+            bom.transform.GetChild(1).gameObject.SetActive(true);
 
             if (timer1 >= _explodeDelay + _explodeDuration || timer2 >= _explodeDelay + _explodeDuration)
             {
-                bom.gameObject.SetActive(false);
+                bom.GetComponent<MeshRenderer>().enabled = true;
+                
+                bom.transform.GetChild(0).gameObject.SetActive(false);
+                bom.transform.GetChild(1).gameObject.SetActive(false); ;
+                bom.SetActive(false);
+
+                if (bom == Bomb1) timer1 = 0;
+                if (bom == Bomb2) timer2 = 0;
             }
         }
     }

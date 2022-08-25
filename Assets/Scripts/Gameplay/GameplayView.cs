@@ -6,6 +6,6 @@ namespace TankU.Gameplay
 {
     public class GameplayView : BaseSceneView
     {
-        [SerializeField] public TimerView TimerView;
+        public TimerView TimerView;
     }
 }
