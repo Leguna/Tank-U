@@ -2,7 +2,7 @@
 using SpacePlan.Message;
 using SpacePlan.Module.SaveGame;
 using SpacePlan.Module.SoundFx;
-using TankU.Gameplay;
+using TankU.Message;
 
 namespace TankU.Gameplay
 {
@@ -28,11 +28,17 @@ namespace TankU.Gameplay
             _player.OnRotate(message.Direction);
         }
 
+        private void OnFire(FireMessage message)
+        {
+            _player.OnFire();
+        }
+
         protected override void Connect()
         {
             Subscribe<UpdateCoinMessage>(OnUpdateCoin);
             Subscribe<InputMoveMessage>(OnMoveInput);
             Subscribe<InputRotateMessage>(OnRotatedInput);
+            Subscribe<FireMessage>(OnFire);
         }
 
         protected override void Disconnect()
@@ -40,6 +46,7 @@ namespace TankU.Gameplay
             Unsubscribe<UpdateCoinMessage>(OnUpdateCoin);
             Unsubscribe<InputMoveMessage>(OnMoveInput);
             Unsubscribe<InputRotateMessage>(OnRotatedInput);
+            Unsubscribe<FireMessage>(OnFire);
         }
     }
 }

@@ -14,6 +14,8 @@ namespace TankU.Gameplay
 
         //
         public Vector3 Velocity { get; protected set; }
+        public Vector2 RotateDirec { get; protected set; }
+        public Transform Head { get; protected set; }
 
 
         public void SetPosition(Vector3 vector)
@@ -40,6 +42,28 @@ namespace TankU.Gameplay
         private void SetVelocity(Vector3 moveVelocity)
         {
             Velocity = moveVelocity;
+            SetDataAsDirty();
+        }
+
+        //
+
+        public virtual void Rotate(Vector2 rotate)
+        {
+            SetRotateDirec(rotate);
+            SetDataAsDirty();
+        }
+
+        private void SetRotateDirec(Vector2 rotateDirec)
+        {
+            RotateDirec = rotateDirec;
+            SetDataAsDirty();
+        }
+
+        //
+
+        public void SetHead(Transform transform)
+        {
+            Head = transform;
             SetDataAsDirty();
         }
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TankU.Gameplay
+namespace TankU.Message
 {
     public struct InputMoveMessage 
 

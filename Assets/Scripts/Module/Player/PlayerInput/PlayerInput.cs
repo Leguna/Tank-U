@@ -29,7 +29,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""move"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Value"",
                     ""id"": ""4f506b7b-68c7-4f1f-9210-0e109d75bf21"",
                     ""expectedControlType"": ""Vector3"",
                     ""processors"": """",
@@ -41,6 +41,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""66dcbaed-b1a6-4810-99a8-c6374700d252"",
                     ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Action"",
+                    ""type"": ""Value"",
+                    ""id"": ""876661b0-3cf9-4540-aa0a-c030a2074d39"",
+                    ""expectedControlType"": ""Integer"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -105,7 +114,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""2D Vector"",
                     ""id"": ""4d286668-a4cb-41e3-ae44-38b9c4457d5e"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -134,6 +143,28 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8578ffaa-0413-4e28-89a6-a930e54e91b7"",
+                    ""path"": ""<Keyboard>/#(V)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8841a2da-fa90-4335-8f7d-f5452654d406"",
+                    ""path"": ""<Keyboard>/#(B)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -144,6 +175,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m__PlayerMapInput = asset.FindActionMap("_PlayerMapInput", throwIfNotFound: true);
         m__PlayerMapInput_move = m__PlayerMapInput.FindAction("move", throwIfNotFound: true);
         m__PlayerMapInput_rotate = m__PlayerMapInput.FindAction("rotate", throwIfNotFound: true);
+        m__PlayerMapInput_Action = m__PlayerMapInput.FindAction("Action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -205,12 +237,14 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private I_PlayerMapInputActions m__PlayerMapInputActionsCallbackInterface;
     private readonly InputAction m__PlayerMapInput_move;
     private readonly InputAction m__PlayerMapInput_rotate;
+    private readonly InputAction m__PlayerMapInput_Action;
     public struct _PlayerMapInputActions
     {
         private @PlayerInput m_Wrapper;
         public _PlayerMapInputActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @move => m_Wrapper.m__PlayerMapInput_move;
         public InputAction @rotate => m_Wrapper.m__PlayerMapInput_rotate;
+        public InputAction @Action => m_Wrapper.m__PlayerMapInput_Action;
         public InputActionMap Get() { return m_Wrapper.m__PlayerMapInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -226,6 +260,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @rotate.started -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnRotate;
                 @rotate.performed -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnRotate;
                 @rotate.canceled -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnRotate;
+                @Action.started -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnAction;
+                @Action.performed -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnAction;
+                @Action.canceled -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnAction;
             }
             m_Wrapper.m__PlayerMapInputActionsCallbackInterface = instance;
             if (instance != null)
@@ -236,6 +273,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @rotate.started += instance.OnRotate;
                 @rotate.performed += instance.OnRotate;
                 @rotate.canceled += instance.OnRotate;
+                @Action.started += instance.OnAction;
+                @Action.performed += instance.OnAction;
+                @Action.canceled += instance.OnAction;
             }
         }
     }
@@ -244,5 +284,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
+        void OnAction(InputAction.CallbackContext context);
     }
 }
