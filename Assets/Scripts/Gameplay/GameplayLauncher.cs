@@ -4,6 +4,7 @@ using Agate.MVC.Core;
 using TankU.Boot;
 using TankU.Module.ColourPicker;
 using TankU.Module.Timer;
+using TankU.PowerUp;
 
 namespace TankU.Gameplay
 {
@@ -13,6 +14,7 @@ namespace TankU.Gameplay
 
         private TimerController _timerController;
         private ColorPickerController _colourPickerController;
+        private PowerUpPoolerController _powerUpPooler;
 
         protected override IConnector[] GetSceneConnectors()
         {
@@ -27,7 +29,9 @@ namespace TankU.Gameplay
             return new IController[]
             {
                 new TimerController(),
-                new ColorPickerController()
+                new ColorPickerController(),
+                new PowerUpPoolerController(),
+                new PowerUpController()
             };
         }
 
@@ -35,6 +39,7 @@ namespace TankU.Gameplay
         {
             _timerController.SetView(_view.TimerView);
             _colourPickerController.SetView(_view.ColorPickerView);
+            _powerUpPooler.SetView(_view.powerUpPooler);
             yield return null;
         }
 

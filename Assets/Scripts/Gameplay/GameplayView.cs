@@ -1,6 +1,8 @@
 using Agate.MVC.Base;
 using TankU.Module.ColourPicker;
 using TankU.Module.Timer;
+using TankU.PowerUp;
+using UnityEngine;
 
 namespace TankU.Gameplay
 {
@@ -8,5 +10,6 @@ namespace TankU.Gameplay
     {
         public TimerView TimerView;
         public ColorPickerView ColorPickerView;
+        public PowerUpPoolerView powerUpPooler;
     }
 }
