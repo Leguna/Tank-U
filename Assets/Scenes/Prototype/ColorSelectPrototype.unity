@@ -134,14 +134,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1374371185}
-    - target: {fileID: 1395924959, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1395924959, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2399899348124465059, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -194,14 +186,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1374371185}
-    - target: {fileID: 2399899348258670396, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2399899348258670396, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
 --- !u!114 &81275846 stripped
