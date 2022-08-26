@@ -17,6 +17,8 @@ namespace TankU.Gameplay
 
         private ColorPickerController _colourPickerController;
         private PowerUpPoolerController _powerUpPooler;
+        private PlayerController _playerController;
+        private PlayerInputController _playerInputController;
 
         // TODO @Leguna: Remove this after finish bullet spawner
         private BulletController _bulletController;
@@ -39,7 +41,9 @@ namespace TankU.Gameplay
                 new BulletController(),
                 new ColorPickerController(),
                 new PowerUpPoolerController(),
-                new PowerUpController()
+                new PowerUpController(),
+                new PlayerController(),
+                new PlayerInputController()
             };
         }
 
@@ -49,6 +53,7 @@ namespace TankU.Gameplay
             _colourPickerController.SetView(_view.ColorPickerView);
             _powerUpPooler.SetView(_view.powerUpPooler);
             _bulletController.SetView(_view.BulletView);
+            _playerController.SetView(_view.PlayerView);
             yield return null;
         }
 
