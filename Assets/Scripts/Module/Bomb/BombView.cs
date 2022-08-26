@@ -5,6 +5,8 @@ namespace TankU.Module.Bomb
 {
     public class BombView : ObjectView<IBombModel>
     {
+        //TODO @Mark bikin jadi array
+        
         [SerializeField] private float _explodeDelay = 4.0f;
         [SerializeField] private float _explodeDuration = 4.0f;
 

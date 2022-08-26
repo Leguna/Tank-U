@@ -1,12 +1,13 @@
 using Agate.MVC.Base;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace TankU.Module.Bomb
 {
     public class BombPoolView : BaseView
     {
-        [SerializeField] private GameObject Bomb1;
-        [SerializeField] private GameObject Bomb2;
+        //TODO Mark: bikin pooling baru
+
 
         private void OnDropBomb(GameObject bom)
         {

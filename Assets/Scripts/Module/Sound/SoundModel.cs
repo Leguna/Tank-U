@@ -16,6 +16,9 @@ namespace TankU.Sound
         public float BgmVolume => _configModel.BgmVolume;
         public float SfxVolume => _configModel.SfxVolume;
 
+        public bool IsBgmMuted => BgmVolume == 0f;
+        public bool IsSfxMuted => SfxVolume == 0f;
+
         public SoundModel()
         {
             AudioClip[] bgms = Resources.LoadAll<AudioClip>(_bgmPath);

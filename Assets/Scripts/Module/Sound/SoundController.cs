@@ -8,9 +8,6 @@ namespace TankU.Sound
     {
         private const string _viewPrefabPath = "Prefabs/SoundView";
 
-        public bool IsBgmMuted => _model.BgmVolume == 0f;
-        public bool IsSfxMuted => _model.SfxVolume == 0f;
-
         public override IEnumerator Initialize()
         {
             yield return base.Initialize();
