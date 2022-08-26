@@ -3,24 +3,32 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TankU.Gameplay
 {
     public class HUDView : BaseView
     {
-        [SerializeField] private GameObject PlayerHUD1;
-        [SerializeField] private GameObject PlayerHUD2;
+        [SerializeField] public GameObject PlayerHUD1;
+        [SerializeField] public GameObject PlayerHUD2;
+        private List<Color> _colors;
 
-        private Action _GetColorPlayer;
+        private Action<List<Color>> _GetColor;
 
-        internal void SetCallBack(Action GetColor)
+        internal void SetCallBack(Action<List<Color>> GetColor)
         {
-            _GetColorPlayer = GetColor;
+            _GetColor = GetColor;
         }
+
 
         private void Start()
         {
-            Debug.Log(PlayerHUD1);
+            _GetColor?.Invoke(_colors);
+        }
+
+        private void Update()
+        {
+            
         }
     }
 }

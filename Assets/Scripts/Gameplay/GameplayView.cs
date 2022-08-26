@@ -8,5 +8,6 @@ namespace TankU.Gameplay
     {
         public TimerView TimerView;
         public ColorPickerView ColorPickerView;
+        public HUDView HUDView;
     }
 }

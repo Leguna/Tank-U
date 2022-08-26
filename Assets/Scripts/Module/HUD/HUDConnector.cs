@@ -12,14 +12,19 @@ namespace TankU.Gameplay
 
         public HUDController _hud;
 
+        private void GetColorPlayer(ColorPickingMessage message)
+        {
+            _hud.GetColorPlayer(message.PickedColorList, message.PickingState);
+        }
 
         protected override void Connect()
         {
-            Subscribe<ColorPickingMessage> (_hud.) ;
+            Subscribe<ColorPickingMessage> (GetColorPlayer) ;
         }
 
         protected override void Disconnect()
         {
+            Unsubscribe<ColorPickingMessage> (GetColorPlayer) ;
             
         }
     }

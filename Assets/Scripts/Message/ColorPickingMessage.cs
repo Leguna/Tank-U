@@ -6,13 +6,13 @@ namespace TankU.Message
 {
     public struct ColorPickingMessage
     {
-        public ColorPickingMessage(PickingState pickingState, List<Color> colorList)
+        public ColorPickingMessage(PickingState pickingState, List<Color> pickedColorList)
         {
             PickingState = pickingState;
-            ColorList = colorList;
+            PickedColorList = pickedColorList;
         }
 
         public PickingState PickingState { get; }
-        public List<Color> ColorList { get; }
+        public List<Color> PickedColorList { get; }
     }
 }

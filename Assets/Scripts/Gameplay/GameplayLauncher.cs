@@ -13,6 +13,7 @@ namespace TankU.Gameplay
 
         private TimerController _timerController;
         private ColorPickerController _colourPickerController;
+        private HUDController _hudController;
 
         protected override IConnector[] GetSceneConnectors()
         {
@@ -27,7 +28,8 @@ namespace TankU.Gameplay
             return new IController[]
             {
                 new TimerController(),
-                new ColorPickerController()
+                new ColorPickerController(),
+                new HUDController()
             };
         }
 
