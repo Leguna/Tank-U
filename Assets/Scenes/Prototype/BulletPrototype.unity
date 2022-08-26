@@ -892,30 +892,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1395924959, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 144402406671727374, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.62539124
-      objectReference: {fileID: 0}
-    - target: {fileID: 144402406671727374, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.6164
-      objectReference: {fileID: 0}
-    - target: {fileID: 1498153066608107415, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.521
-      objectReference: {fileID: 0}
-    - target: {fileID: 1498153066608107415, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2399899348124465056, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
-      propertyPath: BulletView
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2399899348124465059, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -963,18 +939,6 @@ PrefabInstance:
     - target: {fileID: 2399899348124465069, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
       propertyPath: m_Name
       value: GameplayView
-      objectReference: {fileID: 0}
-    - target: {fileID: 2399899348258670396, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811225471188411741, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
-      propertyPath: m_Constraints
-      value: 116
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811225471188411742, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
