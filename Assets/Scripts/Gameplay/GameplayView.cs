@@ -1,5 +1,5 @@
 using Agate.MVC.Base;
-using TankU.Module.Bullet;
+using TankU.Module.BulletSpawner;
 using TankU.Module.ColourPicker;
 using TankU.Module.Timer;
 using TankU.PowerUp;
@@ -10,9 +10,7 @@ namespace TankU.Gameplay
     {
         public TimerView TimerView;
         public ColorPickerView ColorPickerView;
-
-        // TODO @Leguna: Remove This after implement bullet pool
-        public BulletView BulletView;
+        public BulletSpawnerView bulletSpawnerView;
         public PlayerView PlayerView;
         public PowerUpPoolerView powerUpPooler;
     }

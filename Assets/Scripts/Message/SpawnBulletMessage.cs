@@ -1,17 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TankU.Message
 {
     public struct SpawnBulletMessage
     {
-        public Transform transformSpawner { get; }
+        public Transform TransformSpawner { get; }
+        public float PowerUpDuration { get; }
+        public bool IsPowerUp { get; }
 
-        public SpawnBulletMessage(Transform tr)
+        public SpawnBulletMessage(Transform tr, float powerUpDuration, bool isPowerUp)
         {
-            transformSpawner = tr;
+            TransformSpawner = tr;
+            PowerUpDuration = powerUpDuration;
+            IsPowerUp = isPowerUp;
         }
-
     }
 }
