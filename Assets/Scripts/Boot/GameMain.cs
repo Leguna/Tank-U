@@ -14,7 +14,7 @@ namespace TankU.Boot
         {
             return new IController[]
             {
-                new SaveDataController()
+                new SaveDataController(),
             };
         }
 
