@@ -10,6 +10,6 @@ namespace TankU.Main
     public class MainView : BaseSceneView
     {
         public MainMenuView _mainMenuView;
-        public SettingView _settingView;
+        //public SettingView _settingView;
     }
 }
