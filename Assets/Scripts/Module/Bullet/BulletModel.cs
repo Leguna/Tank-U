@@ -9,28 +9,26 @@ namespace TankU.Module.Bullet
         {
             Speed = 5;
             SpawnPosition = Vector3.zero;
-            IsBouncingPowerUp = true;
-            PowerUpBounceTimeLeft = 5f;
+            IsBouncingPowerUp = false;
+            PowerUpBounceTimeLeft = 0f;
             Velocity = Vector3.forward;
             Health = 0;
             Damage = 1;
         }
 
-        public BulletModel(float speed, Vector3 spawnPosition, int damage, int health, Vector3 velocity,
-            bool isBouncingPowerUp, float powerUpBounceTimeLeft)
+        public void SpawnBullet(Vector3 spawnPos, Quaternion rotation, bool isBouncing, float timeLeft, int health)
         {
-            Speed = speed;
-            SpawnPosition = spawnPosition;
-            Damage = damage;
+            SpawnPosition = spawnPos;
+            SpawnRotation = rotation;
+            IsBouncingPowerUp = isBouncing;
+            PowerUpBounceTimeLeft = timeLeft;
             Health = health;
-            Velocity = velocity;
-            IsBouncingPowerUp = isBouncingPowerUp;
-            PowerUpBounceTimeLeft = powerUpBounceTimeLeft;
+            SetDataAsDirty();
         }
 
         public float Speed { get; }
         public Vector3 SpawnPosition { get; private set; }
-
+        public Quaternion SpawnRotation { get; private set; }
         public int Damage { get; }
         public bool IsDeath => Health <= 0;
 

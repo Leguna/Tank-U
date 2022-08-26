@@ -6,11 +6,11 @@ namespace TankU.Message
 {
     public struct SpawnBulletMessage
     {
-        public Transform transformSpawner { get; }
+        public Transform TransformSpawner { get; }
 
         public SpawnBulletMessage(Transform tr)
         {
-            transformSpawner = tr;
+            TransformSpawner = tr;
         }
 
     }
