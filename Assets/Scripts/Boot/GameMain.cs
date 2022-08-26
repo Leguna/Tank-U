@@ -6,13 +6,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
 
-namespace SpacePlan.Boot
+namespace TankU.Boot
 {
     public class GameMain : BaseMain<GameMain>, IMain
     {
         protected override IController[] GetDependencies()
         {
-            return new IController[]{
+            return new IController[]
+            {
                 new SaveDataController()
             };
         }
@@ -33,7 +34,7 @@ namespace SpacePlan.Boot
             GameObject obj = new GameObject("Event System");
             obj.AddComponent<EventSystem>();
             obj.AddComponent<InputSystemUIInputModule>();
-            GameObject.DontDestroyOnLoad(obj);
+            DontDestroyOnLoad(obj);
         }
     }
 }
