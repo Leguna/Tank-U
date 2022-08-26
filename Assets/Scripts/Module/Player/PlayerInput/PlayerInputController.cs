@@ -18,6 +18,7 @@ namespace TankU.Gameplay
             _playerInput._PlayerMapInput.Enable();
             _playerInput._PlayerMapInput.move.performed += OnMoveInput;
             _playerInput._PlayerMapInput.rotate.performed += OnRotateInput;
+            _playerInput._PlayerMapInput.rotate.canceled += OnRotateInput;
             _playerInput._PlayerMapInput.Action.performed += OnFire;
         }
 
@@ -42,5 +43,11 @@ namespace TankU.Gameplay
             yield return base.Terminate();
         }
 
+        /*public override IEnumerator Finalize()
+        {
+            yield return base.Finalize();
+            _playerInput._PlayerMapInput.rotate.canceled -= OnRotateInput;
+
+        }*/
     }
 }
