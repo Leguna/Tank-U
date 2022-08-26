@@ -11,21 +11,18 @@ namespace TankU.Gameplay
     {
 
         private Action _Move;
-        private Action _onInit;
         private Action<Vector3> _onMove;
         private Action _rotate;
 
-        internal void SetCallbacks(Action Move, Action Rotate, Action Init, Action<Vector3> OnMove)
+        internal void SetCallbacks(Action Move, Action Rotate, Action<Vector3> OnMove)
         {
             _Move = Move;
-            _onInit = Init;
             _onMove = OnMove;
             _rotate = Rotate;
         }
 
         protected override void InitRenderModel(IPlayerModel model)
         {
-            _onInit?.Invoke();
         }
 
         protected override void UpdateRenderModel(IPlayerModel model)
