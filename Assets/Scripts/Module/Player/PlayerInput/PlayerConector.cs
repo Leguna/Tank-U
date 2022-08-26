@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace TankU.Gameplay
 {
-    public class PlayerInputConector : BaseConnector
+    public class PlayerConector : BaseConnector
     {
         private PlayerInputController _playerInputController;
         private PlayerController _playerController;

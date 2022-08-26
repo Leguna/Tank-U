@@ -14,6 +14,15 @@ namespace TankU.Gameplay
         private Action<Vector3> _onMove;
         private Action _rotate;
 
+        protected override void InitRenderModel(IPlayerModel model)
+        {
+            _onMove?.Invoke(Vector3.zero);
+        }
+
+        protected override void UpdateRenderModel(IPlayerModel model)
+        {
+        }
+
         internal void SetCallbacks(Action Move, Action Rotate, Action<Vector3> OnMove)
         {
             _Move = Move;
@@ -21,20 +30,11 @@ namespace TankU.Gameplay
             _rotate = Rotate;
         }
 
-        protected override void InitRenderModel(IPlayerModel model)
-        {
-        }
-
-        protected override void UpdateRenderModel(IPlayerModel model)
-        {
-        }
-
 
         private void FixedUpdate()
         {
             _rotate?.Invoke();
             _Move?.Invoke();
-            _onMove?.Invoke(Vector3.zero);
         }
 
 
