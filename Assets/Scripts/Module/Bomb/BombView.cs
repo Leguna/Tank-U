@@ -17,7 +17,7 @@ namespace TankU.Module.Bomb
 
         protected override void InitRenderModel(IBombModel model)
         {
-            
+            transform.position = model.SpawnPosition;
         }
 
         protected override void UpdateRenderModel(IBombModel model)
