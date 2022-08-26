@@ -29,9 +29,9 @@ namespace TankU.Module.BulletSpawner
         {
             var bulletModel = new BulletModel();
             var bulletController = new BulletController();
-            //var bulletView = Object.Instantiate(_model.BulletView, bulletModel.SpawnPosition, Quaternion.identity,
-            //    _view.transform);
-            //bulletController.Init(bulletModel, bulletView);
+            var bulletView = Object.Instantiate(_model.BulletView, bulletModel.SpawnPosition, Quaternion.identity,
+                _view.transform);
+            bulletController.Init(bulletModel, bulletView);
             InjectDependencies(bulletController);
             _model.AddBullet(bulletController);
             return bulletController;

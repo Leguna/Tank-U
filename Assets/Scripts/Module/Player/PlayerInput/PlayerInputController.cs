@@ -23,13 +23,11 @@ namespace TankU.Gameplay
 
         private void OnMoveInput(UnityEngine.InputSystem.InputAction.CallbackContext obj)
         {
-            //Debug.Log(obj.ReadValue<Vector3>());
             Publish(new InputMoveMessage(obj.ReadValue<Vector3>()));
         }
 
         private void OnRotateInput(UnityEngine.InputSystem.InputAction.CallbackContext obj)
         {
-            //Debug.Log($"from obj iput ({obj.ReadValue<Vector2>()})");
             Publish(new InputRotateMessage(obj.ReadValue<Vector2>()));
         }
 
