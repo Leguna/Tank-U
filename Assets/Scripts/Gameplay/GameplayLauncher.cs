@@ -20,6 +20,7 @@ namespace TankU.Gameplay
             return new IConnector[]
             {
                 new GameplayConnector(),
+                new HUDConnector(),
             };
         }
 
@@ -37,6 +38,7 @@ namespace TankU.Gameplay
         {
             _timerController.SetView(_view.TimerView);
             _colourPickerController.SetView(_view.ColorPickerView);
+            _hudController.SetView(_view.HUDView);
             yield return null;
         }
 

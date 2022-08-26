@@ -11,7 +11,6 @@ namespace TankU.Gameplay
 {
     public class HUDController : ObjectController<HUDController, HUDView>
     {
-
         public override IEnumerator Initialize()
         {
             yield return base.Initialize();
@@ -20,27 +19,26 @@ namespace TankU.Gameplay
 
         public override void SetView(HUDView view)
         {
-            view.SetCallBack(GetColor);
             base.SetView(view);
         }
 
-        private void GetColor(List<Color> obj)
+        // set color player in HUD
+        private void SetColor(List<Color> obj)
         {
-            _view.PlayerHUD1.GetComponent<Image>().color = obj[0];
-            _view.PlayerHUD2.GetComponent<Image>().color = obj[1];
-
-            Debug.Log($"list color = {obj}");
+            for (var i = 0; i <= (_view.barList.Count -1); i++)
+            {
+                _view.barList[i].Player.GetComponent<Image>().color = obj[i];
+            }
         }
 
+        //get color from pickedColorMesage
         public void GetColorPlayer(List<Color> colorList, PickingState pickingState)
         {
             if ( pickingState == PickingState.Finish)
             {
+                SetColor(colorList);
             }        
-                GetColor(colorList);
         }
-
-
 
     }
 }
