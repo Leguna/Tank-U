@@ -14,7 +14,6 @@ namespace TankU.Module.Bomb
         [SerializeField] private GameObject Bomb1;
         [SerializeField] private GameObject Bomb2;
 
-
         protected override void InitRenderModel(IBombModel model)
         {
             transform.position = model.SpawnPosition;

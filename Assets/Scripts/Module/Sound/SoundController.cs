@@ -6,7 +6,7 @@ namespace TankU.Sound
 {
     public class SoundController : ObjectController<SoundController, SoundModel, ISoundModel, SoundView>
     {
-        private const string _viewPrefabPath = "Sound/SoundView";
+        private const string _viewPrefabPath = "Prefabs/SoundView";
 
         public bool IsBgmMuted => _model.BgmVolume == 0f;
         public bool IsSfxMuted => _model.SfxVolume == 0f;

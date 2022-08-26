@@ -1254,6 +1254,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimerView: {fileID: 1054215069}
   ColorPickerView: {fileID: 0}
+  BulletView: {fileID: 0}
+  powerUpPooler: {fileID: 0}
 --- !u!4 &512493413
 Transform:
   m_ObjectHideFlags: 0
