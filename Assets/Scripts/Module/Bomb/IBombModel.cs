@@ -1,9 +1,12 @@
 using Agate.MVC.Base;
+using TankU.Module.Base;
+using UnityEngine;
 
 namespace TankU.Module.Bomb
 {
-    public interface IBombModel : IBaseModel
+    public interface IBombModel : IBaseModel, IDoingDamageModel
     {
-        public int Damage { get; }
+        Vector3 SpawnPosition { get; }
+        void SetPosition(Vector3 pos);
     }
 }

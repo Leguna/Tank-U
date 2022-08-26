@@ -6,12 +6,15 @@ using TankU.Module.BulletSpawner;
 using TankU.Module.ColourPicker;
 using TankU.Module.Timer;
 using TankU.PowerUp;
+using TankU.Sound;
 
 namespace TankU.Gameplay
 {
     public class GameplayLauncher : SceneLauncher<GameplayLauncher, GameplayView>
     {
         public override string SceneName => "Gameplay";
+
+        private SoundController _soundController;
 
         private TimerController _timerController;
 
@@ -61,6 +64,7 @@ namespace TankU.Gameplay
 
         protected override IEnumerator LaunchScene()
         {
+            _soundController.PlayBgm(SoundBgmName.Game);
             yield return null;
         }
 

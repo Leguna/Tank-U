@@ -2,6 +2,7 @@ using System.Collections;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
 using SpacePlan.Module.SaveGame;
+using TankU.Sound;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
@@ -14,7 +15,8 @@ namespace TankU.Boot
         {
             return new IController[]
             {
-                new SaveDataController()
+                new SaveDataController(),
+                new SoundController()
             };
         }
 
