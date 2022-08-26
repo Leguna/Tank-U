@@ -22,7 +22,7 @@ namespace TankU.Module.BulletSpawner
             Debug.Log($"Fire {message.TransformSpawner.position} Rotation: {message.TransformSpawner.rotation}");
             var bulletController = _model.GetObjectController() ?? AddObjectToPool();
             bulletController.SpawnBullet(message.TransformSpawner.position,
-                message.TransformSpawner.rotation, false, 5f, 1);
+                message.TransformSpawner.rotation, message.IsPowerUp, message.PowerUpDuration, 1);
         }
 
         private BulletController AddObjectToPool()
