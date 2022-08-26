@@ -39,5 +39,8 @@ namespace TankU.Gameplay
             }        
                 GetColor(colorList);
         }
+
+
+
     }
 }
