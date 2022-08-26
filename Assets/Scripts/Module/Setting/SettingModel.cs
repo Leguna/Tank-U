@@ -7,11 +7,19 @@ namespace TankU.Setting
 {
     public class SettingModel : BaseModel, ISettingModel
     {
-        public bool IsAudioOn { get; private set; } = true;
+        public bool IsSfxOn { get; private set; } = true;
 
-        public void SetAudioToggle()
+        public bool IsBgmOn { get; private set; } = true;
+
+        public void SetSfxToggle()
         {
-            IsAudioOn = !IsAudioOn;
+            IsSfxOn = !IsSfxOn;
+            SetDataAsDirty();
+        }
+
+        public void SetBgmToggle()
+        {
+            IsBgmOn = !IsBgmOn;
             SetDataAsDirty();
         }
     }

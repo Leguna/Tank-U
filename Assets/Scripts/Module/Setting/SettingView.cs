@@ -11,9 +11,11 @@ namespace TankU.Setting
     public class SettingView : ObjectView<ISettingModel>
     {
         [SerializeField] private GameObject _settingPanel;
-        [SerializeField] private Button _audioButton;
+        [SerializeField] private Button _sfxButton;
+        [SerializeField] private Button _bgmButton;
         [SerializeField] private Button _backButton;
-        [SerializeField] private TMP_Text _audioText;
+        [SerializeField] private TMP_Text _sfxText;
+        [SerializeField] private TMP_Text _bgmText;
 
         public void Show()
         {
@@ -25,11 +27,13 @@ namespace TankU.Setting
             _settingPanel.SetActive(false);
         }
 
-        public void SetCallback(UnityAction onTurnAudio, UnityAction onBack)
+        public void SetCallback(UnityAction onTurnSFX, UnityAction onTurnBGM, UnityAction onBack)
         {
-            _audioButton.onClick.RemoveAllListeners();
+            _sfxButton.onClick.RemoveAllListeners();
+            _bgmButton.onClick.RemoveAllListeners();
             _backButton.onClick.RemoveAllListeners();
-            _audioButton.onClick.AddListener(onTurnAudio);
+            _sfxButton.onClick.AddListener(onTurnSFX);
+            _bgmButton.onClick.AddListener(onTurnBGM);
             _backButton.onClick.AddListener(onBack);
         }
 
@@ -40,7 +44,8 @@ namespace TankU.Setting
 
         protected override void UpdateRenderModel(ISettingModel model)
         {
-            _audioText.text = $"Audio {(_model.IsAudioOn ? "On" : "Off")}";
+            _sfxText.text = $"SFX {(_model.IsSfxOn ? "On" : "Off")}";
+            _bgmText.text = $"BGM {(_model.IsBgmOn ? "On" : "Off")}";
         }
     }
 }

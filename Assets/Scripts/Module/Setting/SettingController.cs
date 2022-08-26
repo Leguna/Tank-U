@@ -13,9 +13,16 @@ namespace TankU.Setting
             _view.Show();
         }
 
-        public void OnTurnAudio()
+        public void OnTurnSFX()
         {
-            _model.SetAudioToggle();
+            _model.SetSfxToggle();
+            //TODO:
+            //Publish message to audio, send data bool
+        }
+
+        public void OnTurnBGM()
+        {
+            _model.SetBgmToggle();
             //TODO:
             //Publish message to audio, send data bool
         }
@@ -28,7 +35,7 @@ namespace TankU.Setting
         public override void SetView(SettingView view)
         {
             base.SetView(view);
-            _view.SetCallback(OnTurnAudio, BackToMainMenu);
+            _view.SetCallback(OnTurnSFX, OnTurnBGM, BackToMainMenu);
         }
     }
 }

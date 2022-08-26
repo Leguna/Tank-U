@@ -8,6 +8,7 @@ namespace TankU.Setting
 {
     public interface ISettingModel : IBaseModel
     {
-        public bool IsAudioOn { get; }
+        public bool IsSfxOn { get; }
+        public bool IsBgmOn { get; }
     }
 }
