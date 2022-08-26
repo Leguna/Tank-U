@@ -6,7 +6,7 @@ namespace TankU.Module.Bullet
 {
     public class BulletView : ObjectView<IBulletModel>
     {
-        [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] public Rigidbody Rigidbody;
         private Action<Collision> _onCollisionEvent;
         private Action<float> _onUpdate;
 
@@ -18,24 +18,26 @@ namespace TankU.Module.Bullet
 
         protected override void InitRenderModel(IBulletModel model)
         {
+            transform.rotation = model.SpawnRotation;
             transform.position = model.SpawnPosition;
             gameObject.SetActive(!model.IsDeath);
-            _rigidbody.AddRelativeForce(Vector3.forward * (100 * model.Speed));
         }
 
         protected override void UpdateRenderModel(IBulletModel model)
         {
-            if (model.IsDeath) gameObject.SetActive(false);
+            gameObject.SetActive(!model.IsDeath);
         }
 
         private void OnCollisionEnter(Collision collision)
         {
             _onCollisionEvent?.Invoke(collision);
+            gameObject.SetActive(!_model.IsDeath);
         }
 
         private void Update()
         {
             _onUpdate?.Invoke(Time.deltaTime);
+            if (Vector3.Distance(transform.position, _model.SpawnPosition) > 100) _model.TakeDamage(1);
         }
     }
 }

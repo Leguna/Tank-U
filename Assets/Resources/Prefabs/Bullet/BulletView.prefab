@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7106479165228169078}
   - component: {fileID: 7106479165228169079}
   - component: {fileID: 7106479165228169032}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BulletView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa62419f45504dc7858be5c95a958d24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 7106479165228169077}
+  Rigidbody: {fileID: 7106479165228169077}
 --- !u!135 &7106479165228169079
 SphereCollider:
   m_ObjectHideFlags: 0
