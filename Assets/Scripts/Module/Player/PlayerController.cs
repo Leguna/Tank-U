@@ -67,7 +67,7 @@ namespace TankU.Gameplay
         {
             Transform bulletSpawner = _model.Head.GetChild(1);
             //                            direction         , duration , ispowerup active;
-            Publish(new SpawnBulletMessage(bulletSpawner.transform, 0, false));
+            Publish(new SpawnBulletMessage(bulletSpawner.transform, 5, true));
         }
 
 
