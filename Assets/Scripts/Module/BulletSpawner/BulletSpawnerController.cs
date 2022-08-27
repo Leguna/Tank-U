@@ -19,7 +19,6 @@ namespace TankU.Module.BulletSpawner
 
         public void SpawnBullet(SpawnBulletMessage message)
         {
-            Debug.Log($"Fire {message.TransformSpawner.position} Rotation: {message.TransformSpawner.rotation}");
             var bulletController = _model.GetObjectController() ?? AddObjectToPool();
             bulletController.SpawnBullet(message.TransformSpawner.position,
                 message.TransformSpawner.rotation, message.IsPowerUp, message.PowerUpDuration, 1);
