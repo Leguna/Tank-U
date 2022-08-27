@@ -17,8 +17,8 @@ namespace TankU.Gameplay
 
         private ColorPickerController _colourPickerController;
         private PowerUpPoolerController _powerUpPooler;
-        private PlayerController _playerController;
         private PlayerInputController _playerInputController;
+        private PlayerSpawnerController _playerSpawnerController;
         private BulletSpawnerController _bulletSpawnerController;
 
         protected override IConnector[] GetSceneConnectors()
@@ -26,7 +26,8 @@ namespace TankU.Gameplay
             return new IConnector[]
             {
                 new GameplayConnector(),
-                new BulletSpawnerConnector()
+                new BulletSpawnerConnector(),
+                new PlayerInputConector()
             };
         }
 
@@ -39,8 +40,8 @@ namespace TankU.Gameplay
                 new ColorPickerController(),
                 new PowerUpPoolerController(),
                 new PowerUpController(),
-                new PlayerController(),
                 new PlayerInputController(),
+                new PlayerSpawnerController(),
                 new BulletSpawnerController()
             };
         }
@@ -50,7 +51,7 @@ namespace TankU.Gameplay
             _timerController.SetView(_view.TimerView);
             _colourPickerController.SetView(_view.ColorPickerView);
             _powerUpPooler.SetView(_view.powerUpPooler);
-            _playerController.SetView(_view.PlayerView);
+            _playerSpawnerController.SetView(_view.PlayerSpawnerView);
             _bulletSpawnerController.SetView(_view.bulletSpawnerView);
             yield return null;
         }

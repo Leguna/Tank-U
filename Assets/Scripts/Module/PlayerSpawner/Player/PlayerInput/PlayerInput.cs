@@ -167,15 +167,177 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""_PlayerMapInput1"",
+            ""id"": ""da203755-315c-4f05-9dc2-fdfd9b269792"",
+            ""actions"": [
+                {
+                    ""name"": ""move"",
+                    ""type"": ""Value"",
+                    ""id"": ""7a52ca3c-2b86-40f7-b282-e48f60cffd31"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""rotate"",
+                    ""type"": ""Value"",
+                    ""id"": ""d7476256-daec-4a27-b70d-c205bbaae7a1"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Action"",
+                    ""type"": ""Value"",
+                    ""id"": ""53ae4807-bc71-401a-963f-72aaba02baad"",
+                    ""expectedControlType"": ""Integer"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""3D Vector"",
+                    ""id"": ""dd7d908e-2c0e-453e-b443-2708bcc43aea"",
+                    ""path"": ""3DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""1e4f5d87-48f0-4b04-bbf9-3b897c1ebe9c"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""c35fed88-f8f6-4423-85c5-a35e99053f47"",
+                    ""path"": ""<Keyboard>/quote"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""forward"",
+                    ""id"": ""10bbbc15-930c-4a4a-9048-3d626d35eea2"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""backward"",
+                    ""id"": ""f839680f-8f50-490b-a528-eba776f7d11c"",
+                    ""path"": ""<Keyboard>/semicolon"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""4585f991-c1f5-4dfb-b212-2fc26604a7c1"",
+                    ""path"": ""2DVector(mode=2)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""rotate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Left"",
+                    ""id"": ""3b3f6016-3885-4371-8a0d-5b456d3bd387"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Right"",
+                    ""id"": ""da77ee73-8f89-4cb6-8e37-3e708dab7432"",
+                    ""path"": ""<Keyboard>/leftBracket"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43c0d89e-80e4-4938-bfab-9679aa6d259d"",
+                    ""path"": ""<Keyboard>/#(V)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d09712fd-44b8-4850-b291-afc9bf153464"",
+                    ""path"": ""<Keyboard>/#(B)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""New control scheme"",
+            ""bindingGroup"": ""New control scheme"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // _PlayerMapInput
         m__PlayerMapInput = asset.FindActionMap("_PlayerMapInput", throwIfNotFound: true);
         m__PlayerMapInput_move = m__PlayerMapInput.FindAction("move", throwIfNotFound: true);
         m__PlayerMapInput_rotate = m__PlayerMapInput.FindAction("rotate", throwIfNotFound: true);
         m__PlayerMapInput_Action = m__PlayerMapInput.FindAction("Action", throwIfNotFound: true);
+        // _PlayerMapInput1
+        m__PlayerMapInput1 = asset.FindActionMap("_PlayerMapInput1", throwIfNotFound: true);
+        m__PlayerMapInput1_move = m__PlayerMapInput1.FindAction("move", throwIfNotFound: true);
+        m__PlayerMapInput1_rotate = m__PlayerMapInput1.FindAction("rotate", throwIfNotFound: true);
+        m__PlayerMapInput1_Action = m__PlayerMapInput1.FindAction("Action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -280,7 +442,71 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         }
     }
     public _PlayerMapInputActions @_PlayerMapInput => new _PlayerMapInputActions(this);
+
+    // _PlayerMapInput1
+    private readonly InputActionMap m__PlayerMapInput1;
+    private I_PlayerMapInput1Actions m__PlayerMapInput1ActionsCallbackInterface;
+    private readonly InputAction m__PlayerMapInput1_move;
+    private readonly InputAction m__PlayerMapInput1_rotate;
+    private readonly InputAction m__PlayerMapInput1_Action;
+    public struct _PlayerMapInput1Actions
+    {
+        private @PlayerInput m_Wrapper;
+        public _PlayerMapInput1Actions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @move => m_Wrapper.m__PlayerMapInput1_move;
+        public InputAction @rotate => m_Wrapper.m__PlayerMapInput1_rotate;
+        public InputAction @Action => m_Wrapper.m__PlayerMapInput1_Action;
+        public InputActionMap Get() { return m_Wrapper.m__PlayerMapInput1; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(_PlayerMapInput1Actions set) { return set.Get(); }
+        public void SetCallbacks(I_PlayerMapInput1Actions instance)
+        {
+            if (m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface != null)
+            {
+                @move.started -= m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface.OnMove;
+                @move.performed -= m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface.OnMove;
+                @move.canceled -= m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface.OnMove;
+                @rotate.started -= m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface.OnRotate;
+                @rotate.performed -= m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface.OnRotate;
+                @rotate.canceled -= m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface.OnRotate;
+                @Action.started -= m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface.OnAction;
+                @Action.performed -= m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface.OnAction;
+                @Action.canceled -= m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface.OnAction;
+            }
+            m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @move.started += instance.OnMove;
+                @move.performed += instance.OnMove;
+                @move.canceled += instance.OnMove;
+                @rotate.started += instance.OnRotate;
+                @rotate.performed += instance.OnRotate;
+                @rotate.canceled += instance.OnRotate;
+                @Action.started += instance.OnAction;
+                @Action.performed += instance.OnAction;
+                @Action.canceled += instance.OnAction;
+            }
+        }
+    }
+    public _PlayerMapInput1Actions @_PlayerMapInput1 => new _PlayerMapInput1Actions(this);
+    private int m_NewcontrolschemeSchemeIndex = -1;
+    public InputControlScheme NewcontrolschemeScheme
+    {
+        get
+        {
+            if (m_NewcontrolschemeSchemeIndex == -1) m_NewcontrolschemeSchemeIndex = asset.FindControlSchemeIndex("New control scheme");
+            return asset.controlSchemes[m_NewcontrolschemeSchemeIndex];
+        }
+    }
     public interface I_PlayerMapInputActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnRotate(InputAction.CallbackContext context);
+        void OnAction(InputAction.CallbackContext context);
+    }
+    public interface I_PlayerMapInput1Actions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);

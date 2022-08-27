@@ -12,7 +12,6 @@ namespace TankU.Gameplay
         public Vector3 Position { get; set; }
         public int Speed { get; set; }
 
-
         public void SetPosition(Vector3 vector);
         public void SetSpeed(int i);
     }

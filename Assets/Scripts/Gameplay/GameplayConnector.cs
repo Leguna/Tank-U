@@ -1,14 +1,13 @@
 
 using Agate.MVC.Base;
 using TankU.Message;
-using TankU.Module.ColourPicker;
+using TankU.Gameplay;
 
 namespace TankU.Gameplay
 {
     public class GameplayConnector : BaseConnector
     {
         private PlayerController _player;
-        //private SFXController _sfx;
 
         private void OnMoveInput(InputMoveMessage message)
         {
