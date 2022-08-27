@@ -13,6 +13,7 @@ namespace TankU.Main
         public override string SceneName => "Main";
 
         private MainMenuController _mainMenuController;
+        private SettingController _settingController;
 
         protected override IController[] GetSceneDependencies()
         {
@@ -25,15 +26,13 @@ namespace TankU.Main
         protected override IEnumerator InitSceneObject()
         {
             _mainMenuController.SetView(_view._mainMenuView);
+            //_settingController.SetView(_view._settingView);
             yield return null;
         }
 
         protected override IConnector[] GetSceneConnectors()
         {
-            return new IConnector[]
-            {
-                new SettingConnector()
-            };
+            return null;
         }
 
         protected override IEnumerator LaunchScene()

@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
 using TankU.Setting;
+using TankU.Main;
 
 namespace TankU.Boot
 {
@@ -50,14 +51,18 @@ namespace TankU.Boot
             GameObject prefab = Resources.Load<GameObject>("Prefabs/SettingPanel");
             Transform canvas = GameObject.Find("Canvas").transform;
             SettingView settingView = Instantiate(prefab, canvas.position, Quaternion.identity).GetComponent<SettingView>();
-            
+
             if (canvas)
             {
                 settingView.transform.SetParent(canvas);
             }
+
+            MainView mainView = FindObjectOfType<MainView>().GetComponent<MainView>();
+            mainView._settingView = settingView;
+
             SettingModel settingModel = new SettingModel();
             SettingController settingController = new SettingController();
-            settingController.Init(settingModel, settingView);
+            settingController.Init(settingModel);
         }
     }
 }

@@ -1,5 +1,8 @@
 ﻿using Agate.MVC.Base;
 using Agate.MVC.Core;
+using System.Collections;
+using TankU.Main;
+using TankU.Setting;
 
 namespace TankU.Boot
 {
@@ -7,6 +10,7 @@ namespace TankU.Boot
         where TLauncher : BaseLauncher<TLauncher, TView>
         where TView : View
     {
+        private SettingController settingController;
         protected override ILoad GetLoader()
         {
             return SceneLoader.Instance;
@@ -20,6 +24,13 @@ namespace TankU.Boot
         protected override ISplash GetSplash()
         {
             return SplashScreen.Instance;
+        }
+
+        protected override IEnumerator InitSceneObject()
+        {
+            MainView mainView = FindObjectOfType<MainView>().GetComponent<MainView>();
+            settingController.SetView(mainView._settingView);
+            yield return null;
         }
     }
 }
