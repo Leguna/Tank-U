@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Agate.MVC.Base;
-using TankU.Module.Bomb;
 using UnityEngine;
 
 namespace TankU.Module.Bomb

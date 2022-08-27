@@ -1,5 +1,8 @@
 using Agate.MVC.Base;
+using System;
 using UnityEngine;
+using System.Collections.Generic;
+
 namespace TankU.Module.Bomb
 {
     public class BombView : ObjectView<IBombModel>
@@ -15,16 +18,21 @@ namespace TankU.Module.Bomb
         [SerializeField] private GameObject Bomb1;
         [SerializeField] private GameObject Bomb2;
 
+        /*[SerializeField] private List<float> Timers { get; }
+        [SerializeField] private List<GameObject> Bombs{ get; }
+        [SerializeField] private int PoolSize { get; }*/
+
         private BombController _bombController;
 
         protected override void InitRenderModel(IBombModel model)
         {
             transform.position = model.SpawnPosition;
+            gameObject.SetActive(!model.IsDeath);
         }
 
         protected override void UpdateRenderModel(IBombModel model)
         {
-            
+            gameObject.SetActive(!model.IsDeath);
         }
 
         private void Start()
