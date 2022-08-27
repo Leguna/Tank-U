@@ -6,19 +6,24 @@ namespace TankU.Module.Bomb
     public class BombModel : BaseModel, IBombModel
     {
         public int Damage { get; private set; }
-
         public Vector3 SpawnPosition { get; private set; }
+
+        public bool IsDeath => Health <= 0;
+        public int Health { get; private set; }
 
         public BombModel()
         {
             SpawnPosition = Vector3.zero;
             Damage = 1;
+            Health = 0;
         }
 
-        public BombModel(Vector3 spawnPosition, int damage)
+        public void SpawnBomb(Vector3 spawnPosition, int damage, int health)
         {
             SpawnPosition = spawnPosition;
             Damage = damage;
+            Health = health;
+            SetDataAsDirty();
         }
         
         public void SetDamage(int damage)
