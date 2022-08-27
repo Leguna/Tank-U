@@ -18,19 +18,18 @@ namespace TankU.Gameplay
             _playerInput._PlayerMapInput.Enable();
             _playerInput._PlayerMapInput.move.performed += OnMoveInput;
             _playerInput._PlayerMapInput.rotate.performed += OnRotateInput;
+            _playerInput._PlayerMapInput.rotate.canceled += OnRotateInput;
             _playerInput._PlayerMapInput.Action.performed += OnFire;
             _playerInput._PlayerMapInput.Bomb.performed += OnBomb;
         }
 
         private void OnMoveInput(UnityEngine.InputSystem.InputAction.CallbackContext obj)
         {
-            //Debug.Log(obj.ReadValue<Vector3>());
             Publish(new InputMoveMessage(obj.ReadValue<Vector3>()));
         }
 
         private void OnRotateInput(UnityEngine.InputSystem.InputAction.CallbackContext obj)
         {
-            //Debug.Log($"from obj iput ({obj.ReadValue<Vector2>()})");
             Publish(new InputRotateMessage(obj.ReadValue<Vector2>()));
         }
 
@@ -50,5 +49,11 @@ namespace TankU.Gameplay
             yield return base.Terminate();
         }
 
+        /*public override IEnumerator Finalize()
+        {
+            yield return base.Finalize();
+            _playerInput._PlayerMapInput.rotate.canceled -= OnRotateInput;
+
+        }*/
     }
 }

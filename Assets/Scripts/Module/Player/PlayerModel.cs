@@ -9,13 +9,16 @@ namespace TankU.Gameplay
     {
 
         public string Name { get;  set; }
-        public Vector3 Position { get; set; } = new Vector3(0, 0.3f, 0);
         public int Speed { get; set; }
+        public int Health { get; protected set; }
+        public bool PowerUpIsActive { get; protected set; }
+        public float PowerUpDuration { get; protected set; }
 
-        //
+        public Vector3 Position { get; set; } = new Vector3(0, 0.3f, 0);
         public Vector3 Velocity { get; protected set; }
         public Vector2 RotateDirec { get; protected set; }
         public Transform Head { get; protected set; }
+
 
 
         public void SetPosition(Vector3 vector)
@@ -30,9 +33,6 @@ namespace TankU.Gameplay
             SetDataAsDirty();
         }
 
-
-        //
-
         public virtual void Move(Vector3 moveVelocity)
         {
             SetVelocity(moveVelocity);
@@ -44,8 +44,6 @@ namespace TankU.Gameplay
             Velocity = moveVelocity;
             SetDataAsDirty();
         }
-
-        //
 
         public virtual void Rotate(Vector2 rotate)
         {
@@ -59,12 +57,27 @@ namespace TankU.Gameplay
             SetDataAsDirty();
         }
 
-        //
-
         public void SetHead(Transform transform)
         {
             Head = transform;
             SetDataAsDirty();
+        }
+
+        public void TakeDamage(int damage)
+        {
+            Health -= damage;
+            SetDataAsDirty();
+        }
+
+        public void SetDurationPowerUp(float duration)
+        {
+            PowerUpDuration = duration;
+            SetDataAsDirty();
+        }
+
+        public void SetHealth(int health)
+        {
+
         }
     }
 }

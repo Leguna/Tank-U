@@ -13,11 +13,20 @@ namespace TankU.Gameplay
 
         public override void SetView(PlayerView view)
         {
-            view.SetCallbacks(Move, Rotate, Init, OnMove);
+            view.SetCallbacks(Move, Rotate, OnMove);
             view.TryGetComponent(out rg);
             base.SetView(view);
+            _model.SetHead(_view.transform.GetChild(0));
+
         }
 
+        public override IEnumerator Initialize()
+        {
+            yield return base.Initialize();
+            _model.SetSpeed(20);
+            _model.SetPosition(new Vector3(0, 0.3f, 0));
+            OnGetpowerUpBounce(5f);
+        }
 
         private void Move()
         {
@@ -40,24 +49,27 @@ namespace TankU.Gameplay
             _model.Rotate(direction);
         }
 
+        public void OnGetpowerUpBounce(float duration)
+        {
+            if (_model.PowerUpDuration == 0)
+            {
+                _model.SetDurationPowerUp(duration);
+                Debug.Log($"duration powerup bounce {duration}");
+            }
+        }
+
+        public void OnGetPowerUpHealth()
+        {
+            _model.SetHealth(20);
+        }
+
         public void OnFire()
         {
             Transform bulletSpawner = _model.Head.GetChild(1);
-            //Debug.Log($"posisis {bulletSpawner.transform.position}, direction {bulletSpawner.eulerAngles}");
-            Publish(new SpawnBulletMessage(bulletSpawner.transform, 0, false));
+            //                            direction         , duration , ispowerup active;
+            Publish(new SpawnBulletMessage(bulletSpawner.transform, 5, true));
         }
 
-        public void OnBomb()
-        {
-            Transform bombPool = _model.Head.GetChild(2);
-            Publish(new SpawnBombMessage(bombPool.transform));
-        }
 
-        public void Init()
-        {
-            _model.SetSpeed(20);
-            _model.SetPosition(new Vector3(0, 0.3f, 0));
-            _model.SetHead(_view.transform.GetChild(0));
-        }
     }
 }
