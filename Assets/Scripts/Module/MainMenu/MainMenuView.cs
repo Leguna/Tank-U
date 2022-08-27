@@ -11,13 +11,18 @@ namespace TankU.MainMenu
     {
         [SerializeField] private Button _playButton;
         [SerializeField] private Button _settingButton;
+        [SerializeField] private Button _exitButton;
 
-        public void SetCallback(UnityAction onPlay, UnityAction onSetting)
+        private UnityAction OnExit;
+
+        public void SetButtonListener(UnityAction onPlay, UnityAction onSetting, UnityAction onExit)
         {
             _playButton.onClick.RemoveAllListeners();
             _settingButton.onClick.RemoveAllListeners();
+            _exitButton.onClick.RemoveAllListeners();
             _playButton.onClick.AddListener(onPlay);
             _settingButton.onClick.AddListener(onSetting);
+            _exitButton.onClick.AddListener(onExit);
         }
     }
 }

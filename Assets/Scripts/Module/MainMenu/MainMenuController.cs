@@ -12,7 +12,7 @@ namespace TankU.MainMenu
         public override void SetView(MainMenuView view)
         {
             base.SetView(view);
-            _view.SetCallback(PlayGame, ShowSetting);
+            _view.SetButtonListener(PlayGame, ShowSetting, ExitGame);
         }
 
         public void PlayGame()
@@ -23,6 +23,11 @@ namespace TankU.MainMenu
         public void ShowSetting()
         {
             Publish<ShowSettingMessage>(new ShowSettingMessage());
+        }
+
+        public void ExitGame()
+        {
+            Application.Quit();
         }
     }
 }

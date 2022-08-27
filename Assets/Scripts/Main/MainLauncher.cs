@@ -26,7 +26,7 @@ namespace TankU.Main
         protected override IEnumerator InitSceneObject()
         {
             _mainMenuController.SetView(_view._mainMenuView);
-            //_settingController.SetView(_view._settingView);
+            _settingController.SetView(_view._settingView);
             yield return null;
         }
 
@@ -39,7 +39,6 @@ namespace TankU.Main
         {
             yield return null;
         }
-
 
         private void OnClickPlayButton()
         {

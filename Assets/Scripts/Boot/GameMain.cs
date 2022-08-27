@@ -7,13 +7,13 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
 using TankU.Setting;
 using TankU.Main;
+using TankU.Gameplay;
+using UnityEngine.SceneManagement;
 
 namespace TankU.Boot
 {
     public class GameMain : BaseMain<GameMain>, IMain
     {
-        private SettingController _settingController;
-
         protected override IController[] GetDependencies()
         {
             return new IController[]
