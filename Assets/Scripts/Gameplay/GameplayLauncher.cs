@@ -5,6 +5,7 @@ using TankU.Boot;
 using TankU.Module.ColourPicker;
 using TankU.Module.Timer;
 using TankU.PowerUp;
+using TankU.Setting;
 
 namespace TankU.Gameplay
 {
@@ -15,6 +16,8 @@ namespace TankU.Gameplay
         private TimerController _timerController;
         private ColorPickerController _colourPickerController;
         private PowerUpPoolerController _powerUpPooler;
+        private SettingController _settingController;
+
 
         protected override IConnector[] GetSceneConnectors()
         {
@@ -40,6 +43,7 @@ namespace TankU.Gameplay
             _timerController.SetView(_view.TimerView);
             _colourPickerController.SetView(_view.ColorPickerView);
             _powerUpPooler.SetView(_view.powerUpPooler);
+            _settingController.SetView(_view.setting);
             yield return null;
         }
 

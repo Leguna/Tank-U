@@ -13,8 +13,6 @@ namespace TankU.MainMenu
         [SerializeField] private Button _settingButton;
         [SerializeField] private Button _exitButton;
 
-        private UnityAction OnExit;
-
         public void SetButtonListener(UnityAction onPlay, UnityAction onSetting, UnityAction onExit)
         {
             _playButton.onClick.RemoveAllListeners();

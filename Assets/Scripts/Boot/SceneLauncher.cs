@@ -25,12 +25,5 @@ namespace TankU.Boot
         {
             return SplashScreen.Instance;
         }
-
-        protected override IEnumerator InitSceneObject()
-        {
-            MainView mainView = FindObjectOfType<MainView>().GetComponent<MainView>();
-            settingController.SetView(mainView._settingView);
-            yield return null;
-        }
     }
 }
