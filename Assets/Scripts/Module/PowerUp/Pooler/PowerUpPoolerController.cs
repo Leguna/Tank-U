@@ -12,7 +12,7 @@ namespace TankU.PowerUp
         {
             if(index == 1)
             {
-                GameObject prefab = Resources.Load<GameObject>("Prefabs/PowerUpHealth");
+                GameObject prefab = Resources.Load<GameObject>("Prefabs/PowerUp/PowerUpHealth");
                 PowerUpView powerUpView = Object.Instantiate(prefab, GetRandomSpawnPoin().position, Quaternion.identity).GetComponent<PowerUpView>();
                 powerUpView.transform.SetParent(_view.transform);
                 _model.AddToListHealth(powerUpView);
@@ -25,7 +25,7 @@ namespace TankU.PowerUp
             } 
             else if(index == 2)
             {
-                GameObject prefab = Resources.Load<GameObject>("Prefabs/PowerUpBounce");
+                GameObject prefab = Resources.Load<GameObject>("Prefabs/PowerUp/PowerUpBounce");
                 PowerUpView powerUpView = Object.Instantiate(prefab, GetRandomSpawnPoin().position, Quaternion.identity).GetComponent<PowerUpView>();
                 powerUpView.transform.SetParent(_view.transform);
                 _model.AddToListBounce(powerUpView);
