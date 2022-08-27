@@ -5,6 +5,8 @@ namespace TankU.Module.Bomb
 {
     public class BombView : ObjectView<IBombModel>
     {
+        //TODO @Mark bikin jadi array
+        
         [SerializeField] private float _explodeDelay = 4.0f;
         [SerializeField] private float _explodeDuration = 4.0f;
 
@@ -14,10 +16,9 @@ namespace TankU.Module.Bomb
         [SerializeField] private GameObject Bomb1;
         [SerializeField] private GameObject Bomb2;
 
-
         protected override void InitRenderModel(IBombModel model)
         {
-            
+            transform.position = model.SpawnPosition;
         }
 
         protected override void UpdateRenderModel(IBombModel model)

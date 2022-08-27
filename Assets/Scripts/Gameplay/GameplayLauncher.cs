@@ -2,10 +2,14 @@ using System.Collections;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
 using TankU.Boot;
+using TankU.Module.BulletSpawner;
 using TankU.Module.ColourPicker;
 using TankU.Module.Timer;
+using TankU.Module.VisualEffect;
 using TankU.PowerUp;
+using TankU.Sound;
 using TankU.Setting;
+
 
 namespace TankU.Gameplay
 {
@@ -13,17 +17,29 @@ namespace TankU.Gameplay
     {
         public override string SceneName => "Gameplay";
 
+        private SoundController _soundController;
+
         private TimerController _timerController;
+
         private ColorPickerController _colourPickerController;
         private PowerUpPoolerController _powerUpPooler;
-        private SettingController _settingController;
 
+        private PlayerController _playerController;
+        private PlayerInputController _playerInputController;
+        private BulletSpawnerController _bulletSpawnerController;
+        private HUDController _hudController;
+        private VisualEffectController _visualEffectController;
+        
+        private SettingController _settingController;
 
         protected override IConnector[] GetSceneConnectors()
         {
             return new IConnector[]
             {
                 new GameplayConnector(),
+                new BulletSpawnerConnector(),
+                new HUDConnector(),
+                new VisualEffectConnector()
             };
         }
 
@@ -33,8 +49,14 @@ namespace TankU.Gameplay
             {
                 new TimerController(),
                 new ColorPickerController(),
+                new ColorPickerController(),
                 new PowerUpPoolerController(),
-                new PowerUpController()
+                new PowerUpController(),
+                new PlayerController(),
+                new PlayerInputController(),
+                new BulletSpawnerController(),
+                new HUDController(),
+                new VisualEffectController()
             };
         }
 
@@ -43,12 +65,17 @@ namespace TankU.Gameplay
             _timerController.SetView(_view.TimerView);
             _colourPickerController.SetView(_view.ColorPickerView);
             _powerUpPooler.SetView(_view.powerUpPooler);
+            _playerController.SetView(_view.PlayerView);
+            _bulletSpawnerController.SetView(_view.bulletSpawnerView);
+            _hudController.SetView(_view.HUDView);
             _settingController.SetView(_view.setting);
+
             yield return null;
         }
 
         protected override IEnumerator LaunchScene()
         {
+            _soundController.PlayBgm(SoundBgmName.Game);
             yield return null;
         }
 
