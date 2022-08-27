@@ -6,8 +6,8 @@ namespace TankU.Sound
 {
     public class SoundModel : BaseModel, ISoundModel
     {
-        private const string _sfxPath = "SFX/";
-        private const string _bgmPath = "BGM/";
+        private const string _sfxPath = "Audio/SFX/";
+        private const string _bgmPath = "Audio/BGM/";
 
         private AudioConfigModel _configModel = new AudioConfigModel();
         private Dictionary<string, AudioClip> _bgmLibrary = new Dictionary<string, AudioClip>();
