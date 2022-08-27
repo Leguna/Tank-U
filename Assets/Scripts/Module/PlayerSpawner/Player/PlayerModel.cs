@@ -11,6 +11,7 @@ namespace TankU.Gameplay
         public Vector3 Position { get; set; } = new Vector3(0, 0.3f, 0);
         public int Speed { get; set; }
         public int Health { get; private set; }
+        public int PlayerNumber { get; private set; }
 
         //
         public Vector3 Velocity { get; protected set; }
@@ -22,6 +23,12 @@ namespace TankU.Gameplay
             Speed = 10;
             Name = "player";
             Health = 5;
+        }
+
+        public PlayerModel(int playerNumber) : this()
+        {
+            PlayerNumber = playerNumber;
+            Debug.Log($"player number :{PlayerNumber}");
         }
 
         public void SpawnPlayer(Vector3 position, Vector2 direction)

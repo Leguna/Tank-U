@@ -12,10 +12,10 @@ namespace TankU.Gameplay
 
         private Action _Move;
         private Action<PlayerModel, PlayerView > _onInit;
-        private Action<Vector3> _onMove;
+        private Action<Vector3, int> _onMove;
         private Action _rotate;
 
-        internal void SetCallbacks(Action Move, Action Rotate, Action<PlayerModel, PlayerView> Init, Action<Vector3> OnMove)
+        internal void SetCallbacks(Action Move, Action Rotate, Action<PlayerModel, PlayerView> Init, Action<Vector3, int> OnMove)
         {
             _Move = Move;
             _onInit = Init;
@@ -37,7 +37,7 @@ namespace TankU.Gameplay
         {
             _rotate?.Invoke();
             _Move?.Invoke();
-            _onMove?.Invoke(Vector3.zero);
+            _onMove?.Invoke(Vector3.zero, _model.PlayerNumber);
         }
 
 

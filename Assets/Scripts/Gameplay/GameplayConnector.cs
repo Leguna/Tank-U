@@ -7,21 +7,23 @@ namespace TankU.Gameplay
 {
     public class GameplayConnector : BaseConnector
     {
-        private PlayerController _player;
+        private PlayerSpawnerController _playerSpawner;
 
         private void OnMoveInput(InputMoveMessage message)
         {
-            _player.OnMove(message.Direction);
+            
+                _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnMove(message.Direction, message.PlayerNumber);
+            
         }
 
         private void OnRotatedInput(InputRotateMessage message)
         {
-            _player.OnRotate(message.Direction);
+                _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnRotate(message.Direction, message.PlayerNumber);
         }
 
         private void OnFire(FireMessage message)
         {
-            _player.OnFire();
+           _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnFire(message.PlayerNumber);
         }
 
         protected override void Connect()

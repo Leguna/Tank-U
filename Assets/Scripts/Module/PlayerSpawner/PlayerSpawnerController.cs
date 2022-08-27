@@ -39,7 +39,7 @@ namespace TankU.Gameplay
 
         public void SpawnPlayer(int i)
         {
-            var playerModel = new PlayerModel();
+            var playerModel = new PlayerModel(i);
             var playerController = new PlayerController();
             var playerView = GameObject.Instantiate(_model.PlayerView, _view._spawnTransform[i]);
             playerController.Init(playerModel, playerView);

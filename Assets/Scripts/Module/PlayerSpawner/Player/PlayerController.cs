@@ -30,18 +30,21 @@ namespace TankU.Gameplay
             _model.Head.transform.Rotate(0, _model.RotateDirec.x, _model.RotateDirec.y, Space.Self);
         }
 
-        public void OnMove(Vector3 direction)
+        public void OnMove(Vector3 direction, int i)
         {
+            if (_model.PlayerNumber != i )return;
             _model.Move(direction);
         }
 
-        internal void OnRotate(Vector2 direction)
+        internal void OnRotate(Vector2 direction, int i)
         {
+            if (_model.PlayerNumber != i )return;
             _model.Rotate(direction);
         }
 
-        public void OnFire()
+        public void OnFire(int i)
         {
+            if (_model.PlayerNumber != i )return;
             Transform bulletSpawner = _model.Head.GetChild(1);
             //Debug.Log($"posisis {bulletSpawner.transform.position}, direction {bulletSpawner.eulerAngles}");
             Publish(new SpawnBulletMessage(bulletSpawner.transform, 0, false));
