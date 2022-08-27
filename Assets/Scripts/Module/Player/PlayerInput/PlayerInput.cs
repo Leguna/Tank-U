@@ -53,6 +53,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Bomb"",
+                    ""type"": ""Button"",
+                    ""id"": ""211d5174-1794-4fcc-b5be-3b92e5e77ce6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -165,6 +174,28 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8b48b76b-c3d0-4649-b5a2-401896e8c228"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Bomb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""668e4cd1-b7b7-4375-8435-1912ff3be546"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Bomb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -176,6 +207,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m__PlayerMapInput_move = m__PlayerMapInput.FindAction("move", throwIfNotFound: true);
         m__PlayerMapInput_rotate = m__PlayerMapInput.FindAction("rotate", throwIfNotFound: true);
         m__PlayerMapInput_Action = m__PlayerMapInput.FindAction("Action", throwIfNotFound: true);
+        m__PlayerMapInput_Bomb = m__PlayerMapInput.FindAction("Bomb", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -238,6 +270,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m__PlayerMapInput_move;
     private readonly InputAction m__PlayerMapInput_rotate;
     private readonly InputAction m__PlayerMapInput_Action;
+    private readonly InputAction m__PlayerMapInput_Bomb;
     public struct _PlayerMapInputActions
     {
         private @PlayerInput m_Wrapper;
@@ -245,6 +278,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @move => m_Wrapper.m__PlayerMapInput_move;
         public InputAction @rotate => m_Wrapper.m__PlayerMapInput_rotate;
         public InputAction @Action => m_Wrapper.m__PlayerMapInput_Action;
+        public InputAction @Bomb => m_Wrapper.m__PlayerMapInput_Bomb;
         public InputActionMap Get() { return m_Wrapper.m__PlayerMapInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -263,6 +297,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Action.started -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnAction;
                 @Action.performed -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnAction;
                 @Action.canceled -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnAction;
+                @Bomb.started -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnBomb;
+                @Bomb.performed -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnBomb;
+                @Bomb.canceled -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnBomb;
             }
             m_Wrapper.m__PlayerMapInputActionsCallbackInterface = instance;
             if (instance != null)
@@ -276,6 +313,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Action.started += instance.OnAction;
                 @Action.performed += instance.OnAction;
                 @Action.canceled += instance.OnAction;
+                @Bomb.started += instance.OnBomb;
+                @Bomb.performed += instance.OnBomb;
+                @Bomb.canceled += instance.OnBomb;
             }
         }
     }
@@ -285,5 +325,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
         void OnAction(InputAction.CallbackContext context);
+        void OnBomb(InputAction.CallbackContext context);
     }
 }

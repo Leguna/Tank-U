@@ -47,6 +47,12 @@ namespace TankU.Gameplay
             Publish(new SpawnBulletMessage(bulletSpawner.transform, 0, false));
         }
 
+        public void OnBomb()
+        {
+            Transform bombPool = _model.Head.GetChild(2);
+            Publish(new SpawnBombMessage(bombPool.transform));
+        }
+
         public void Init()
         {
             _model.SetSpeed(20);

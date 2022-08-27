@@ -2,6 +2,7 @@ using Agate.MVC.Base;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TankU.Message;
 
 namespace TankU.Module.Bomb
 {
@@ -30,6 +31,12 @@ namespace TankU.Module.Bomb
         public override IEnumerator Finalize()
         {
             yield return base.Finalize();
+        }
+
+        public void BombExplode()
+        {
+            Publish(new BombExplodeMessage());
+            Debug.Log("bom explode message");
         }
     }
 }

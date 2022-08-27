@@ -1,6 +1,5 @@
 using Agate.MVC.Base;
 using UnityEngine;
-
 namespace TankU.Module.Bomb
 {
     public class BombView : ObjectView<IBombModel>
@@ -15,6 +14,8 @@ namespace TankU.Module.Bomb
 
         [SerializeField] private GameObject Bomb1;
         [SerializeField] private GameObject Bomb2;
+
+        private BombController _bombController;
 
         protected override void InitRenderModel(IBombModel model)
         {
@@ -57,6 +58,8 @@ namespace TankU.Module.Bomb
 
         private void Explode(GameObject bom)
         {
+            _bombController.BombExplode();
+
             bom.GetComponent<MeshRenderer>().enabled = false;
             
             bom.transform.GetChild(0).gameObject.SetActive(true);

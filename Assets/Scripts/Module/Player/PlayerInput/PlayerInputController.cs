@@ -19,6 +19,7 @@ namespace TankU.Gameplay
             _playerInput._PlayerMapInput.move.performed += OnMoveInput;
             _playerInput._PlayerMapInput.rotate.performed += OnRotateInput;
             _playerInput._PlayerMapInput.Action.performed += OnFire;
+            _playerInput._PlayerMapInput.Bomb.performed += OnBomb;
         }
 
         private void OnMoveInput(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -36,6 +37,11 @@ namespace TankU.Gameplay
         private void OnFire(UnityEngine.InputSystem.InputAction.CallbackContext obj)
         {
             Publish(new FireMessage());
+        }
+
+        private void OnBomb(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+        {
+            Publish(new BombMessage());
         }
 
         public override IEnumerator Terminate()

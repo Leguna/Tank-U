@@ -25,11 +25,17 @@ namespace TankU.Gameplay
             _player.OnFire();
         }
 
+        private void OnBomb(BombMessage message)
+        {
+            _player.OnBomb();
+        }
+
         protected override void Connect()
         {
             Subscribe<InputMoveMessage>(OnMoveInput);
             Subscribe<InputRotateMessage>(OnRotatedInput);
             Subscribe<FireMessage>(OnFire);
+            Subscribe<BombMessage>(OnBomb);
         }
 
         protected override void Disconnect()
@@ -37,6 +43,7 @@ namespace TankU.Gameplay
             Unsubscribe<InputMoveMessage>(OnMoveInput);
             Unsubscribe<InputRotateMessage>(OnRotatedInput);
             Unsubscribe<FireMessage>(OnFire);
+            Unsubscribe<BombMessage>(OnBomb);
         }
     }
 }
