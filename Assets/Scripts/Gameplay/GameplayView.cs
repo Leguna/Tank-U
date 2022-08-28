@@ -4,6 +4,9 @@ using TankU.Module.Bomb;
 using TankU.Module.ColourPicker;
 using TankU.Module.Timer;
 using TankU.PowerUp;
+using TankU.MainMenu;
+using UnityEngine;
+using TankU.Setting;
 
 namespace TankU.Gameplay
 {
@@ -16,5 +19,6 @@ namespace TankU.Gameplay
         public PlayerView PlayerView;
         public PowerUpPoolerView powerUpPooler;
         public HUDView HUDView;
+        public SettingView setting;
     }
 }

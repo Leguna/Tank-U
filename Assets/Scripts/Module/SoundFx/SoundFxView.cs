@@ -1,6 +1,6 @@
 ﻿using Agate.MVC.Base;
 using UnityEngine;
-
+// TODO @Leguna: Delete this.
 namespace SpacePlan.Module.SoundFx
 {
     public class SoundFxView : BaseView

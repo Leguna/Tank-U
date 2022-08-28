@@ -17,8 +17,8 @@ namespace TankU.Sound
             SetView(view);
         }
 
-        public void TogleMuteBgm() => _model.ToggleMuteBgm();
-        public void TogleMuteSfx() => _model.ToggleMuteSfx();
+        public void ToggleMuteBgm() => _model.ToggleMuteBgm();
+        public void ToggleMuteSfx() => _model.ToggleMuteSfx();
 
         public void PlayBgm(SoundBgmName bgm)
             => _view.PlayBgm(_model.GetBgmClip(bgm));
