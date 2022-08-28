@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Agate.MVC.Base;
 using TankU.Message;
+using TankU.Sound;
 
 namespace TankU.Setting
 {
@@ -29,13 +28,14 @@ namespace TankU.Setting
             _model.SetSfxToggle();
             //TODO:
             //Publish message to audio, send data bool
+            Publish(new SoundSettingsUpdateMessage(false));
         }
 
         public void OnTurnBGM()
         {
             _model.SetBgmToggle();
             //TODO:
-            //Publish message to audio, send data bool
+            Publish(new SoundSettingsUpdateMessage(true));
         }
 
         public void BackToMainMenu()

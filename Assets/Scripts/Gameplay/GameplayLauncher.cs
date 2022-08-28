@@ -49,7 +49,6 @@ namespace TankU.Gameplay
             {
                 new TimerController(),
                 new ColorPickerController(),
-                new ColorPickerController(),
                 new PowerUpPoolerController(),
                 new PowerUpController(),
                 new PlayerController(),
@@ -62,13 +61,13 @@ namespace TankU.Gameplay
 
         protected override IEnumerator InitSceneObject()
         {
-            _timerController.SetView(_view.TimerView);
             _colourPickerController.SetView(_view.ColorPickerView);
             _powerUpPooler.SetView(_view.powerUpPooler);
             _playerController.SetView(_view.PlayerView);
             _bulletSpawnerController.SetView(_view.bulletSpawnerView);
             _hudController.SetView(_view.HUDView);
             _settingController.SetView(_view.setting);
+            _timerController.SetView(_view.TimerView);
 
             yield return null;
         }
