@@ -8,6 +8,8 @@ using TankU.Module.Timer;
 using TankU.Module.VisualEffect;
 using TankU.PowerUp;
 using TankU.Sound;
+using TankU.Setting;
+
 
 namespace TankU.Gameplay
 {
@@ -21,11 +23,14 @@ namespace TankU.Gameplay
 
         private ColorPickerController _colourPickerController;
         private PowerUpPoolerController _powerUpPooler;
+
         private PlayerController _playerController;
         private PlayerInputController _playerInputController;
         private BulletSpawnerController _bulletSpawnerController;
         private HUDController _hudController;
         private VisualEffectController _visualEffectController;
+        
+        private SettingController _settingController;
 
         protected override IConnector[] GetSceneConnectors()
         {
@@ -63,6 +68,8 @@ namespace TankU.Gameplay
             _playerController.SetView(_view.PlayerView);
             _bulletSpawnerController.SetView(_view.bulletSpawnerView);
             _hudController.SetView(_view.HUDView);
+            _settingController.SetView(_view.setting);
+
             yield return null;
         }
 
