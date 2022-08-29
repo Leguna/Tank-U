@@ -50,7 +50,12 @@ namespace TankU.Gameplay
 
         public void CoolDownTimer()
         {
-            CoolDownBomb -= 1f * Time.deltaTime;
+            if (CoolDownBomb >= 0)
+            {
+                CoolDownBomb -= 1f * Time.deltaTime;
+                Debug.Log($"cool down bomb = {CoolDownBomb}");
+
+            }
         }
 
         private void Rotate()
