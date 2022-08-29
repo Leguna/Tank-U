@@ -8,10 +8,12 @@ namespace TankU.Message
 
     {
         public Vector3 Direction { get; }
+        public int PlayerNumber { get; }
 
-        public InputMoveMessage(Vector3 dir)
+        public InputMoveMessage(Vector3 dir, int playerNumber)
         {
             Direction = dir;
+            PlayerNumber = playerNumber;
         }
     }
 }

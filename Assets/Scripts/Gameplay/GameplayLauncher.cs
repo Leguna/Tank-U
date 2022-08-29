@@ -24,9 +24,9 @@ namespace TankU.Gameplay
 
         private ColorPickerController _colourPickerController;
         private PowerUpPoolerController _powerUpPooler;
-
         private PlayerController _playerController;
         private PlayerInputController _playerInputController;
+        private PlayerSpawnerController _playerSpawnerController;
         private BulletSpawnerController _bulletSpawnerController;
         private BombPoolController _bombPoolController;
         private HUDController _hudController;
@@ -42,7 +42,8 @@ namespace TankU.Gameplay
                 new BulletSpawnerConnector(),
                 new BombPoolConnector(),
                 new HUDConnector(),
-                new VisualEffectConnector()
+                new VisualEffectConnector(),
+                new PlayerInputConector()
             };
         }
 
@@ -54,12 +55,12 @@ namespace TankU.Gameplay
                 new ColorPickerController(),
                 new PowerUpPoolerController(),
                 new PowerUpController(),
-                new PlayerController(),
                 new PlayerInputController(),
                 new BulletSpawnerController(),
                 new BombPoolController(),
                 new HUDController(),
-                new VisualEffectController()
+                new VisualEffectController(),
+                new PlayerSpawnerController()
             };
         }
 
@@ -67,7 +68,7 @@ namespace TankU.Gameplay
         {
             _colourPickerController.SetView(_view.ColorPickerView);
             _powerUpPooler.SetView(_view.powerUpPooler);
-            _playerController.SetView(_view.PlayerView);
+            _playerSpawnerController.SetView(_view.PlayerSpawnerView);
             _bulletSpawnerController.SetView(_view.bulletSpawnerView);
             _bombPoolController.SetView(_view.bombPoolView);
             _hudController.SetView(_view.HUDView);

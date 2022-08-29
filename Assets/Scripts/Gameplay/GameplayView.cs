@@ -17,6 +17,7 @@ namespace TankU.Gameplay
         public BulletSpawnerView bulletSpawnerView;
         public BombPoolView bombPoolView;
         public PlayerView PlayerView;
+        public PlayerSpawnerView PlayerSpawnerView;
         public PowerUpPoolerView powerUpPooler;
         public HUDView HUDView;
         public SettingView setting;

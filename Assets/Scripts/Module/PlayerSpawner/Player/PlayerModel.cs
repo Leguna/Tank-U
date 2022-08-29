@@ -7,18 +7,40 @@ namespace TankU.Gameplay
 {
     public class PlayerModel : BaseModel, IPlayerModel
     {
-
         public string Name { get;  set; }
         public int Speed { get; set; }
         public int Health { get; protected set; }
         public bool PowerUpIsActive { get; protected set; }
         public float PowerUpDuration { get; protected set; }
+        public int PlayerNumber { get; private set; }
 
         public Vector3 Position { get; set; } = new Vector3(0, 0.3f, 0);
         public Vector3 Velocity { get; protected set; }
         public Vector2 RotateDirec { get; protected set; }
         public Transform Head { get; protected set; }
 
+        public Material MaterialColor { get; private set; }
+
+        public PlayerModel()
+        {
+            Speed = 10;
+            Name = "player";
+            Health = 5;
+        }
+
+        // ubah material ke color
+        public PlayerModel(int playerNumber, Material material) : this()
+        {
+            PlayerNumber = playerNumber;
+            Debug.Log($"player number :{PlayerNumber}");
+            MaterialColor = material;
+        }
+
+        public void SpawnPlayer(Vector3 position, Vector2 direction)
+        {
+            Position = position;
+            RotateDirec = direction;
+        }
 
 
         public void SetPosition(Vector3 vector)
@@ -51,7 +73,7 @@ namespace TankU.Gameplay
             SetDataAsDirty();
         }
 
-        private void SetRotateDirec(Vector2 rotateDirec)
+        public void SetRotateDirec(Vector2 rotateDirec)
         {
             RotateDirec = rotateDirec;
             SetDataAsDirty();

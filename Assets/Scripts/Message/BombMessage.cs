@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace TankU.Message
 {
+
     public struct BombMessage
     {
+        public int PlayerNumber { get; }
+        public BombMessage(int playerNumber) {
+            PlayerNumber = playerNumber;
+        }
     }
 }

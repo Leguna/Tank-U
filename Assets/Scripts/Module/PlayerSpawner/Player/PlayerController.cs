@@ -13,7 +13,7 @@ namespace TankU.Gameplay
 
         public override void SetView(PlayerView view)
         {
-            view.SetCallbacks(Move, Rotate, OnMove);
+            view.SetCallbacks(Move, Rotate, Init, OnMove);
             view.TryGetComponent(out rg);
             base.SetView(view);
             _model.SetHead(_view.transform.GetChild(0));
@@ -34,18 +34,31 @@ namespace TankU.Gameplay
             _model.SetPosition(rg.velocity);
         }
 
+        internal void OnBomb(int playerNumber)
+        {
+            if (_model.PlayerNumber != playerNumber) return;
+            Transform bulletSpawner = _model.Head.GetChild(1);
+            Publish(new BombSpawnMessage(bulletSpawner.transform));
+            // TODO @Leguna: Choose this or From Bomb Pool
+            // Transform bombPool = _model.Head.GetChild(2);
+            // Publish(new SpawnBombMessage(bombPool.transform));
+            Debug.Log($"Boomb...! {playerNumber}");
+        }
+
         private void Rotate()
         {
             _model.Head.transform.Rotate(0, _model.RotateDirec.x, _model.RotateDirec.y, Space.Self);
         }
 
-        public void OnMove(Vector3 direction)
+        public void OnMove(Vector3 direction, int playerNumber)
         {
+            if (_model.PlayerNumber != playerNumber) return;
             _model.Move(direction);
         }
 
-        internal void OnRotate(Vector2 direction)
+        internal void OnRotate(Vector2 direction, int playerNumber)
         {
+            if (_model.PlayerNumber != playerNumber) return;
             _model.Rotate(direction);
         }
 
@@ -63,17 +76,28 @@ namespace TankU.Gameplay
             _model.SetHealth(20);
         }
 
-        public void OnFire()
+        public void OnFire(int playerNumber)
         {
+            if (_model.PlayerNumber != playerNumber) return;
             Transform bulletSpawner = _model.Head.GetChild(1);
             //                            direction         , duration , ispowerup active;
             Publish(new SpawnBulletMessage(bulletSpawner.transform, 5, true));
         }
 
-        public void OnBomb()
+        public void Init(PlayerModel model, PlayerView view)
         {
-            Transform bombPool = _model.Head.GetChild(2);
-            Publish(new SpawnBombMessage(bombPool.transform));
+            _model = model;
+            SetView(view);
+            _model.SetSpeed(20);
+            _model.SetPosition(new Vector3(0, 0.3f, 0));
+            _model.SetHead(_view.transform.GetChild(0));
+        }
+
+        public void SpawnPlayer(Transform transform, int index)
+        {
+            _model.SetPosition(transform.position);
+            _model.Name = ($"player{index}");
+            _model.SetRotateDirec(new Vector2(transform.localRotation.x , transform.localRotation.y));
         }
 
     }

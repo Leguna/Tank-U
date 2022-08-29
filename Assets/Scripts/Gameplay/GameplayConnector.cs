@@ -1,28 +1,34 @@
 
 using Agate.MVC.Base;
 using TankU.Message;
-using TankU.Module.ColourPicker;
+using TankU.Gameplay;
 
 namespace TankU.Gameplay
 {
     public class GameplayConnector : BaseConnector
     {
-        private PlayerController _player;
-        //private SFXController _sfx;
+        private PlayerSpawnerController _playerSpawner;
 
         private void OnMoveInput(InputMoveMessage message)
         {
-            _player.OnMove(message.Direction);
+            
+                _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnMove(message.Direction, message.PlayerNumber);
+            
         }
 
         private void OnRotatedInput(InputRotateMessage message)
         {
-            _player.OnRotate(message.Direction);
+                _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnRotate(message.Direction, message.PlayerNumber);
         }
 
         private void OnFire(FireMessage message)
         {
-            _player.OnFire();
+           _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnFire(message.PlayerNumber);
+        }
+
+        private void OnBomb(BombMessage message)
+        {
+            _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnBomb(message.PlayerNumber);
         }
 
         private void OnBomb(BombMessage message)
