@@ -96,7 +96,6 @@ namespace TankU.Gameplay
             _model.Name = ($"player{index}");
             _model.SetRotateDirec(new Vector2(transform.localRotation.x , transform.localRotation.y));
         }
-
-
     }
+
 }
