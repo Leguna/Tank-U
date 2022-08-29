@@ -27,18 +27,17 @@ namespace TankU.Gameplay
         {
             TryGetComponent(out MeshRenderer meshRenderer);
             meshRenderer.material = model.MaterialColor;
+            _onMove?.Invoke(Vector3.zero, _model.PlayerNumber);
         }
 
         protected override void UpdateRenderModel(IPlayerModel model)
         {
         }
 
-
         private void FixedUpdate()
         {
-            _rotate?.Invoke();
             _Move?.Invoke();
-            _onMove?.Invoke(Vector3.zero, _model.PlayerNumber);
+            _rotate?.Invoke();
         }
 
 

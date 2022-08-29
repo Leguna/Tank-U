@@ -12,7 +12,7 @@ namespace TankU.Gameplay
 
         public void GetColorPlayer(ColorPickingMessage message)
         {
-            _playerSpawnerController.GetColorPlayer(message.ColorList, message.PickingState);
+            _playerSpawnerController.GetColorPlayer(message.PickedColorList, message.PickingState);
         }
         protected override void Connect()
         {
