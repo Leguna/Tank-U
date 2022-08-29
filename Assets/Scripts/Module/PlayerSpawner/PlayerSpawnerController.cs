@@ -38,7 +38,7 @@ namespace TankU.Gameplay
                 SpawnPlayer(i);
             }
         }
-
+        // set color
         public void SetColorPlayer(List<Color> obj)
         {
             for (int i = 0; i <= (_view.PLayerAmountSpawner); i++)
@@ -59,14 +59,16 @@ namespace TankU.Gameplay
                 {
                     _model.MaterialList[i] = _model.MaterialList[3];
                 }
+
+
             }
         }
 
-        public void GetColorPlayer(List<Color> colorList, PickingState picikingState)
+        public void GetColorPlayer(List<Color> colorListPlayer, PickingState picikingState)
         {
             if (picikingState == PickingState.Finish)
             {
-                SetColorPlayer(colorList);
+                SetColorPlayer(colorListPlayer);
             }
         }
 

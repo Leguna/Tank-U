@@ -43,6 +43,5 @@ namespace TankU.Gameplay
             _Move?.Invoke();
         }
 
-
     }
 }

@@ -46,13 +46,22 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Action"",
-                    ""type"": ""Value"",
-                    ""id"": ""876661b0-3cf9-4540-aa0a-c030a2074d39"",
-                    ""expectedControlType"": ""Integer"",
+                    ""name"": ""attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""af8bb017-8653-4420-bd35-247d2388716f"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""bomb"",
+                    ""type"": ""Button"",
+                    ""id"": ""443b4f19-e638-4088-8b86-04ecc6014276"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +121,28 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": """",
+                    ""id"": ""857aa7b9-6f34-43ab-b0f3-dff3f55db76b"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""bomb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""083eab23-3e4b-4f7e-8851-67ff5547db80"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
                     ""name"": ""2D Vector"",
                     ""id"": ""4d286668-a4cb-41e3-ae44-38b9c4457d5e"",
                     ""path"": ""2DVector(mode=2)"",
@@ -143,28 +174,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8578ffaa-0413-4e28-89a6-a930e54e91b7"",
-                    ""path"": ""<Keyboard>/#(V)"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8841a2da-fa90-4335-8f7d-f5452654d406"",
-                    ""path"": ""<Keyboard>/#(B)"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -191,13 +200,22 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Action"",
-                    ""type"": ""Value"",
+                    ""name"": ""attack"",
+                    ""type"": ""Button"",
                     ""id"": ""53ae4807-bc71-401a-963f-72aaba02baad"",
-                    ""expectedControlType"": ""Integer"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""bomb"",
+                    ""type"": ""Button"",
+                    ""id"": ""bbe4ae80-a527-49c0-8dbd-73022aaaee70"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -291,23 +309,23 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""43c0d89e-80e4-4938-bfab-9679aa6d259d"",
-                    ""path"": ""<Keyboard>/#(V)"",
+                    ""id"": ""d13880ec-44c2-44b0-bac7-afea2536ebb5"",
+                    ""path"": ""<Keyboard>/rightShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Action"",
+                    ""action"": ""bomb"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d09712fd-44b8-4850-b291-afc9bf153464"",
-                    ""path"": ""<Keyboard>/#(B)"",
+                    ""id"": ""c5c16b09-ed8a-4181-9413-b50a53fc6beb"",
+                    ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Action"",
+                    ""action"": ""attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -332,12 +350,14 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m__PlayerMapInput = asset.FindActionMap("_PlayerMapInput", throwIfNotFound: true);
         m__PlayerMapInput_move = m__PlayerMapInput.FindAction("move", throwIfNotFound: true);
         m__PlayerMapInput_rotate = m__PlayerMapInput.FindAction("rotate", throwIfNotFound: true);
-        m__PlayerMapInput_Action = m__PlayerMapInput.FindAction("Action", throwIfNotFound: true);
+        m__PlayerMapInput_attack = m__PlayerMapInput.FindAction("attack", throwIfNotFound: true);
+        m__PlayerMapInput_bomb = m__PlayerMapInput.FindAction("bomb", throwIfNotFound: true);
         // _PlayerMapInput1
         m__PlayerMapInput1 = asset.FindActionMap("_PlayerMapInput1", throwIfNotFound: true);
         m__PlayerMapInput1_move = m__PlayerMapInput1.FindAction("move", throwIfNotFound: true);
         m__PlayerMapInput1_rotate = m__PlayerMapInput1.FindAction("rotate", throwIfNotFound: true);
-        m__PlayerMapInput1_Action = m__PlayerMapInput1.FindAction("Action", throwIfNotFound: true);
+        m__PlayerMapInput1_attack = m__PlayerMapInput1.FindAction("attack", throwIfNotFound: true);
+        m__PlayerMapInput1_bomb = m__PlayerMapInput1.FindAction("bomb", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -399,14 +419,16 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private I_PlayerMapInputActions m__PlayerMapInputActionsCallbackInterface;
     private readonly InputAction m__PlayerMapInput_move;
     private readonly InputAction m__PlayerMapInput_rotate;
-    private readonly InputAction m__PlayerMapInput_Action;
+    private readonly InputAction m__PlayerMapInput_attack;
+    private readonly InputAction m__PlayerMapInput_bomb;
     public struct _PlayerMapInputActions
     {
         private @PlayerInput m_Wrapper;
         public _PlayerMapInputActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @move => m_Wrapper.m__PlayerMapInput_move;
         public InputAction @rotate => m_Wrapper.m__PlayerMapInput_rotate;
-        public InputAction @Action => m_Wrapper.m__PlayerMapInput_Action;
+        public InputAction @attack => m_Wrapper.m__PlayerMapInput_attack;
+        public InputAction @bomb => m_Wrapper.m__PlayerMapInput_bomb;
         public InputActionMap Get() { return m_Wrapper.m__PlayerMapInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -422,9 +444,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @rotate.started -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnRotate;
                 @rotate.performed -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnRotate;
                 @rotate.canceled -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnRotate;
-                @Action.started -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnAction;
-                @Action.performed -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnAction;
-                @Action.canceled -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnAction;
+                @attack.started -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnAttack;
+                @attack.performed -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnAttack;
+                @attack.canceled -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnAttack;
+                @bomb.started -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnBomb;
+                @bomb.performed -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnBomb;
+                @bomb.canceled -= m_Wrapper.m__PlayerMapInputActionsCallbackInterface.OnBomb;
             }
             m_Wrapper.m__PlayerMapInputActionsCallbackInterface = instance;
             if (instance != null)
@@ -435,9 +460,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @rotate.started += instance.OnRotate;
                 @rotate.performed += instance.OnRotate;
                 @rotate.canceled += instance.OnRotate;
-                @Action.started += instance.OnAction;
-                @Action.performed += instance.OnAction;
-                @Action.canceled += instance.OnAction;
+                @attack.started += instance.OnAttack;
+                @attack.performed += instance.OnAttack;
+                @attack.canceled += instance.OnAttack;
+                @bomb.started += instance.OnBomb;
+                @bomb.performed += instance.OnBomb;
+                @bomb.canceled += instance.OnBomb;
             }
         }
     }
@@ -448,14 +476,16 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private I_PlayerMapInput1Actions m__PlayerMapInput1ActionsCallbackInterface;
     private readonly InputAction m__PlayerMapInput1_move;
     private readonly InputAction m__PlayerMapInput1_rotate;
-    private readonly InputAction m__PlayerMapInput1_Action;
+    private readonly InputAction m__PlayerMapInput1_attack;
+    private readonly InputAction m__PlayerMapInput1_bomb;
     public struct _PlayerMapInput1Actions
     {
         private @PlayerInput m_Wrapper;
         public _PlayerMapInput1Actions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @move => m_Wrapper.m__PlayerMapInput1_move;
         public InputAction @rotate => m_Wrapper.m__PlayerMapInput1_rotate;
-        public InputAction @Action => m_Wrapper.m__PlayerMapInput1_Action;
+        public InputAction @attack => m_Wrapper.m__PlayerMapInput1_attack;
+        public InputAction @bomb => m_Wrapper.m__PlayerMapInput1_bomb;
         public InputActionMap Get() { return m_Wrapper.m__PlayerMapInput1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -471,9 +501,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @rotate.started -= m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface.OnRotate;
                 @rotate.performed -= m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface.OnRotate;
                 @rotate.canceled -= m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface.OnRotate;
-                @Action.started -= m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface.OnAction;
-                @Action.performed -= m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface.OnAction;
-                @Action.canceled -= m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface.OnAction;
+                @attack.started -= m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface.OnAttack;
+                @attack.performed -= m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface.OnAttack;
+                @attack.canceled -= m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface.OnAttack;
+                @bomb.started -= m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface.OnBomb;
+                @bomb.performed -= m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface.OnBomb;
+                @bomb.canceled -= m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface.OnBomb;
             }
             m_Wrapper.m__PlayerMapInput1ActionsCallbackInterface = instance;
             if (instance != null)
@@ -484,9 +517,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @rotate.started += instance.OnRotate;
                 @rotate.performed += instance.OnRotate;
                 @rotate.canceled += instance.OnRotate;
-                @Action.started += instance.OnAction;
-                @Action.performed += instance.OnAction;
-                @Action.canceled += instance.OnAction;
+                @attack.started += instance.OnAttack;
+                @attack.performed += instance.OnAttack;
+                @attack.canceled += instance.OnAttack;
+                @bomb.started += instance.OnBomb;
+                @bomb.performed += instance.OnBomb;
+                @bomb.canceled += instance.OnBomb;
             }
         }
     }
@@ -504,12 +540,14 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
-        void OnAction(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+        void OnBomb(InputAction.CallbackContext context);
     }
     public interface I_PlayerMapInput1Actions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
-        void OnAction(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+        void OnBomb(InputAction.CallbackContext context);
     }
 }

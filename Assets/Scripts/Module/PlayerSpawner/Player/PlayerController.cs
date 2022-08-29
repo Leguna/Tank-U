@@ -34,20 +34,28 @@ namespace TankU.Gameplay
             _model.SetPosition(rg.velocity);
         }
 
+        internal void OnBomb(int playerNumber)
+        {
+            if (_model.PlayerNumber != playerNumber) return;
+            Transform bulletSpawner = _model.Head.GetChild(1);
+            Publish(new BombSpawnMessage(bulletSpawner.transform));
+            Debug.Log($"Boomb...! {playerNumber}");
+        }
+
         private void Rotate()
         {
             _model.Head.transform.Rotate(0, _model.RotateDirec.x, _model.RotateDirec.y, Space.Self);
         }
 
-        public void OnMove(Vector3 direction, int i)
+        public void OnMove(Vector3 direction, int playerNumber)
         {
-            if (_model.PlayerNumber != i )return;
+            if (_model.PlayerNumber != playerNumber) return;
             _model.Move(direction);
         }
 
-        internal void OnRotate(Vector2 direction, int i)
+        internal void OnRotate(Vector2 direction, int playerNumber)
         {
-            if (_model.PlayerNumber != i )return;
+            if (_model.PlayerNumber != playerNumber) return;
             _model.Rotate(direction);
         }
 
@@ -65,9 +73,9 @@ namespace TankU.Gameplay
             _model.SetHealth(20);
         }
 
-        public void OnFire(int i)
+        public void OnFire(int playerNumber)
         {
-            if (_model.PlayerNumber != i )return;
+            if (_model.PlayerNumber != playerNumber) return;
             Transform bulletSpawner = _model.Head.GetChild(1);
             //                            direction         , duration , ispowerup active;
             Publish(new SpawnBulletMessage(bulletSpawner.transform, 5, true));

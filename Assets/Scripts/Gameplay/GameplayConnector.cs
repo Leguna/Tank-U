@@ -26,11 +26,17 @@ namespace TankU.Gameplay
            _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnFire(message.PlayerNumber);
         }
 
+        private void OnBomb(BombMessage message)
+        {
+            _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnBomb(message.PlayerNumber);
+        }
+
         protected override void Connect()
         {
             Subscribe<InputMoveMessage>(OnMoveInput);
             Subscribe<InputRotateMessage>(OnRotatedInput);
             Subscribe<FireMessage>(OnFire);
+            Subscribe<BombMessage>(OnBomb);
         }
 
         protected override void Disconnect()
@@ -38,6 +44,7 @@ namespace TankU.Gameplay
             Unsubscribe<InputMoveMessage>(OnMoveInput);
             Unsubscribe<InputRotateMessage>(OnRotatedInput);
             Unsubscribe<FireMessage>(OnFire);
+            Unsubscribe<BombMessage>(OnBomb);
         }
     }
 }
