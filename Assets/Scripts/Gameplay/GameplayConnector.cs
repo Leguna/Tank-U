@@ -31,11 +31,6 @@ namespace TankU.Gameplay
             _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnBomb(message.PlayerNumber);
         }
 
-        private void OnBomb(BombMessage message)
-        {
-            _player.OnBomb();
-        }
-
         protected override void Connect()
         {
             Subscribe<InputMoveMessage>(OnMoveInput);

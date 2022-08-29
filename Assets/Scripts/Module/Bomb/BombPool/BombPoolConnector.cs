@@ -9,12 +9,12 @@ namespace TankU.Module.Bomb
         
         protected override void Connect()
         {
-            Subscribe<SpawnBombMessage>(_bombPoolController.SpawnBomb);
+            Subscribe<BombSpawnMessage>(_bombPoolController.SpawnBomb);
         }
 
         protected override void Disconnect()
         {
-            Unsubscribe<SpawnBombMessage>(_bombPoolController.SpawnBomb);
+            Unsubscribe<BombSpawnMessage>(_bombPoolController.SpawnBomb);
         }
     }
 }

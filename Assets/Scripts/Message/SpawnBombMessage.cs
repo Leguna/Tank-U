@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace TankU.Message
 {
-    public struct SpawnBombMessage    
+    public struct BombSpawnMessage
     {
         public Transform TransformSpawner { get; }
 
-        public SpawnBombMessage(Transform tr)
+        public BombSpawnMessage(Transform tr)
         {
             TransformSpawner = tr;
         }
