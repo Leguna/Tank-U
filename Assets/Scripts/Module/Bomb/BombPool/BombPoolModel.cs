@@ -16,7 +16,7 @@ namespace TankU.Module.Bomb
         {
             BombControllers = new List<BombController>();
             PoolSize = 2;
-            BombView = Resources.Load<BombView>("Prefabs/Bombs/BombView");
+            BombView = Resources.Load<BombView>("Prefabs/Bombs/Bomb");
         }
 
         public void AddBomb(BombController bombController)

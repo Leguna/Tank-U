@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7524602314887449049}
   - component: {fileID: 7524602314887449050}
   - component: {fileID: 7524602314887449051}
+  - component: {fileID: 502683637596522628}
   m_Layer: 0
   m_Name: ExplosionVertical
   m_TagString: Untagged
@@ -97,6 +98,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7524602314887449045}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &502683637596522628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7524602314887449045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb2115d432a7ad45a73435ace02830c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7524602315803401024
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,6 +122,7 @@ GameObject:
   - component: {fileID: 7524602315803401029}
   - component: {fileID: 7524602315803401030}
   - component: {fileID: 7524602315803401031}
+  - component: {fileID: 8144835793603844244}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -191,11 +205,26 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7524602315803401024}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8144835793603844244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7524602315803401024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c607fb330d88e4ca18a1bc846bce6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _explosionView:
+  - {fileID: 8744364207646963810}
+  - {fileID: 502683637596522628}
 --- !u!1 &7524602316022124704
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,6 +237,7 @@ GameObject:
   - component: {fileID: 7524602316022124708}
   - component: {fileID: 7524602316022124709}
   - component: {fileID: 7524602316022124710}
+  - component: {fileID: 8744364207646963810}
   m_Layer: 0
   m_Name: ExplosionHorizontal
   m_TagString: Untagged
@@ -293,3 +323,15 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7524602316022124704}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &8744364207646963810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7524602316022124704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb2115d432a7ad45a73435ace02830c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

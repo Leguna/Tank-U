@@ -10,5 +10,6 @@ namespace TankU.Module.Bomb
         Vector3 SpawnPosition { get; }
         void SpawnBomb(Vector3 spawnpos, int damage, int health);
         void SetPosition(Vector3 pos);
+        void OnUpdateTime(float deltaTime);
     }
 }
