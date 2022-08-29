@@ -1,12 +1,39 @@
 using Agate.MVC.Base;
-using System.Collections;
-using System.Collections.Generic;
+using TankU.Message;
+using TankU.Module.Bomb;
 using UnityEngine;
 
 namespace TankU.Module.Bomb
 {
-    public class BombPoolController : BaseController<BombPoolController>
+    public class BombPoolController : ObjectController<BombPoolController, BombPoolModel, BombPoolView>
     {
-        
+        public override void SetView(BombPoolView view)
+        {
+            base.SetView(view);
+            for (var i = 0; i < _model.PoolSize; i++)
+            {
+                AddObjectToPool();
+            }
+        }
+
+        public void SpawnBomb(BombSpawnMessage message)
+        {
+            Debug.Log($"Bomb Deployed {message.TransformSpawner.position}");
+            var bombController = _model.GetObjectController() ?? AddObjectToPool();
+            bombController.SpawnBomb(message.TransformSpawner.position,
+                1, 1);
+        }
+
+        private BombController AddObjectToPool()
+        {
+            var bombModel = new BombModel();
+            var bombController = new BombController();
+            var bombView = Object.Instantiate(_model.BombView, bombModel.SpawnPosition, Quaternion.identity, _view.transform);
+            Debug.Log("test test test");
+            bombController.Init(bombModel, bombView);
+            InjectDependencies(bombController);
+            _model.AddBomb(bombController);
+            return bombController;
+        }
     }
 }
