@@ -28,6 +28,7 @@ namespace TankU.Gameplay
             Health = 5;
         }
 
+        // ubah material ke color
         public PlayerModel(int playerNumber, Material material) : this()
         {
             PlayerNumber = playerNumber;
