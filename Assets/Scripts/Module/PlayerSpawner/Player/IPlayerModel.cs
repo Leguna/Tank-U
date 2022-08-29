@@ -12,6 +12,7 @@ namespace TankU.Gameplay
         public Vector3 Position { get; }
         public int Speed { get; }
         public int PlayerNumber { get; }
+        public Material MaterialColor { get; }
         public void SetPosition(Vector3 vector);
         public void SetSpeed(int i);
     }

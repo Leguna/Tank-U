@@ -25,7 +25,8 @@ namespace TankU.Gameplay
 
         protected override void InitRenderModel(IPlayerModel model)
         {
-            //_onInit?.Invoke();
+            TryGetComponent(out MeshRenderer meshRenderer);
+            meshRenderer.material = model.MaterialColor;
         }
 
         protected override void UpdateRenderModel(IPlayerModel model)

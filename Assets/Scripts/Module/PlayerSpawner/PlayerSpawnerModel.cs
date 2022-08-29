@@ -10,6 +10,8 @@ namespace TankU.Gameplay
         public List<Transform> SpawnerTransform { get; private set; }
         public List<PlayerController> PlayerControllerList { get; private set; }
         public PlayerView PlayerView { get; private set; }
+        public List<Material> MaterialList { get; private set; }
+        public List<Material> MaterialPlayerselected { get; private set; }
 
         public PlayerSpawnerModel()
         {
@@ -17,6 +19,12 @@ namespace TankU.Gameplay
             PlayerView = Resources.Load<PlayerView>("Prefabs/TankView").GetComponent<PlayerView>();
             SpawnerTransform = new List<Transform>();
             PlayerControllerList = new List<PlayerController>();
+
+            MaterialList = new List<Material>();
+            MaterialList.Add(Resources.Load<Material>("Materials/Tank/blue"));
+            MaterialList.Add(Resources.Load<Material>("Materials/Tank/red"));
+            MaterialList.Add(Resources.Load<Material>("Materials/Tank/green"));
+            MaterialList.Add(Resources.Load<Material>("Materials/Tank/yellow"));
         }
 
         public void SetSpawnerTransform(List<Transform> position)
@@ -24,7 +32,6 @@ namespace TankU.Gameplay
             SpawnerTransform = position;
             SetDataAsDirty();
         }
-
 
     }
 }

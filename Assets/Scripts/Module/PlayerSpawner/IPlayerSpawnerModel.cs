@@ -10,6 +10,8 @@ namespace TankU.Gameplay
         public List<Transform> SpawnerTransform { get; }
         public List<PlayerController> PlayerControllerList { get; }
         public PlayerView PlayerView { get; }
+        public List<Material> MaterialList { get; }
+        public List<Material> MaterialPlayerselected { get; }
 
         public void SetSpawnerTransform(List<Transform> position);
     }

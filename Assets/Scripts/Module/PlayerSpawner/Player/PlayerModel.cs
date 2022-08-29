@@ -18,6 +18,8 @@ namespace TankU.Gameplay
         public Vector2 RotateDirec { get; protected set; }
         public Transform Head { get; protected set; }
 
+        public Material MaterialColor { get; private set; }
+
         public PlayerModel()
         {
             Speed = 10;
@@ -25,10 +27,11 @@ namespace TankU.Gameplay
             Health = 5;
         }
 
-        public PlayerModel(int playerNumber) : this()
+        public PlayerModel(int playerNumber, Material material) : this()
         {
             PlayerNumber = playerNumber;
             Debug.Log($"player number :{PlayerNumber}");
+            MaterialColor = material;
         }
 
         public void SpawnPlayer(Vector3 position, Vector2 direction)
