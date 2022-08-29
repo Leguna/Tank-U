@@ -34,7 +34,6 @@ namespace TankU.Gameplay
         {
             for (int i = 0; i < _view.PLayerAmountSpawner; i++)
             {
-                Debug.Log($"index spawn player = {i + 1}");
                 SpawnPlayer(i);
             }
         }

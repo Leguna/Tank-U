@@ -10,10 +10,12 @@ namespace TankU.Gameplay
     public class PlayerController : ObjectController<PlayerController, PlayerModel, IPlayerModel, PlayerView>
     {
         private Rigidbody rg;
+        private float CoolDownBombmax = 5f;
+        private float CoolDownBomb = 0f;
 
         public override void SetView(PlayerView view)
         {
-            view.SetCallbacks(Move, Rotate, Init, OnMove);
+            view.SetCallbacks(Move, Rotate, Init, OnMove, CoolDownTimer);
             view.TryGetComponent(out rg);
             base.SetView(view);
             _model.SetHead(_view.transform.GetChild(0));
@@ -36,10 +38,19 @@ namespace TankU.Gameplay
 
         internal void OnBomb(int playerNumber)
         {
-            if (_model.PlayerNumber != playerNumber) return;
-            Transform bulletSpawner = _model.Head.GetChild(1);
-            Publish(new BombSpawnMessage(bulletSpawner.transform));
-            Debug.Log($"Boomb...! {playerNumber}");
+            if (CoolDownBomb <= 0f)
+            {
+                if (_model.PlayerNumber != playerNumber) return;
+                Transform bulletSpawner = _model.Head.GetChild(1);
+                Publish(new BombSpawnMessage(bulletSpawner.transform));
+                Debug.Log($"Boomb...! {playerNumber + 1}");
+                CoolDownBomb = 5f;
+            }
+        }
+
+        public void CoolDownTimer()
+        {
+            CoolDownBomb -= 1f * Time.deltaTime;
         }
 
         private void Rotate()
@@ -97,6 +108,6 @@ namespace TankU.Gameplay
             _model.SetRotateDirec(new Vector2(transform.localRotation.x , transform.localRotation.y));
         }
 
-
+        
     }
 }

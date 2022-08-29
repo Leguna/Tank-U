@@ -14,13 +14,15 @@ namespace TankU.Gameplay
         private Action<PlayerModel, PlayerView > _onInit;
         private Action<Vector3, int> _onMove;
         private Action _rotate;
+        private Action _cooldownBomb;
 
-        internal void SetCallbacks(Action Move, Action Rotate, Action<PlayerModel, PlayerView> Init, Action<Vector3, int> OnMove)
+        internal void SetCallbacks(Action Move, Action Rotate, Action<PlayerModel, PlayerView> Init, Action<Vector3, int> OnMove, Action CoolDownTimer)
         {
             _Move = Move;
             _onInit = Init;
             _onMove = OnMove;
             _rotate = Rotate;
+            _cooldownBomb = CoolDownTimer;
         }
 
         protected override void InitRenderModel(IPlayerModel model)
@@ -40,5 +42,9 @@ namespace TankU.Gameplay
             _Move?.Invoke();
         }
 
+        private void Update()
+        {
+            _cooldownBomb?.Invoke();
+        }
     }
 }

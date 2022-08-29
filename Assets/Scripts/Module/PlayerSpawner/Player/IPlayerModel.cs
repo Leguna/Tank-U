@@ -16,5 +16,6 @@ namespace TankU.Gameplay
         public Material MaterialColor { get; }
         public void SetPosition(Vector3 vector);
         public void SetSpeed(int i);
+
     }
 }
