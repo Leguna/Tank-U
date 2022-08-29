@@ -18,10 +18,12 @@ namespace TankU.Gameplay
             _playerInput._PlayerMapInput.Enable();
             _playerInput._PlayerMapInput.move.performed += (ctx)=> OnMoveInput(ctx, 0);
             _playerInput._PlayerMapInput.rotate.performed += (ctx) => OnRotateInput(ctx, 0);
+            _playerInput._PlayerMapInput.rotate.canceled += (ctx) => OnRotateInput(ctx, 0);
             _playerInput._PlayerMapInput.Action.performed += (ctx) => OnFire(ctx, 0);
             _playerInput._PlayerMapInput1.Enable();
             _playerInput._PlayerMapInput1.move.performed += (ctx) => OnMoveInput(ctx, 1);
             _playerInput._PlayerMapInput1.rotate.performed += (ctx) => OnRotateInput(ctx, 1);
+            _playerInput._PlayerMapInput1.rotate.canceled += (ctx) => OnRotateInput(ctx, 1);
             _playerInput._PlayerMapInput1.Action.performed += (ctx) => OnFire(ctx, 1);
         }
 

@@ -36,8 +36,8 @@ namespace TankU.Gameplay
 
         private void FixedUpdate()
         {
-            _Move?.Invoke();
             _rotate?.Invoke();
+            _Move?.Invoke();
         }
 
 
