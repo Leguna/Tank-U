@@ -12,6 +12,24 @@
     {
         KeyboardLeft,
         KeyboardRight,
-        Gamepad,
+        Gamepad
+    }
+
+    public enum GameState
+    {
+        None,
+        Menu,
+        Game,
+        Pause,
+        GameOver
+    }
+
+    public enum VisualEffectCategory
+    {
+        None,
+        Explosion,
+        Fire,
+        MuzzleFlash,
+        Trail
     }
 }

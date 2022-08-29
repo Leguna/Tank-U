@@ -49,5 +49,11 @@ namespace TankU.Gameplay
             yield return base.Terminate();
         }
 
+        /*public override IEnumerator Finalize()
+        {
+            yield return base.Finalize();
+            _playerInput._PlayerMapInput.rotate.canceled -= OnRotateInput;
+
+        }*/
     }
 }

@@ -17,13 +17,10 @@ namespace TankU.Gameplay
 
         internal void SetCallbacks(Action Move, Action Rotate, Action<PlayerModel, PlayerView> Init, Action<Vector3, int> OnMove)
         {
-            _Move = Move;
-            _onInit = Init;
-            _onMove = OnMove;
-            _rotate = Rotate;
+            _onMove?.Invoke(Vector3.zero);
         }
 
-        protected override void InitRenderModel(IPlayerModel model)
+        protected override void UpdateRenderModel(IPlayerModel model)
         {
             TryGetComponent(out MeshRenderer meshRenderer);
             meshRenderer.material = model.MaterialColor;

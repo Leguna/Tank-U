@@ -1,5 +1,8 @@
 ﻿using Agate.MVC.Base;
 using Agate.MVC.Core;
+using System.Collections;
+using TankU.Main;
+using TankU.Setting;
 
 namespace TankU.Boot
 {
@@ -7,6 +10,7 @@ namespace TankU.Boot
         where TLauncher : BaseLauncher<TLauncher, TView>
         where TView : View
     {
+        private SettingController settingController;
         protected override ILoad GetLoader()
         {
             return SceneLoader.Instance;

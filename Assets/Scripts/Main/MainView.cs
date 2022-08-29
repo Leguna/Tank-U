@@ -2,18 +2,14 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using TankU.MainMenu;
+using TankU.Setting;
 
-namespace SpacePlan.Main
+namespace TankU.Main
 {
     public class MainView : BaseSceneView
     {
-        [SerializeField] private Button _playButton;
-
-        public void SetCallbacks(UnityAction onClickPlayButton)
-        {
-            _playButton.onClick.RemoveAllListeners();
-            _playButton.onClick.AddListener(onClickPlayButton);
-        }
-
+        public MainMenuView _mainMenuView;
+        public SettingView _settingView;
     }
 }
