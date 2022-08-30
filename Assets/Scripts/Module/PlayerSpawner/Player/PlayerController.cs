@@ -15,7 +15,7 @@ namespace TankU.Gameplay
 
         public override void SetView(PlayerView view)
         {
-            view.SetCallbacks(Move, Rotate, Init, OnMove, CoolDownTimer);
+            view.SetCallbacks(Move, Rotate, Init, OnMove, CoolDownTimer, UpdateDataPlayer);
             view.TryGetComponent(out rg);
             base.SetView(view);
             _model.SetHead(_view.transform.GetChild(0));
@@ -90,7 +90,7 @@ namespace TankU.Gameplay
 
         public void OnGetPowerUpHealth()
         {
-            _model.SetHealth(20);
+            _model.SetHealth(5);
         }
 
         public void OnFire(int playerNumber)
@@ -108,6 +108,11 @@ namespace TankU.Gameplay
             _model.SetSpeed(20);
             _model.SetPosition(new Vector3(0, 0.3f, 0));
             _model.SetHead(_view.transform.GetChild(0));
+        }
+
+        public void UpdateDataPlayer()
+        {
+            Publish(new PlayerStatusMessage(_model.Health, _model.PowerUpIsActive));
         }
 
         public void SpawnPlayer(Transform transform, int index)

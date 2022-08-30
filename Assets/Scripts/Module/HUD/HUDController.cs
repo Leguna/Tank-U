@@ -14,7 +14,6 @@ namespace TankU.Gameplay
         public override IEnumerator Initialize()
         {
             yield return base.Initialize();
-
         }
 
         public override void SetView(HUDView view)
@@ -38,6 +37,23 @@ namespace TankU.Gameplay
             {
                 SetColor(colorList);
             }        
+        }
+
+
+        public void GetPlayerHealth(int healthpoint)
+        {
+            for (int i = 0; i < _view.barList.Count; i++)
+            {
+                for (int j = 0; j < healthpoint; j++)
+                {
+                    _view.barList[i].Bar[j].gameObject.SetActive(true);
+                }
+            }
+        }
+
+        public void GetStatusPowerUp(bool powerUpStatus)
+        {
+            
         }
 
     }
