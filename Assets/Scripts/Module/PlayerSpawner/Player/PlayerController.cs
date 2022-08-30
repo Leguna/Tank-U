@@ -39,9 +39,6 @@ namespace TankU.Gameplay
             if (_model.PlayerNumber != playerNumber) return;
             Transform bulletSpawner = _model.Head.GetChild(1);
             Publish(new BombSpawnMessage(bulletSpawner.transform));
-            // TODO @Leguna: Choose this or From Bomb Pool
-            // Transform bombPool = _model.Head.GetChild(2);
-            // Publish(new SpawnBombMessage(bombPool.transform));
             Debug.Log($"Boomb...! {playerNumber}");
         }
 
@@ -100,4 +97,5 @@ namespace TankU.Gameplay
             _model.SetRotateDirec(new Vector2(transform.localRotation.x , transform.localRotation.y));
         }
     }
+
 }

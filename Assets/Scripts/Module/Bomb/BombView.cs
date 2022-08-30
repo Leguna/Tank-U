@@ -1,66 +1,40 @@
 using Agate.MVC.Base;
-using System;
 using UnityEngine;
-using System.Collections.Generic;
 
 namespace TankU.Module.Bomb
 {
     public class BombView : ObjectView<IBombModel>
     {
-        private Action _onCountTimer;
-        private Action<float> _onUpdate;
-
-        public List<ExplosionView> _explosionView;
-        
         //TODO @Mark bikin jadi array
         
-        /*[SerializeField] private float _explodeDelay = 4.0f;
+        [SerializeField] private float _explodeDelay = 4.0f;
         [SerializeField] private float _explodeDuration = 4.0f;
 
         private float timer1;
         private float timer2;
 
         [SerializeField] private GameObject Bomb1;
-        [SerializeField] private GameObject Bomb2;*/
-
-        /*[SerializeField] private List<float> Timers { get; }
-        [SerializeField] private List<GameObject> Bombs{ get; }
-        [SerializeField] private int PoolSize { get; }*/
-
-        private BombController _bombController;
+        [SerializeField] private GameObject Bomb2;
 
         protected override void InitRenderModel(IBombModel model)
         {
             transform.position = model.SpawnPosition;
-            gameObject.SetActive(!model.IsDeath);
         }
 
         protected override void UpdateRenderModel(IBombModel model)
         {
-            gameObject.SetActive(!model.IsDeath);
+            
         }
 
-        /*private void Start()
+        private void Start()
         {
             timer1 = 0;
             timer2 = 0;
-        }*/
-
-        public void SetCallback(Action onCountTimer, Action<float> onUpdateEvent)
-        {
-            _onCountTimer = onCountTimer;
-            _onUpdate = onUpdateEvent;
         }
-
-        private void OnTriggerExit(Collider other)
-        {
-            other.isTrigger = false;
-        }
-
 
         private void Update()
         {
-            /*if (Bomb1.activeInHierarchy)
+            if (Bomb1.activeInHierarchy)
             {
                 timer1 += Time.deltaTime;
             }
@@ -78,16 +52,11 @@ namespace TankU.Module.Bomb
             if (timer2 >= _explodeDelay)
             {
                 Explode(Bomb2);
-            }*/
-
-            _onCountTimer?.Invoke();
-            _onUpdate?.Invoke(Time.deltaTime);
+            }
         }
 
-        /*private void Explode(GameObject bom)
+        private void Explode(GameObject bom)
         {
-            _bombController.BombExplode();
-
             bom.GetComponent<MeshRenderer>().enabled = false;
             
             bom.transform.GetChild(0).gameObject.SetActive(true);
@@ -104,6 +73,6 @@ namespace TankU.Module.Bomb
                 if (bom == Bomb1) timer1 = 0;
                 if (bom == Bomb2) timer2 = 0;
             }
-        }*/
+        }
     }
 }
