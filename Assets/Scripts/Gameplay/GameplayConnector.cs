@@ -1,12 +1,14 @@
 using Agate.MVC.Base;
 using TankU.Message;
 using TankU.Module.PlayerSpawner;
+using TankU.PowerUp;
 
 namespace TankU.Gameplay
 {
     public class GameplayConnector : BaseConnector
     {
         private PlayerSpawnerController _playerSpawner;
+        private PowerUpPoolerController _powerUpSpawnerController;
 
         private void OnMoveInput(InputMoveMessage message)
         {
@@ -42,6 +44,7 @@ namespace TankU.Gameplay
             Subscribe<InputRotateMessage>(OnRotatedInput);
             Subscribe<FireMessage>(OnFire);
             Subscribe<BombMessage>(OnBomb);
+            Subscribe<TimerCountDownMessage>(_powerUpSpawnerController.OnStart);
         }
 
         protected override void Disconnect()
@@ -50,6 +53,7 @@ namespace TankU.Gameplay
             Unsubscribe<InputRotateMessage>(OnRotatedInput);
             Unsubscribe<FireMessage>(OnFire);
             Unsubscribe<BombMessage>(OnBomb);
+            Unsubscribe<TimerCountDownMessage>(_powerUpSpawnerController.OnStart);
         }
     }
 }

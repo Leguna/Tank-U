@@ -14,7 +14,8 @@ namespace TankU.Module.PlayerSpawner.Player
 
         public override void SetView(PlayerView view)
         {
-            view.SetCallbacks(Move, Rotate, Init, OnMove, CoolDownTimer, OnTakeDamageEvent, OnUpdate);
+            view.SetCallbacks(Move, Rotate, Init, OnMove, CoolDownTimer, OnTakeDamageEvent, OnUpdate,
+                OnGetPowerUpBounce, OnGetPowerUpHealth);
             view.TryGetComponent(out _rg);
             base.SetView(view);
             _model.SetHead(_view.transform.GetChild(0));
@@ -27,6 +28,7 @@ namespace TankU.Module.PlayerSpawner.Player
 
         private void OnTakeDamageEvent(int damage)
         {
+            if (!_model.CanMove) return;
             _model.TakeDamage(damage);
             if (_model.Health <= 0)
             {
@@ -41,7 +43,6 @@ namespace TankU.Module.PlayerSpawner.Player
         {
             yield return base.Initialize();
             _model.SetPosition(new Vector3(0, 0.3f, 0));
-            OnGetPowerUpBounce(5f);
         }
 
         private void Move()
@@ -103,11 +104,7 @@ namespace TankU.Module.PlayerSpawner.Player
 
         public void OnGetPowerUpBounce(float duration)
         {
-            if (_model.PowerUpDuration == 0)
-            {
-                _model.SetDurationPowerUp(duration);
-                Debug.Log($"duration powerup bounce {duration}");
-            }
+            _model.SetDurationPowerUp(duration);
         }
 
         public void OnGetPowerUpHealth(int health)
@@ -123,7 +120,7 @@ namespace TankU.Module.PlayerSpawner.Player
             if (_model.PlayerNumber != playerNumber) return;
             _model.SetFireCooldown(_model.FireRate);
             Transform bulletSpawner = _model.Head.GetChild(1);
-            Publish(new SpawnBulletMessage(bulletSpawner.transform, 5, true));
+            Publish(new SpawnBulletMessage(bulletSpawner.transform, _model.PowerUpDuration, _model.PowerUpIsActive));
         }
 
         public void Init(PlayerModel model, PlayerView view)

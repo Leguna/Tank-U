@@ -41,7 +41,6 @@ namespace TankU.Module.ColourPicker
                 if (CheckAllPlayerPickColor())
                     FinishPickingCharacter();
                 _model.ConfirmColor(inputLayout);
-                Debug.Log($"Confirm {inputLayout}");
             }
             else AddColorPlayer(inputLayout);
         }

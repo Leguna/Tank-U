@@ -1,8 +1,7 @@
 using Agate.MVC.Base;
 using TankU.Message;
-using TankU.Module.PlayerSpawner;
 
-namespace TankU.Gameplay
+namespace TankU.Module.PlayerSpawner
 {
     public class PlayerSpawnerConnector : BaseConnector
     {
@@ -21,7 +20,10 @@ namespace TankU.Gameplay
 
         private void OnTimerStart(TimerCountDownMessage obj)
         {
-            _playerSpawnerController.OnGameStart();
+            if (obj.TimerEventTypeType == TimerEventType.OnCountdownFinish)
+                _playerSpawnerController.OnGameStart();
+            else if(obj.TimerEventTypeType == TimerEventType.OnTimerFinish)
+                _playerSpawnerController.OnGameStop();
         }
 
         protected override void Disconnect()

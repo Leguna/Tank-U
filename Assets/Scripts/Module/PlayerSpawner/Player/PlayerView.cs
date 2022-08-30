@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TankU.Gameplay
 {
-    public class PlayerView : ObjectView<IPlayerModel>, IDamageableView
+    public class PlayerView : ObjectView<IPlayerModel>, IDamageableView, IPowerUpAbleView
     {
         private Action _Move;
         private Action<PlayerModel, PlayerView> _onInit;
@@ -15,9 +15,13 @@ namespace TankU.Gameplay
         private Action<int> _onTakeDamage;
         private Action<float> _onUpdate;
         private MeshRenderer _meshRenderer;
+        private Action<float> _onPowerUpBullet;
+        private Action<int> _onHealthPowerUp;
 
         internal void SetCallbacks(Action Move, Action Rotate, Action<PlayerModel, PlayerView> Init,
-            Action<Vector3, int> OnMove, Action CoolDownTimer, Action<int> OnTakeDamage, Action<float> onUpdate)
+            Action<Vector3, int> OnMove, Action CoolDownTimer, Action<int> OnTakeDamage, Action<float> onUpdate,
+            Action<float> onPowerUpBullet,
+            Action<int> onHealthPowerUp)
         {
             _Move = Move;
             _onInit = Init;
@@ -25,6 +29,8 @@ namespace TankU.Gameplay
             _rotate = Rotate;
             _cooldownBomb = CoolDownTimer;
             _onTakeDamage = OnTakeDamage;
+            _onPowerUpBullet = onPowerUpBullet;
+            _onHealthPowerUp = onHealthPowerUp;
             _onUpdate = onUpdate;
         }
 
@@ -56,6 +62,16 @@ namespace TankU.Gameplay
         public void TakeDamage(IDoingDamageModel damageModel)
         {
             _onTakeDamage?.Invoke(damageModel.Damage);
+        }
+
+        public void OnHealthPowerUp(int health)
+        {
+            _onHealthPowerUp?.Invoke(health);
+        }
+
+        public void OnBulletPowerUp(float duration)
+        {
+            _onPowerUpBullet?.Invoke(duration);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace TankU.Module.Timer
         {
             IsRunning = false;
             IsCountDown = false;
-            TimeTotal = 5;
+            TimeTotal = 180;
             TimeLeft = TimeTotal;
             CountTotal = 3;
             CountDown = CountTotal;

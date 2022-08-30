@@ -1,15 +1,14 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Agate.MVC.Base;
+using TankU.PowerUp;
+using UnityEngine;
 
-namespace TankU.PowerUp
+namespace TankU.Module.PowerUp.Object
 {
     public class PowerUpView : ObjectView<IPowerUpModel>
     {
-        private Action OnCountTimer;
-        private Action OnCollidePlayer;
+        private Action _onCountTimer;
+        private Action<Collider> _onCollidePlayer;
 
         protected override void InitRenderModel(IPowerUpModel model)
         {
@@ -18,13 +17,12 @@ namespace TankU.PowerUp
 
         protected override void UpdateRenderModel(IPowerUpModel model)
         {
-            
         }
 
-        public void SetCallback(Action onCountTimer, Action onCollidePlayer)
+        public void SetCallback(Action onCountTimer, Action<Collider> onCollidePlayer)
         {
-            OnCountTimer = onCountTimer;
-            OnCollidePlayer = onCollidePlayer;
+            _onCountTimer = onCountTimer;
+            _onCollidePlayer = onCollidePlayer;
         }
 
         public void SetTransform(Vector3 pos)
@@ -34,16 +32,12 @@ namespace TankU.PowerUp
 
         private void Update()
         {
-            OnCountTimer?.Invoke();
+            _onCountTimer?.Invoke();
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
-            {
-                OnCollidePlayer?.Invoke();
-                gameObject.SetActive(false);
-            }
+            _onCollidePlayer?.Invoke(other);
         }
     }
 }

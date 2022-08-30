@@ -29,6 +29,11 @@ namespace TankU.Gameplay
         {
             PowerUpDuration -= deltaTime;
             CurrentFireCoolDown -= deltaTime;
+            if (PowerUpDuration <= 0f)
+            {
+                PowerUpIsActive = false;
+            }
+
             SetDataAsDirty();
         }
 
@@ -42,7 +47,6 @@ namespace TankU.Gameplay
             Health = 5;
         }
 
-        // ubah material ke color
         public PlayerModel(int playerNumber, Material material) : this()
         {
             PlayerNumber = playerNumber;
@@ -53,8 +57,8 @@ namespace TankU.Gameplay
         {
             Position = position;
             RotateDirec = direction;
+            SetDataAsDirty();
         }
-
 
         public void SetPosition(Vector3 vector)
         {
@@ -107,6 +111,7 @@ namespace TankU.Gameplay
         public void SetDurationPowerUp(float duration)
         {
             PowerUpDuration = duration;
+            PowerUpIsActive = true;
             SetDataAsDirty();
         }
 
@@ -120,12 +125,6 @@ namespace TankU.Gameplay
         {
             if (Health >= 5) return;
             Health += i;
-            SetDataAsDirty();
-        }
-
-        public void OnTick()
-        {
-            PowerUpDuration -= Time.deltaTime;
             SetDataAsDirty();
         }
 

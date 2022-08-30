@@ -68,7 +68,6 @@ namespace TankU.Module.PlayerSpawner
 
         public void OnGameStart()
         {
-            Debug.Log("GAME START!!!");
             _model.SetPlaying(true);
             foreach (var playerController in _model.PlayerControllerList)
             {
