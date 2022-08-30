@@ -5,13 +5,11 @@ using UnityEngine;
 
 namespace TankU.Module.Base
 {
-    public class MatchBoard : BaseView
+    public class MatchHistoryView : BaseView
     {
-        
-
         public void ShowBoard()
         {
-
+            gameObject.SetActive(true);
         }
 
         public void HideBoard()
@@ -19,7 +17,7 @@ namespace TankU.Module.Base
 
         }
 
-        public void UpdateMatchHistoryData(MatchHistoryData matchHistoryData)
+        public void UpdateMatchHistoryData(MatchHistoryModel matchHistoryData)
         {
 
         }

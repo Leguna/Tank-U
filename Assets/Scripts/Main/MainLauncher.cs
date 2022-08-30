@@ -8,7 +8,6 @@ using TankU.Setting;
 namespace TankU.Main
 {
     public class MainLauncher : SceneLauncher<MainLauncher, MainView>
-
     {
         public override string SceneName => "MainMenu";
 
