@@ -27,7 +27,6 @@ namespace TankU.Gameplay
         {
             base.SetView(view);
             _model.SetSpawnerTransform(_view._spawnTransform);
-            SpawnPlayerStart();
         }
 
         public void SpawnPlayerStart()

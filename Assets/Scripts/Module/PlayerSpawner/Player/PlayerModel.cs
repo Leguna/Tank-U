@@ -18,6 +18,22 @@ namespace TankU.Gameplay
         public Transform Head { get; protected set; }
 
         public Material MaterialColor { get; private set; }
+        public float CoolDownPowerUpShoot { get; private set; }
+
+        public void SetFireCooldown(float coolDown)
+        {
+            CurrentFireCoolDown = coolDown;
+        }
+
+        public void OnTick(float deltaTime)
+        {
+            PowerUpDuration -= deltaTime;
+            CurrentFireCoolDown -= deltaTime;
+            SetDataAsDirty();
+        }
+
+        public float CurrentFireCoolDown { get; private set; }
+        public float FireRate => 1f;
 
         public PlayerModel()
         {

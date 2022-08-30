@@ -7,6 +7,7 @@ namespace TankU.Module.ColourPicker
     {
         [SerializeField] public Transform colorPickerGroupTransform;
         [SerializeField] public Transform colorPickerTitle;
+        [SerializeField] public Transform background;
 
         protected override void InitRenderModel(IColorPickerModel model)
         {
@@ -21,7 +22,7 @@ namespace TankU.Module.ColourPicker
             }
 
             colorPickerGroupTransform.gameObject.SetActive(true);
-            colorPickerTitle.gameObject.SetActive(model.ListColorItemSubView.Count <= 0);
+            colorPickerTitle.gameObject.SetActive(true);
 
             if (model.ListColorItemSubView.Count == 0)
             {
@@ -41,6 +42,7 @@ namespace TankU.Module.ColourPicker
         {
             colorPickerTitle.gameObject.SetActive(false);
             colorPickerGroupTransform.gameObject.SetActive(false);
+            background.gameObject.SetActive(false);
         }
     }
 }

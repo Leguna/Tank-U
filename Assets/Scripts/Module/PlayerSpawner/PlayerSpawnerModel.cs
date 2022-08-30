@@ -12,7 +12,7 @@ namespace TankU.Gameplay
         public List<PlayerController> PlayerControllerList { get; private set; }
         public PlayerView PlayerView { get; private set; }
         public List<Material> MaterialList { get; private set; }
-        public List<Material> MaterialPlayerselected { get; private set; }
+        public List<Material> MaterialPlayerSelected { get; private set; }
 
         public PlayerSpawnerModel()
         {

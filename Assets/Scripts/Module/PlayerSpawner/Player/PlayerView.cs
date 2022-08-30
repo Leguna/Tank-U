@@ -13,9 +13,10 @@ namespace TankU.Gameplay
         private Action _rotate;
         private Action _cooldownBomb;
         private Action<int> _onTakeDamage;
+        private Action<float> _onUpdate;
 
         internal void SetCallbacks(Action Move, Action Rotate, Action<PlayerModel, PlayerView> Init,
-            Action<Vector3, int> OnMove, Action CoolDownTimer, Action<int> OnTakeDamage)
+            Action<Vector3, int> OnMove, Action CoolDownTimer, Action<int> OnTakeDamage, Action<float> onUpdate)
         {
             _Move = Move;
             _onInit = Init;
@@ -23,6 +24,7 @@ namespace TankU.Gameplay
             _rotate = Rotate;
             _cooldownBomb = CoolDownTimer;
             _onTakeDamage = OnTakeDamage;
+            _onUpdate = onUpdate;
         }
 
         protected override void InitRenderModel(IPlayerModel model)
@@ -45,6 +47,7 @@ namespace TankU.Gameplay
         private void Update()
         {
             _cooldownBomb?.Invoke();
+            _onUpdate?.Invoke(Time.deltaTime);
         }
 
         public void TakeDamage(IDoingDamageModel damageModel)

@@ -14,16 +14,26 @@ namespace TankU.Module.PlayerSpawner.Player
 
         public override void SetView(PlayerView view)
         {
-            view.SetCallbacks(Move, Rotate, Init, OnMove, CoolDownTimer, OnTakeDamageEvent);
+            view.SetCallbacks(Move, Rotate, Init, OnMove, CoolDownTimer, OnTakeDamageEvent, OnUpdate);
             view.TryGetComponent(out _rg);
             base.SetView(view);
             _model.SetHead(_view.transform.GetChild(0));
         }
 
+        private void OnUpdate(float deltaTime)
+        {
+            _model.OnTick(deltaTime);
+        }
+
         private void OnTakeDamageEvent(int damage)
         {
-            Debug.Log($"{_view.name} Take {damage} hit.");
             _model.TakeDamage(damage);
+            if (_model.Health <= 0)
+            {
+                _view.gameObject.SetActive(false);
+                Publish(new PlayerDeadMessage());
+            }
+
             Publish(new UpdatePlayerHealth(_model.Health, _model.PlayerNumber));
         }
 
@@ -36,12 +46,15 @@ namespace TankU.Module.PlayerSpawner.Player
 
         private void Move()
         {
+            if (_model.Health <= 0) return;
+
             _rg.velocity = _model.Velocity * _model.Speed;
             _model.SetPosition(_rg.velocity);
         }
 
         internal void OnBomb(int playerNumber)
         {
+            if (_model.Health <= 0) return;
             if (_coolDownBomb <= 0f)
             {
                 if (_model.PlayerNumber != playerNumber) return;
@@ -61,23 +74,28 @@ namespace TankU.Module.PlayerSpawner.Player
             if (_coolDownBomb >= 0)
             {
                 _coolDownBomb -= 1f * Time.deltaTime;
-                Debug.Log($"cool down bomb = {_coolDownBomb}");
             }
         }
 
         private void Rotate()
         {
+            if (_model.Health <= 0) return;
+
             _model.Head.transform.Rotate(0, _model.RotateDirec.x, _model.RotateDirec.y, Space.Self);
         }
 
         public void OnMove(Vector3 direction, int playerNumber)
         {
+            if (_model.Health <= 0) return;
+
             if (_model.PlayerNumber != playerNumber) return;
             _model.Move(direction);
         }
 
         internal void OnRotate(Vector2 direction, int playerNumber)
         {
+            if (_model.Health <= 0) return;
+
             if (_model.PlayerNumber != playerNumber) return;
             _model.Rotate(direction);
         }
@@ -98,7 +116,10 @@ namespace TankU.Module.PlayerSpawner.Player
 
         public void OnFire(int playerNumber)
         {
+            if (_model.CurrentFireCoolDown > 0) return;
+            if (_model.Health <= 0) return;
             if (_model.PlayerNumber != playerNumber) return;
+            _model.SetFireCooldown(_model.FireRate);
             Transform bulletSpawner = _model.Head.GetChild(1);
             Publish(new SpawnBulletMessage(bulletSpawner.transform, 5, true));
         }
@@ -117,5 +138,15 @@ namespace TankU.Module.PlayerSpawner.Player
             _model.Name = ($"player{index}");
             _model.SetRotateDirec(new Vector2(transform.localRotation.x, transform.localRotation.y));
         }
+    }
+
+    public struct PlayerDeadMessage
+    {
+        public PlayerDeadMessage(int playerIndex)
+        {
+            PlayerIndex = playerIndex;
+        }
+
+        public int PlayerIndex { get; }
     }
 }

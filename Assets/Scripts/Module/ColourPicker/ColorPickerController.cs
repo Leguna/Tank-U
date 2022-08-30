@@ -89,6 +89,9 @@ namespace TankU.Module.ColourPicker
         public void StartPickingCharacter()
         {
             _model.StartPicking();
+            AddColorPlayer(InputLayout.KeyboardLeft);
+            AddColorPlayer(InputLayout.KeyboardRight);
+            _view.background.gameObject.SetActive(true);
         }
 
         public void AddColorPlayer(InputLayout inputLayout)

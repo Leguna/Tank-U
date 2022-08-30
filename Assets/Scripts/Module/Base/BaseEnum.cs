@@ -19,7 +19,8 @@
     {
         None,
         Menu,
-        Game,
+        PickingColor,
+        Playing,
         Pause,
         GameOver
     }

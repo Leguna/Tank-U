@@ -1,6 +1,5 @@
-using Agate.MVC.Base;
-using System.Collections;
 using System.Collections.Generic;
+using Agate.MVC.Base;
 using TankU.Module.PlayerSpawner.Player;
 using UnityEngine;
 
@@ -12,8 +11,7 @@ namespace TankU.Gameplay
         public List<PlayerController> PlayerControllerList { get; }
         public PlayerView PlayerView { get; }
         public List<Material> MaterialList { get; }
-        public List<Material> MaterialPlayerselected { get; }
-
+        public List<Material> MaterialPlayerSelected { get; }
         public void SetSpawnerTransform(List<Transform> position);
     }
 }

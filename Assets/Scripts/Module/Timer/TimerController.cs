@@ -60,5 +60,12 @@ namespace TankU.Module.Timer
                 Publish(new TimerCountDownMessage(_model.CountDown, _model.TimeLeft, TimerEvent.OnTimerFinish));
             }
         }
+
+        public void HideView()
+        {
+            _view.gameObject.SetActive(false);
+            _isAlreadyPublishCountDown = true;
+            _isAlreadyPublishTimerFinished = true;
+        }
     }
 }
