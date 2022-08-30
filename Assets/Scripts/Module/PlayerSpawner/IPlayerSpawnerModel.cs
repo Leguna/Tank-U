@@ -13,5 +13,7 @@ namespace TankU.Gameplay
         public List<Material> MaterialList { get; }
         public List<Material> MaterialPlayerSelected { get; }
         public void SetSpawnerTransform(List<Transform> position);
+        public int PlayerLeft { get; }
+        List<int> GetPlayerLeft { get; }
     }
 }

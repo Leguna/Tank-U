@@ -9,6 +9,7 @@ namespace TankU.Gameplay
     {
         private PlayerSpawnerController _playerSpawner;
         private PowerUpPoolerController _powerUpSpawnerController;
+        private GameplayLauncher _gameplayLauncher;
 
         private void OnMoveInput(InputMoveMessage message)
         {
@@ -44,7 +45,20 @@ namespace TankU.Gameplay
             Subscribe<InputRotateMessage>(OnRotatedInput);
             Subscribe<FireMessage>(OnFire);
             Subscribe<BombMessage>(OnBomb);
-            Subscribe<TimerCountDownMessage>(_powerUpSpawnerController.OnStart);
+            Subscribe<TimerCountDownMessage>(OnTimerCountEvent);
+            Subscribe<PlayerDeadMessage>(OnPlayerDestroyed);
+        }
+
+        private void OnTimerCountEvent(TimerCountDownMessage message)
+        {
+            _powerUpSpawnerController.OnTimerCountEvent(message);
+            if (message.TimerEventTypeType == TimerEventType.OnTimerFinish)
+                _gameplayLauncher.GameOver(-1);
+        }
+
+        private void OnPlayerDestroyed(PlayerDeadMessage msg)
+        {
+            _gameplayLauncher.CheckGameOver();
         }
 
         protected override void Disconnect()
@@ -53,7 +67,7 @@ namespace TankU.Gameplay
             Unsubscribe<InputRotateMessage>(OnRotatedInput);
             Unsubscribe<FireMessage>(OnFire);
             Unsubscribe<BombMessage>(OnBomb);
-            Unsubscribe<TimerCountDownMessage>(_powerUpSpawnerController.OnStart);
+            Unsubscribe<TimerCountDownMessage>(OnTimerCountEvent);
         }
     }
 }

@@ -119,7 +119,12 @@ namespace TankU.PowerUp
             _view.SetCallback(CountTimerSpawnHealth, CountTimerSpawnBounce);
         }
 
-        public void OnStart(TimerCountDownMessage message)
+        public void OnEndGame()
+        {
+            _view.gameObject.SetActive(false);
+        }
+
+        public void OnTimerCountEvent(TimerCountDownMessage message)
         {
             if (message.TimerEventTypeType == TimerEventType.OnCountdownFinish)
             {

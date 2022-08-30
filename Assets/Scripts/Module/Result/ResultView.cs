@@ -28,7 +28,7 @@ namespace TankU.Module.Result
             });
         }
 
-        public void SetText(string result)
+        public void SetResultText(string result)
         {
             resultText.text = result;
         }

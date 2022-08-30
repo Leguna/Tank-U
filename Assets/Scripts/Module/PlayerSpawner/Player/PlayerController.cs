@@ -130,6 +130,7 @@ namespace TankU.Module.PlayerSpawner.Player
             SetView(view);
             _model.SetPosition(new Vector3(0, 0.3f, 0));
             _model.SetHead(_view.transform.GetChild(0));
+            view.gameObject.SetActive(false);
         }
 
         public void SetCanMove(bool value)
@@ -147,6 +148,11 @@ namespace TankU.Module.PlayerSpawner.Player
         public void ChangeMaterial(Material material)
         {
             _model.SetMaterialColor(material);
+        }
+
+        public void ShowPlayer()
+        {
+            _view.gameObject.SetActive(true);
         }
     }
 }

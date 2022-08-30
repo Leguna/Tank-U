@@ -45,6 +45,7 @@ namespace TankU.Module.PlayerSpawner
             for (int i = 0; i < _model.PlayerControllerList.Count; i++)
             {
                 _model.PlayerControllerList[i].ChangeMaterial(_model.MaterialList[obj[i]]);
+                _model.PlayerControllerList[i].ShowPlayer();
             }
         }
 
@@ -64,6 +65,7 @@ namespace TankU.Module.PlayerSpawner
             playerController.Init(playerModel, playerView);
             InjectDependencies(playerController);
             _model.PlayerControllerList.Add(playerController);
+            _model.AddPlayerLeft();
         }
 
         public void OnGameStart()
@@ -74,6 +76,7 @@ namespace TankU.Module.PlayerSpawner
                 playerController.SetCanMove(true);
             }
         }
+
         public void OnGameStop()
         {
             _model.SetPlaying(false);
@@ -81,6 +84,12 @@ namespace TankU.Module.PlayerSpawner
             {
                 playerController.SetCanMove(false);
             }
+        }
+
+        public void PlayerDeath(int objPlayerIndex)
+        {
+            _model.AddPlayerDeath();
+            Debug.Log($"{_model.PlayerLeft} player left");
         }
     }
 }

@@ -5,7 +5,7 @@ namespace TankU.Module.PlayerSpawner
 {
     public class PlayerSpawnerConnector : BaseConnector
     {
-        public PlayerSpawnerController _playerSpawnerController;
+        private PlayerSpawnerController _playerSpawnerController;
 
         public void GetColorPlayer(ColorPickingMessage message)
         {
@@ -16,13 +16,19 @@ namespace TankU.Module.PlayerSpawner
         {
             Subscribe<ColorPickingMessage>(GetColorPlayer);
             Subscribe<TimerCountDownMessage>(OnTimerStart);
+            Subscribe<PlayerDeadMessage>(OnPlayerDead);
+        }
+
+        private void OnPlayerDead(PlayerDeadMessage obj)
+        {
+            _playerSpawnerController.PlayerDeath(obj.PlayerIndex);
         }
 
         private void OnTimerStart(TimerCountDownMessage obj)
         {
             if (obj.TimerEventTypeType == TimerEventType.OnCountdownFinish)
                 _playerSpawnerController.OnGameStart();
-            else if(obj.TimerEventTypeType == TimerEventType.OnTimerFinish)
+            else if (obj.TimerEventTypeType == TimerEventType.OnTimerFinish)
                 _playerSpawnerController.OnGameStop();
         }
 

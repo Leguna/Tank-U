@@ -15,5 +15,10 @@ namespace TankU.Module.Result
         {
             _view.SetCallbacks(backToMainMenu, tryAgain, closeTutorial);
         }
+
+        public void ShowResult(int winnerIndex)
+        {
+            _view.SetResultText(winnerIndex == -1 ? "DRAW!" : $"Player {winnerIndex + 1} Win!");
+        }
     }
 }
