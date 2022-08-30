@@ -2,15 +2,14 @@ using System.Collections;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
 using TankU.Boot;
-using TankU.Module.BulletSpawner;
 using TankU.Module.Bomb;
+using TankU.Module.BulletSpawner;
 using TankU.Module.ColourPicker;
 using TankU.Module.Timer;
 using TankU.Module.VisualEffect;
 using TankU.PowerUp;
-using TankU.Sound;
 using TankU.Setting;
-
+using TankU.Sound;
 
 namespace TankU.Gameplay
 {
@@ -19,19 +18,16 @@ namespace TankU.Gameplay
         public override string SceneName => "Gameplay";
 
         private SoundController _soundController;
-
         private TimerController _timerController;
-
         private ColorPickerController _colourPickerController;
         private PowerUpPoolerController _powerUpPooler;
-        private PlayerController _playerController;
         private PlayerInputController _playerInputController;
         private PlayerSpawnerController _playerSpawnerController;
         private BulletSpawnerController _bulletSpawnerController;
         private BombPoolController _bombPoolController;
         private HUDController _hudController;
         private VisualEffectController _visualEffectController;
-        
+
         private SettingController _settingController;
 
         protected override IConnector[] GetSceneConnectors()
@@ -80,13 +76,13 @@ namespace TankU.Gameplay
 
         protected override IEnumerator LaunchScene()
         {
-            _soundController.PlayBgm(SoundBgmName.Game);
             yield return null;
         }
 
         public void StartGame()
         {
             _timerController.OnStartGame();
+            _soundController.PlayBgm(SoundBgmName.Game);
         }
 
         public void ResumeGame()

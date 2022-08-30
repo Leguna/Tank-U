@@ -1,4 +1,3 @@
-
 using Agate.MVC.Base;
 using TankU.Message;
 using TankU.Gameplay;
@@ -11,19 +10,19 @@ namespace TankU.Gameplay
 
         private void OnMoveInput(InputMoveMessage message)
         {
-            
-                _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnMove(message.Direction, message.PlayerNumber);
-            
+            _playerSpawner.Model.PlayerControllerList[message.PlayerNumber]
+                .OnMove(message.Direction, message.PlayerNumber);
         }
 
         private void OnRotatedInput(InputRotateMessage message)
         {
-                _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnRotate(message.Direction, message.PlayerNumber);
+            _playerSpawner.Model.PlayerControllerList[message.PlayerNumber]
+                .OnRotate(message.Direction, message.PlayerNumber);
         }
 
         private void OnFire(FireMessage message)
         {
-           _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnFire(message.PlayerNumber);
+            _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnFire(message.PlayerNumber);
         }
 
         private void OnBomb(BombMessage message)

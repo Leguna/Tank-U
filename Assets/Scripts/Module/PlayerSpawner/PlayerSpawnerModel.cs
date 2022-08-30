@@ -1,6 +1,7 @@
 using Agate.MVC.Base;
 using System.Collections;
 using System.Collections.Generic;
+using TankU.Module.PlayerSpawner.Player;
 using UnityEngine;
 
 namespace TankU.Gameplay
@@ -15,8 +16,7 @@ namespace TankU.Gameplay
 
         public PlayerSpawnerModel()
         {
-            //Assets/Resources/Prefabs/TankView.prefab
-            PlayerView = Resources.Load<PlayerView>("Prefabs/TankView").GetComponent<PlayerView>();
+            PlayerView = Resources.Load<PlayerView>("Prefabs/Player/TankView").GetComponent<PlayerView>();
             SpawnerTransform = new List<Transform>();
             PlayerControllerList = new List<PlayerController>();
 

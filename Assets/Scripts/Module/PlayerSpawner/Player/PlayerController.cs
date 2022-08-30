@@ -1,44 +1,48 @@
-using Agate.MVC.Base;
-using System;
 using System.Collections;
-using System.Collections.Generic;
+using Agate.MVC.Base;
+using TankU.Gameplay;
 using TankU.Message;
 using UnityEngine;
 
-namespace TankU.Gameplay
+namespace TankU.Module.PlayerSpawner.Player
 {
     public class PlayerController : ObjectController<PlayerController, PlayerModel, IPlayerModel, PlayerView>
     {
-        private Rigidbody rg;
-        private float CoolDownBombmax = 5f;
-        private float CoolDownBomb = 0f;
+        private Rigidbody _rg;
+        private const float CoolDownBombMax = 5f;
+        private float _coolDownBomb;
 
         public override void SetView(PlayerView view)
         {
-            view.SetCallbacks(Move, Rotate, Init, OnMove, CoolDownTimer);
-            view.TryGetComponent(out rg);
+            view.SetCallbacks(Move, Rotate, Init, OnMove, CoolDownTimer, OnTakeDamageEvent);
+            view.TryGetComponent(out _rg);
             base.SetView(view);
             _model.SetHead(_view.transform.GetChild(0));
+        }
 
+        private void OnTakeDamageEvent(int damage)
+        {
+            Debug.Log($"{_view.name} Take {damage} hit.");
+            _model.TakeDamage(damage);
+            Publish(new UpdatePlayerHealth(_model.Health, _model.PlayerNumber));
         }
 
         public override IEnumerator Initialize()
         {
             yield return base.Initialize();
-            _model.SetSpeed(20);
             _model.SetPosition(new Vector3(0, 0.3f, 0));
-            OnGetpowerUpBounce(5f);
+            OnGetPowerUpBounce(5f);
         }
 
         private void Move()
         {
-            rg.velocity = _model.Velocity * _model.Speed;
-            _model.SetPosition(rg.velocity);
+            _rg.velocity = _model.Velocity * _model.Speed;
+            _model.SetPosition(_rg.velocity);
         }
 
         internal void OnBomb(int playerNumber)
         {
-            if (CoolDownBomb <= 0f)
+            if (_coolDownBomb <= 0f)
             {
                 if (_model.PlayerNumber != playerNumber) return;
                 Transform bulletSpawner = _model.Head.GetChild(1);
@@ -48,17 +52,16 @@ namespace TankU.Gameplay
                 // Publish(new SpawnBombMessage(bombPool.transform));
 
                 Debug.Log($"Boomb...! {playerNumber + 1}");
-                CoolDownBomb = 5f;
+                _coolDownBomb = CoolDownBombMax;
             }
         }
 
         public void CoolDownTimer()
         {
-            if (CoolDownBomb >= 0)
+            if (_coolDownBomb >= 0)
             {
-                CoolDownBomb -= 1f * Time.deltaTime;
-                Debug.Log($"cool down bomb = {CoolDownBomb}");
-
+                _coolDownBomb -= 1f * Time.deltaTime;
+                Debug.Log($"cool down bomb = {_coolDownBomb}");
             }
         }
 
@@ -79,7 +82,7 @@ namespace TankU.Gameplay
             _model.Rotate(direction);
         }
 
-        public void OnGetpowerUpBounce(float duration)
+        public void OnGetPowerUpBounce(float duration)
         {
             if (_model.PowerUpDuration == 0)
             {
@@ -88,16 +91,15 @@ namespace TankU.Gameplay
             }
         }
 
-        public void OnGetPowerUpHealth()
+        public void OnGetPowerUpHealth(int health)
         {
-            _model.SetHealth(20);
+            _model.AddHealth(health);
         }
 
         public void OnFire(int playerNumber)
         {
             if (_model.PlayerNumber != playerNumber) return;
             Transform bulletSpawner = _model.Head.GetChild(1);
-            //                            direction         , duration , ispowerup active;
             Publish(new SpawnBulletMessage(bulletSpawner.transform, 5, true));
         }
 
@@ -105,7 +107,6 @@ namespace TankU.Gameplay
         {
             _model = model;
             SetView(view);
-            _model.SetSpeed(20);
             _model.SetPosition(new Vector3(0, 0.3f, 0));
             _model.SetHead(_view.transform.GetChild(0));
         }
@@ -114,7 +115,7 @@ namespace TankU.Gameplay
         {
             _model.SetPosition(transform.position);
             _model.Name = ($"player{index}");
-            _model.SetRotateDirec(new Vector2(transform.localRotation.x , transform.localRotation.y));
+            _model.SetRotateDirec(new Vector2(transform.localRotation.x, transform.localRotation.y));
         }
     }
 }

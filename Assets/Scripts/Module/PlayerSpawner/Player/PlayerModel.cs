@@ -1,13 +1,11 @@
 using Agate.MVC.Base;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TankU.Gameplay
 {
     public class PlayerModel : BaseModel, IPlayerModel
     {
-        public string Name { get;  set; }
+        public string Name { get; set; }
         public int Speed { get; set; }
         public int Health { get; protected set; }
         public bool PowerUpIsActive { get; protected set; }
@@ -23,7 +21,7 @@ namespace TankU.Gameplay
 
         public PlayerModel()
         {
-            Speed = 10;
+            Speed = 2;
             Name = "player";
             Health = 5;
         }
@@ -98,9 +96,21 @@ namespace TankU.Gameplay
 
         public void SetHealth(int health)
         {
-
+            Health = health;
+            SetDataAsDirty();
         }
 
+        public void AddHealth(int i)
+        {
+            if (Health >= 5) return;
+            Health += i;
+            SetDataAsDirty();
+        }
 
+        public void OnTick()
+        {
+            PowerUpDuration -= Time.deltaTime;
+            SetDataAsDirty();
+        }
     }
 }

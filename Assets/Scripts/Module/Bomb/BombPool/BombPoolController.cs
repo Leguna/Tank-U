@@ -29,7 +29,6 @@ namespace TankU.Module.Bomb
             var bombModel = new BombModel();
             var bombController = new BombController();
             var bombView = Object.Instantiate(_model.BombView, bombModel.SpawnPosition, Quaternion.identity, _view.transform);
-            Debug.Log("test test test");
             bombController.Init(bombModel, bombView);
             InjectDependencies(bombController);
             _model.AddBomb(bombController);

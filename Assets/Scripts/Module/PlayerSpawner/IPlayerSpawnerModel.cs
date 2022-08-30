@@ -1,6 +1,7 @@
 using Agate.MVC.Base;
 using System.Collections;
 using System.Collections.Generic;
+using TankU.Module.PlayerSpawner.Player;
 using UnityEngine;
 
 namespace TankU.Gameplay
