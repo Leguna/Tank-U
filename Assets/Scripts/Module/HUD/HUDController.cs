@@ -1,44 +1,33 @@
-using Agate.MVC.Base;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using TankU.Message;
+using Agate.MVC.Base;
+using TankU.Gameplay;
 using TankU.Module.Base;
-using UnityEngine;
 using UnityEngine.UI;
 
-namespace TankU.Gameplay
+namespace TankU.Module.HUD
 {
     public class HUDController : ObjectController<HUDController, HUDView>
     {
         public override IEnumerator Initialize()
         {
             yield return base.Initialize();
-
         }
 
-        public override void SetView(HUDView view)
+        private void SetColor(List<int> obj)
         {
-            base.SetView(view);
-        }
-
-        // set color player in HUD
-        private void SetColor(List<Color> obj)
-        {
-            for (var i = 0; i <= (_view.barList.Count -1); i++)
+            for (var i = 0; i <= (_view.barList.Count - 1); i++)
             {
-                _view.barList[i].Player.GetComponent<Image>().color = obj[i];
+                _view.barList[i].Player.GetComponent<Image>().color = BaseColor.PlayerColors[obj[i]];
             }
         }
 
-        //get color from pickedColorMesage
-        public void GetColorPlayer(List<Color> colorList, PickingState pickingState)
+        public void GetColorPlayer(List<int> colorList, PickingState pickingState)
         {
-            if ( pickingState == PickingState.Finish)
+            if (pickingState == PickingState.Finish)
             {
                 SetColor(colorList);
-            }        
+            }
         }
-
     }
 }

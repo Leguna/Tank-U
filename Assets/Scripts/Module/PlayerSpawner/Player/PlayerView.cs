@@ -14,6 +14,7 @@ namespace TankU.Gameplay
         private Action _cooldownBomb;
         private Action<int> _onTakeDamage;
         private Action<float> _onUpdate;
+        private MeshRenderer _meshRenderer;
 
         internal void SetCallbacks(Action Move, Action Rotate, Action<PlayerModel, PlayerView> Init,
             Action<Vector3, int> OnMove, Action CoolDownTimer, Action<int> OnTakeDamage, Action<float> onUpdate)
@@ -29,13 +30,15 @@ namespace TankU.Gameplay
 
         protected override void InitRenderModel(IPlayerModel model)
         {
-            TryGetComponent(out MeshRenderer meshRenderer);
-            meshRenderer.material = model.MaterialColor;
+            TryGetComponent(out _meshRenderer);
+            _meshRenderer.material = model.MaterialColor;
             _onMove?.Invoke(Vector3.zero, _model.PlayerNumber);
         }
 
+
         protected override void UpdateRenderModel(IPlayerModel model)
         {
+            _meshRenderer.material = model.MaterialColor;
         }
 
         private void FixedUpdate()

@@ -128,5 +128,18 @@ namespace TankU.Gameplay
             PowerUpDuration -= Time.deltaTime;
             SetDataAsDirty();
         }
+
+        public void SetMaterialColor(Material material)
+        {
+            MaterialColor = material;
+            SetDataAsDirty();
+        }
+
+        public void SetCanMove(bool value)
+        {
+            CanMove = value;
+        }
+
+        public bool CanMove { get; private set; }
     }
 }

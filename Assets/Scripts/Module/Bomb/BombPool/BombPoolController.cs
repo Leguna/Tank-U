@@ -18,7 +18,6 @@ namespace TankU.Module.Bomb
 
         public void SpawnBomb(BombSpawnMessage message)
         {
-            Debug.Log($"Bomb Deployed {message.TransformSpawner.position}");
             var bombController = _model.GetObjectController() ?? AddObjectToPool();
             bombController.SpawnBomb(message.TransformSpawner.position,
                 1, 1);

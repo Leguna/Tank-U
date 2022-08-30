@@ -46,6 +46,7 @@ namespace TankU.Module.PlayerSpawner.Player
 
         private void Move()
         {
+            if (!_model.CanMove) return;
             if (_model.Health <= 0) return;
 
             _rg.velocity = _model.Velocity * _model.Speed;
@@ -54,6 +55,7 @@ namespace TankU.Module.PlayerSpawner.Player
 
         internal void OnBomb(int playerNumber)
         {
+            if (!_model.CanMove) return;
             if (_model.Health <= 0) return;
             if (_coolDownBomb <= 0f)
             {
@@ -71,14 +73,13 @@ namespace TankU.Module.PlayerSpawner.Player
 
         public void CoolDownTimer()
         {
-            if (_coolDownBomb >= 0)
-            {
-                _coolDownBomb -= 1f * Time.deltaTime;
-            }
+            if (_coolDownBomb >= 0) _coolDownBomb -= 1f * Time.deltaTime;
         }
 
         private void Rotate()
         {
+            if (!_model.CanMove) return;
+
             if (_model.Health <= 0) return;
 
             _model.Head.transform.Rotate(0, _model.RotateDirec.x, _model.RotateDirec.y, Space.Self);
@@ -116,6 +117,7 @@ namespace TankU.Module.PlayerSpawner.Player
 
         public void OnFire(int playerNumber)
         {
+            if (!_model.CanMove) return;
             if (_model.CurrentFireCoolDown > 0) return;
             if (_model.Health <= 0) return;
             if (_model.PlayerNumber != playerNumber) return;
@@ -126,10 +128,16 @@ namespace TankU.Module.PlayerSpawner.Player
 
         public void Init(PlayerModel model, PlayerView view)
         {
+            _model.SetCanMove(false);
             _model = model;
             SetView(view);
             _model.SetPosition(new Vector3(0, 0.3f, 0));
             _model.SetHead(_view.transform.GetChild(0));
+        }
+
+        public void SetCanMove(bool value)
+        {
+            _model.SetCanMove(value);
         }
 
         public void SpawnPlayer(Transform transform, int index)
@@ -138,15 +146,10 @@ namespace TankU.Module.PlayerSpawner.Player
             _model.Name = ($"player{index}");
             _model.SetRotateDirec(new Vector2(transform.localRotation.x, transform.localRotation.y));
         }
-    }
 
-    public struct PlayerDeadMessage
-    {
-        public PlayerDeadMessage(int playerIndex)
+        public void ChangeMaterial(Material material)
         {
-            PlayerIndex = playerIndex;
+            _model.SetMaterialColor(material);
         }
-
-        public int PlayerIndex { get; }
     }
 }

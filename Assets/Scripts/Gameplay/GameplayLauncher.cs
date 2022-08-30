@@ -7,6 +7,8 @@ using TankU.Module.Base;
 using TankU.Module.Bomb;
 using TankU.Module.BulletSpawner;
 using TankU.Module.ColourPicker;
+using TankU.Module.HUD;
+using TankU.Module.PlayerSpawner;
 using TankU.Module.Result;
 using TankU.Module.Timer;
 using TankU.Module.VisualEffect;
@@ -31,7 +33,6 @@ namespace TankU.Gameplay
         private HUDController _hudController;
         private VisualEffectController _visualEffectController;
         private ResultController _resultController;
-
         private SettingController _settingController;
 
         protected override IConnector[] GetSceneConnectors()
@@ -43,7 +44,9 @@ namespace TankU.Gameplay
                 new BombPoolConnector(),
                 new HUDConnector(),
                 new VisualEffectConnector(),
-                new PlayerInputConector()
+                new PlayerInputConector(),
+                new PlayerSpawnerConnector(),
+                new TimerConnector()
             };
         }
 

@@ -239,6 +239,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameplayView
       objectReference: {fileID: 0}
+    - target: {fileID: 2534857750548069722, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
 --- !u!114 &2103111714 stripped
