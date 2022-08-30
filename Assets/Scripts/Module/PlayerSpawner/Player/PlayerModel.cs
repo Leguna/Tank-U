@@ -32,7 +32,6 @@ namespace TankU.Gameplay
         public PlayerModel(int playerNumber, Material material) : this()
         {
             PlayerNumber = playerNumber;
-            Debug.Log($"player number :{PlayerNumber}");
             MaterialColor = material;
         }
 
@@ -101,5 +100,7 @@ namespace TankU.Gameplay
         {
 
         }
+
+
     }
 }
