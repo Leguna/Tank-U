@@ -3,6 +3,7 @@ using Agate.MVC.Base;
 using Agate.MVC.Core;
 using TankU.Boot;
 using TankU.Module.BulletSpawner;
+using TankU.Module.Bomb;
 using TankU.Module.ColourPicker;
 using TankU.Module.Timer;
 using TankU.Module.VisualEffect;
@@ -27,6 +28,7 @@ namespace TankU.Gameplay
         private PlayerInputController _playerInputController;
         private PlayerSpawnerController _playerSpawnerController;
         private BulletSpawnerController _bulletSpawnerController;
+        private BombPoolController _bombPoolController;
         private HUDController _hudController;
         private VisualEffectController _visualEffectController;
         
@@ -38,6 +40,7 @@ namespace TankU.Gameplay
             {
                 new GameplayConnector(),
                 new BulletSpawnerConnector(),
+                new BombPoolConnector(),
                 new HUDConnector(),
                 new VisualEffectConnector(),
                 new PlayerInputConector()
@@ -54,6 +57,7 @@ namespace TankU.Gameplay
                 new PowerUpController(),
                 new PlayerInputController(),
                 new BulletSpawnerController(),
+                new BombPoolController(),
                 new HUDController(),
                 new VisualEffectController(),
                 new PlayerSpawnerController()
@@ -66,6 +70,7 @@ namespace TankU.Gameplay
             _powerUpPooler.SetView(_view.powerUpPooler);
             _playerSpawnerController.SetView(_view.PlayerSpawnerView);
             _bulletSpawnerController.SetView(_view.bulletSpawnerView);
+            _bombPoolController.SetView(_view.bombPoolView);
             _hudController.SetView(_view.HUDView);
             _settingController.SetView(_view.setting);
             _timerController.SetView(_view.TimerView);
