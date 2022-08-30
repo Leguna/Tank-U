@@ -46,19 +46,14 @@ namespace TankU.Gameplay
             Subscribe<FireMessage>(OnFire);
             Subscribe<BombMessage>(OnBomb);
             Subscribe<TimerCountDownMessage>(OnTimerCountEvent);
-            Subscribe<PlayerDeadMessage>(OnPlayerDestroyed);
+            Subscribe<GameOverMessage>(OnGameOverMessage);
         }
 
         private void OnTimerCountEvent(TimerCountDownMessage message)
         {
             _powerUpSpawnerController.OnTimerCountEvent(message);
             if (message.TimerEventTypeType == TimerEventType.OnTimerFinish)
-                _gameplayLauncher.GameOver(-1);
-        }
-
-        private void OnPlayerDestroyed(PlayerDeadMessage msg)
-        {
-            _gameplayLauncher.CheckGameOver();
+                _gameplayLauncher.GameOver(-1, _playerSpawner.Model.ColorList);
         }
 
         protected override void Disconnect()
@@ -68,6 +63,12 @@ namespace TankU.Gameplay
             Unsubscribe<FireMessage>(OnFire);
             Unsubscribe<BombMessage>(OnBomb);
             Unsubscribe<TimerCountDownMessage>(OnTimerCountEvent);
+            Unsubscribe<GameOverMessage>(OnGameOverMessage);
+        }
+
+        private void OnGameOverMessage(GameOverMessage obj)
+        {
+            _gameplayLauncher.GameOver(obj.Winner, obj.ListColorIndex);
         }
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
@@ -16,6 +17,7 @@ using TankU.Module.VisualEffect;
 using TankU.PowerUp;
 using TankU.Setting;
 using TankU.Sound;
+using UnityEngine;
 
 namespace TankU.Gameplay
 {
@@ -105,7 +107,7 @@ namespace TankU.Gameplay
             yield return null;
         }
 
-        public void GameOver(int indexResult)
+        public void GameOver(int indexResult, List<int> objListColorIndex)
         {
             _timerController.HideView();
             _powerUpPooler.OnEndGame();
@@ -153,18 +155,5 @@ namespace TankU.Gameplay
             _colourPickerController.CancelPickingCharacter();
         }
 
-        public void CheckGameOver()
-        {
-            var modelPlayerLeft = _playerSpawnerController.Model.PlayerLeft;
-            switch (modelPlayerLeft)
-            {
-                case 1:
-                    GameOver(_playerSpawnerController.Model.GetPlayerLeft.First());
-                    break;
-                case <= 0:
-                    GameOver(-1);
-                    break;
-            }
-        }
     }
 }

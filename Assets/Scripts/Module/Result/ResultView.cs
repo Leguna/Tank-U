@@ -30,6 +30,7 @@ namespace TankU.Module.Result
 
         public void SetResultText(string result)
         {
+            resultCanvas.SetActive(true);
             resultText.text = result;
         }
 

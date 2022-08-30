@@ -7,13 +7,15 @@ namespace TankU.Gameplay
 {
     public interface IPlayerSpawnerModel : IBaseModel
     {
-        public List<Transform> SpawnerTransform { get; }
-        public List<PlayerController> PlayerControllerList { get; }
-        public PlayerView PlayerView { get; }
-        public List<Material> MaterialList { get; }
-        public List<Material> MaterialPlayerSelected { get; }
-        public void SetSpawnerTransform(List<Transform> position);
-        public int PlayerLeft { get; }
+        List<Transform> SpawnerTransform { get; }
+        List<PlayerController> PlayerControllerList { get; }
+        PlayerView PlayerView { get; }
+        List<Material> MaterialList { get; }
+        List<Material> MaterialPlayerSelected { get; }
+        void SetSpawnerTransform(List<Transform> position);
+        int PlayerLeft { get; }
         List<int> GetPlayerLeft { get; }
+        List<int> ColorList { get; }
+        List<bool> PlayerDeathList { get; }
     }
 }

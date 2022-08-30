@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Agate.MVC.Base;
 using TankU.Gameplay;
+using TankU.Message;
 using TankU.Module.Base;
 using TankU.Module.PlayerSpawner.Player;
 using UnityEngine;
@@ -42,8 +43,10 @@ namespace TankU.Module.PlayerSpawner
 
         public void SetColorPlayer(List<int> obj)
         {
+            _model.SetColorList(obj);
             for (int i = 0; i < _model.PlayerControllerList.Count; i++)
             {
+                _model.PlayerDeathList.Add(false);
                 _model.PlayerControllerList[i].ChangeMaterial(_model.MaterialList[obj[i]]);
                 _model.PlayerControllerList[i].ShowPlayer();
             }
@@ -88,8 +91,16 @@ namespace TankU.Module.PlayerSpawner
 
         public void PlayerDeath(int objPlayerIndex)
         {
-            _model.AddPlayerDeath();
-            Debug.Log($"{_model.PlayerLeft} player left");
+            _model.PlayerDeathList[objPlayerIndex] = true;
+            _model.AddPlayerDeath(objPlayerIndex);
+
+            for (int i = 0; i < _model.PlayerDeathList.Count; i++)
+            {
+                if (_model.PlayerDeathList[i] == false)
+                {
+                    Publish(new GameOverMessage(_model.ColorList, i));
+                }
+            }
         }
     }
 }

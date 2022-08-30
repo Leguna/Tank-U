@@ -33,7 +33,7 @@ namespace TankU.Module.PlayerSpawner.Player
             if (_model.Health <= 0)
             {
                 _view.gameObject.SetActive(false);
-                Publish(new PlayerDeadMessage());
+                Publish(new PlayerDeadMessage(_model.PlayerNumber));
             }
 
             Publish(new UpdatePlayerHealth(_model.Health, _model.PlayerNumber));
