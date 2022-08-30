@@ -1,10 +1,11 @@
+using Agate.MVC.Base;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace TankU.Module.Base
 {
-    public class MatchBoard : MonoBehaviour
+    public class MatchBoard : BaseView
     {
         
 
