@@ -15,7 +15,7 @@ namespace TankU.Module.BulletSpawner
         public BulletSpawnerModel()
         {
             BulletControllers = new List<BulletController>();
-            PoolSize = 4;
+            PoolSize = 10;
             BulletView = Resources.Load<BulletView>("Prefabs/Bullet/BulletView");
         }
 

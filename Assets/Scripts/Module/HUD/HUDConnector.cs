@@ -2,6 +2,7 @@ using Agate.MVC.Base;
 using System.Collections;
 using System.Collections.Generic;
 using TankU.Message;
+using TankU.Module.HUD;
 using UnityEngine;
 
 namespace TankU.Gameplay
@@ -14,7 +15,7 @@ namespace TankU.Gameplay
 
         private void GetColorPlayer(ColorPickingMessage message)
         {
-            _hud.GetColorPlayer(message.PickedColorList, message.PickingState);
+            _hud.GetColorPlayer(message.PickedColorIndex, message.PickingState);
         }
 
         protected override void Connect()

@@ -38,7 +38,7 @@ namespace TankU.Module.ColourPicker
 
         public void ConfirmColor(InputLayout inputLayout)
         {
-            if (GetPickedColor().Contains(ListColorItemModel[GetIndexInputLayout(inputLayout)].Color)) return;
+            if (GetPickedColor().Contains(ListColorItemModel[GetIndexInputLayout(inputLayout)].ColorIndex)) return;
             ListColorItemModel[GetIndexInputLayout(inputLayout)].Confirm();
             SetDataAsDirty();
         }
@@ -57,9 +57,9 @@ namespace TankU.Module.ColourPicker
             SetDataAsDirty();
         }
 
-        public List<Color> GetPickedColor()
+        public List<int> GetPickedColor()
         {
-            return (from t in ListColorItemModel where t.IsConfirm select t.Color).ToList();
+            return (from t in ListColorItemModel where t.IsConfirm select t.ColorIndex).ToList();
         }
 
         public void CancelPick(InputLayout inputLayout)

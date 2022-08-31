@@ -2,19 +2,19 @@
 {
     public struct TimerCountDownMessage
     {
-        public TimerEvent TimerEvent { get; }
+        public TimerEventType TimerEventTypeType { get; }
         public float CountDown { get; }
         public float TimeLeft { get; }
 
-        public TimerCountDownMessage(float countDown, float timeLeft, TimerEvent timerEvent)
+        public TimerCountDownMessage(float countDown, float timeLeft, TimerEventType timerEventTypeType)
         {
             CountDown = countDown;
             TimeLeft = timeLeft;
-            TimerEvent = timerEvent;
+            TimerEventTypeType = timerEventTypeType;
         }
     }
 
-    public enum TimerEvent
+    public enum TimerEventType
     {
         OnTimerFinish,
         OnCountdownFinish

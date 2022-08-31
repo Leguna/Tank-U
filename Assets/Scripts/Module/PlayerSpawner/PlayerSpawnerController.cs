@@ -1,19 +1,20 @@
-using Agate.MVC.Base;
 using System.Collections;
 using System.Collections.Generic;
+using Agate.MVC.Base;
+using TankU.Gameplay;
+using TankU.Message;
 using TankU.Module.Base;
+using TankU.Module.PlayerSpawner.Player;
 using UnityEngine;
 
-namespace TankU.Gameplay
+namespace TankU.Module.PlayerSpawner
 {
-    public class PlayerSpawnerController : ObjectController<PlayerSpawnerController, 
-                                            PlayerSpawnerModel, IPlayerSpawnerModel, PlayerSpawnerView>
+    public class PlayerSpawnerController : ObjectController<PlayerSpawnerController,
+        PlayerSpawnerModel, IPlayerSpawnerModel, PlayerSpawnerView>
     {
-
         public override IEnumerator Finalize()
         {
             yield return base.Finalize();
-            
         }
 
         public override IEnumerator Initialize()
@@ -21,14 +22,16 @@ namespace TankU.Gameplay
             yield return base.Initialize();
         }
 
-
         public override void SetView(PlayerSpawnerView view)
         {
             base.SetView(view);
             _model.SetSpawnerTransform(_view._spawnTransform);
-            Debug.Log($"spawn amount = {_view.PLayerAmountSpawner}");
             SpawnPlayerStart();
         }
+
+        public void StartPlay() => _model.SetPlaying(true);
+
+        public void StopPlay() => _model.SetPlaying(false);
 
         public void SpawnPlayerStart()
         {
@@ -37,33 +40,19 @@ namespace TankU.Gameplay
                 SpawnPlayer(i);
             }
         }
-        // set color
-        public void SetColorPlayer(List<Color> obj)
+
+        public void SetColorPlayer(List<int> obj)
         {
-            for (int i = 0; i <= (_view.PLayerAmountSpawner); i++)
+            _model.SetColorList(obj);
+            for (int i = 0; i < _model.PlayerControllerList.Count; i++)
             {
-                if (obj[i] == Color.cyan)
-                {
-                     _model.MaterialList[i] =_model.MaterialList[0];
-                }
-                else if (obj[i] == Color.red)
-                {
-                    _model.MaterialList[i] = _model.MaterialList[1];
-                }
-                else if (obj[i] == Color.green)
-                {
-                    _model.MaterialList[i] = _model.MaterialList[2];
-                }
-                else if (obj[i] == Color.red)
-                {
-                    _model.MaterialList[i] = _model.MaterialList[3];
-                }
-
-
+                _model.PlayerDeathList.Add(false);
+                _model.PlayerControllerList[i].ChangeMaterial(_model.MaterialList[obj[i]]);
+                _model.PlayerControllerList[i].ShowPlayer();
             }
         }
 
-        public void GetColorPlayer(List<Color> colorListPlayer, PickingState picikingState)
+        public void GetColorPlayer(List<int> colorListPlayer, PickingState picikingState)
         {
             if (picikingState == PickingState.Finish)
             {
@@ -75,12 +64,43 @@ namespace TankU.Gameplay
         {
             var playerModel = new PlayerModel(i, _model.MaterialList[i]);
             var playerController = new PlayerController();
-            var playerView = GameObject.Instantiate(_model.PlayerView, _view._spawnTransform[i]);
+            var playerView = Object.Instantiate(_model.PlayerView, _view._spawnTransform[i]);
             playerController.Init(playerModel, playerView);
             InjectDependencies(playerController);
             _model.PlayerControllerList.Add(playerController);
-
+            _model.AddPlayerLeft();
         }
 
+        public void OnGameStart()
+        {
+            _model.SetPlaying(true);
+            foreach (var playerController in _model.PlayerControllerList)
+            {
+                playerController.SetCanMove(true);
+            }
+        }
+
+        public void OnGameStop()
+        {
+            _model.SetPlaying(false);
+            foreach (var playerController in _model.PlayerControllerList)
+            {
+                playerController.SetCanMove(false);
+            }
+        }
+
+        public void PlayerDeath(int objPlayerIndex)
+        {
+            _model.PlayerDeathList[objPlayerIndex] = true;
+            _model.AddPlayerDeath(objPlayerIndex);
+
+            for (int i = 0; i < _model.PlayerDeathList.Count; i++)
+            {
+                if (_model.PlayerDeathList[i] == false)
+                {
+                    Publish(new GameOverMessage(_model.ColorList, i));
+                }
+            }
+        }
     }
 }

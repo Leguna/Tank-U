@@ -31,7 +31,6 @@ namespace TankU.Module.Bullet
         private void OnCollisionEnter(Collision collision)
         {
             _onCollisionEvent?.Invoke(collision);
-            gameObject.SetActive(!_model.IsDeath);
         }
 
         private void Update()

@@ -1,34 +1,42 @@
-
 using Agate.MVC.Base;
 using TankU.Message;
-using TankU.Gameplay;
+using TankU.Module.PlayerSpawner;
+using TankU.PowerUp;
 
 namespace TankU.Gameplay
 {
     public class GameplayConnector : BaseConnector
     {
         private PlayerSpawnerController _playerSpawner;
+        private PowerUpPoolerController _powerUpSpawnerController;
+        private GameplayLauncher _gameplayLauncher;
 
         private void OnMoveInput(InputMoveMessage message)
         {
-            
-                _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnMove(message.Direction, message.PlayerNumber);
-            
+            if (_playerSpawner.Model.PlayerControllerList.Count > 0)
+
+                _playerSpawner.Model.PlayerControllerList[message.PlayerNumber]
+                    .OnMove(message.Direction, message.PlayerNumber);
         }
 
         private void OnRotatedInput(InputRotateMessage message)
         {
-                _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnRotate(message.Direction, message.PlayerNumber);
+            if (_playerSpawner.Model.PlayerControllerList.Count > 0)
+                _playerSpawner.Model.PlayerControllerList[message.PlayerNumber]
+                    .OnRotate(message.Direction, message.PlayerNumber);
         }
 
         private void OnFire(FireMessage message)
         {
-           _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnFire(message.PlayerNumber);
+            if (_playerSpawner.Model.PlayerControllerList.Count > 0)
+                _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnFire(message.PlayerNumber);
         }
 
         private void OnBomb(BombMessage message)
         {
-            _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnBomb(message.PlayerNumber);
+            if (_playerSpawner.Model.PlayerControllerList.Count > 0)
+
+                _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnBomb(message.PlayerNumber);
         }
 
         protected override void Connect()
@@ -37,6 +45,15 @@ namespace TankU.Gameplay
             Subscribe<InputRotateMessage>(OnRotatedInput);
             Subscribe<FireMessage>(OnFire);
             Subscribe<BombMessage>(OnBomb);
+            Subscribe<TimerCountDownMessage>(OnTimerCountEvent);
+            Subscribe<GameOverMessage>(OnGameOverMessage);
+        }
+
+        private void OnTimerCountEvent(TimerCountDownMessage message)
+        {
+            _powerUpSpawnerController.OnTimerCountEvent(message);
+            if (message.TimerEventTypeType == TimerEventType.OnTimerFinish)
+                _gameplayLauncher.GameOver(-1, _playerSpawner.Model.ColorList);
         }
 
         protected override void Disconnect()
@@ -45,6 +62,13 @@ namespace TankU.Gameplay
             Unsubscribe<InputRotateMessage>(OnRotatedInput);
             Unsubscribe<FireMessage>(OnFire);
             Unsubscribe<BombMessage>(OnBomb);
+            Unsubscribe<TimerCountDownMessage>(OnTimerCountEvent);
+            Unsubscribe<GameOverMessage>(OnGameOverMessage);
+        }
+
+        private void OnGameOverMessage(GameOverMessage obj)
+        {
+            _gameplayLauncher.GameOver(obj.Winner, obj.ListColorIndex);
         }
     }
 }

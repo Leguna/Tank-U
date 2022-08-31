@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Agate.MVC.Base;
 using TankU.Message;
+using TankU.Module.Base;
+using TankU.Module.PowerUp.Object;
+using UnityEngine;
 
 namespace TankU.PowerUp
 {
@@ -24,13 +24,22 @@ namespace TankU.PowerUp
                     _view.gameObject.SetActive(false);
                 }
 
-                _model.DecreaseTimerByDeltatime();
+                _model.DecreaseTimerByDeltaTime();
             }
         }
 
-        public void OnCollidePlayer()
+        public void OnCollidePlayer(Collider collider)
         {
-            Publish<PowerupBouncePickupMessage>(new PowerupBouncePickupMessage(_model.Duration));
+            collider.TryGetComponent(out IPowerUpAbleView powerUpAbleView);
+            if (powerUpAbleView == null) return;
+            if (_model.PowerUpType == PowerUpType.Health)
+                powerUpAbleView.OnHealthPowerUp(1);
+            else
+                powerUpAbleView.OnBulletPowerUp(_model.Duration);
+
+            _view.gameObject.SetActive(false);
+
+            Publish(new PowerupBouncePickupMessage(_model.Duration));
         }
 
         public override void SetView(PowerUpView view)

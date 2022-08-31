@@ -1,18 +1,21 @@
-using Agate.MVC.Base;
-using System.Collections;
 using System.Collections.Generic;
+using Agate.MVC.Base;
+using TankU.Module.PlayerSpawner.Player;
 using UnityEngine;
 
 namespace TankU.Gameplay
 {
     public interface IPlayerSpawnerModel : IBaseModel
     {
-        public List<Transform> SpawnerTransform { get; }
-        public List<PlayerController> PlayerControllerList { get; }
-        public PlayerView PlayerView { get; }
-        public List<Material> MaterialList { get; }
-        public List<Material> MaterialPlayerselected { get; }
-
-        public void SetSpawnerTransform(List<Transform> position);
+        List<Transform> SpawnerTransform { get; }
+        List<PlayerController> PlayerControllerList { get; }
+        PlayerView PlayerView { get; }
+        List<Material> MaterialList { get; }
+        List<Material> MaterialPlayerSelected { get; }
+        void SetSpawnerTransform(List<Transform> position);
+        int PlayerLeft { get; }
+        List<int> GetPlayerLeft { get; }
+        List<int> ColorList { get; }
+        List<bool> PlayerDeathList { get; }
     }
 }

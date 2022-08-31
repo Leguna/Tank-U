@@ -12,7 +12,7 @@ namespace TankU.Module.Bullet
             IsBouncingPowerUp = false;
             PowerUpBounceTimeLeft = 0f;
             Velocity = Vector3.forward;
-            Health = 0;
+            Health = 1;
             Damage = 1;
         }
 
@@ -44,6 +44,7 @@ namespace TankU.Module.Bullet
         public void SetPosition(Vector3 pos)
         {
             SpawnPosition = pos;
+            SetDataAsDirty();
         }
 
         public Vector3 Velocity { get; private set; }
@@ -57,10 +58,8 @@ namespace TankU.Module.Bullet
         public void OnUpdateTime(float deltaTime)
         {
             PowerUpBounceTimeLeft -= deltaTime;
-            if (PowerUpBounceTimeLeft <= 0)
-            {
-                DeactivatePowerUpBounce();
-            }
+            SetDataAsDirty();
+            if (PowerUpBounceTimeLeft <= 0) DeactivatePowerUpBounce();
         }
 
         public bool IsBouncingPowerUp { get; private set; }
@@ -76,6 +75,12 @@ namespace TankU.Module.Bullet
         public void DeactivatePowerUpBounce()
         {
             IsBouncingPowerUp = false;
+            SetDataAsDirty();
+        }
+
+        public void DeSpawn()
+        {
+            Health = 0;
             SetDataAsDirty();
         }
     }
