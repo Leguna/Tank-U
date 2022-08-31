@@ -36,6 +36,7 @@ namespace TankU.Module.PlayerSpawner
         {
             Unsubscribe<ColorPickingMessage>(GetColorPlayer);
             Unsubscribe<TimerCountDownMessage>(OnTimerStart);
+            Unsubscribe<PlayerDeadMessage>(OnPlayerDead);
         }
     }
 }
