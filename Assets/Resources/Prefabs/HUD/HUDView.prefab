@@ -120,16 +120,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barList:
   - Bar: {fileID: 8710371027500410594}
-    BarItems: []
+    BarItems:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     Player: {fileID: 0}
   - Bar: {fileID: 169253322725162627}
-    BarItems: []
+    BarItems:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     Player: {fileID: 0}
   - Bar: {fileID: 225397265095986638}
     BarItems: []
     Player: {fileID: 0}
   - Bar: {fileID: 8289149083994517501}
     BarItems: []
+    Player: {fileID: 0}
+  - Bar: {fileID: 8710371027500410594}
+    BarItems:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    Player: {fileID: 0}
+  - Bar: {fileID: 169253322725162627}
+    BarItems:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     Player: {fileID: 0}
   option: {fileID: 5951912218510213258}
 --- !u!1 &5951912218510213258
@@ -150,7 +176,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5951912218510213301
 RectTransform:
   m_ObjectHideFlags: 0
@@ -688,7 +714,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 655410816748970305, guid: 5000ff234891dc84ebe99e1563f3344c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 655410816748970305, guid: 5000ff234891dc84ebe99e1563f3344c, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -878,7 +904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 655410816748970305, guid: 5000ff234891dc84ebe99e1563f3344c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 655410816748970305, guid: 5000ff234891dc84ebe99e1563f3344c, type: 3}
       propertyPath: m_StaticEditorFlags
