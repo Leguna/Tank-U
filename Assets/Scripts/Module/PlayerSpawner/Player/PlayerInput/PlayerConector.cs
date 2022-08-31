@@ -2,6 +2,7 @@ using Agate.MVC.Base;
 using System.Collections;
 using System.Collections.Generic;
 using TankU.Message;
+using TankU.Module.PlayerSpawner.Player;
 using UnityEngine;
 
 namespace TankU.Gameplay
@@ -13,7 +14,7 @@ namespace TankU.Gameplay
 
         public void OnGetpowerUpBounce(PowerupBouncePickupMessage message)
         {
-            _playerController.OnGetpowerUpBounce(message.Duration);
+            _playerController.OnGetPowerUpBounce(message.Duration);
         }
 
         protected override void Connect()

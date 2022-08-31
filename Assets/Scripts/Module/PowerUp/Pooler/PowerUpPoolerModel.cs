@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Agate.MVC.Base;
+using TankU.Module.PowerUp.Object;
 
 namespace TankU.PowerUp
 {

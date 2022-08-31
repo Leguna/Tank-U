@@ -41,7 +41,6 @@ namespace TankU.Module.ColourPicker
                 if (CheckAllPlayerPickColor())
                     FinishPickingCharacter();
                 _model.ConfirmColor(inputLayout);
-                Debug.Log($"Confirm {inputLayout}");
             }
             else AddColorPlayer(inputLayout);
         }
@@ -51,10 +50,7 @@ namespace TankU.Module.ColourPicker
             if (_model.ListInputLayout.Count == 0)
             {
                 CancelPickingCharacter();
-                return;
             }
-
-            Debug.Log(_model);
         }
 
         private bool CheckAllPlayerPickColor()
@@ -89,6 +85,9 @@ namespace TankU.Module.ColourPicker
         public void StartPickingCharacter()
         {
             _model.StartPicking();
+            AddColorPlayer(InputLayout.KeyboardLeft);
+            AddColorPlayer(InputLayout.KeyboardRight);
+            _view.background.gameObject.SetActive(true);
         }
 
         public void AddColorPlayer(InputLayout inputLayout)
@@ -106,7 +105,7 @@ namespace TankU.Module.ColourPicker
                 return;
             }
 
-            var newModel = new ColorItemModel($"Player {count + 1}", BaseColor.PlayerColors[count], false);
+            var newModel = new ColorItemModel($"Player {count + 1}", BaseColor.PlayerColors[0], false);
             var itemSubView = Object.Instantiate(_model.ColorPickerViewTemplate, Vector3.zero,
                 Quaternion.identity,
                 _view.colorPickerGroupTransform);
@@ -127,21 +126,18 @@ namespace TankU.Module.ColourPicker
             Debug.Log("Cancel picking player.");
 
             _view.HideView();
-            Publish(new ColorPickingMessage(PickingState.Cancel, new List<Color>()));
+            Publish(new ColorPickingMessage(PickingState.Cancel, new List<int>()));
         }
 
         public void FinishPickingCharacter()
         {
             if (!_model.IsPicking)
             {
-                Debug.Log("Can't finish what you not even start. Start First!");
                 return;
             }
 
-            Debug.Log("Finish Picking Player");
             _model.FinishPicking();
             Publish(new ColorPickingMessage(PickingState.Finish, _model.GetPickedColor()));
-            Debug.Log($"Color picked {string.Join(", ", _model.GetPickedColor().ToArray())}");
         }
     }
 }

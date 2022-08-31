@@ -72,7 +72,6 @@ namespace TankU.Module.Bomb
         public void Explode(GameObject bomb)
         {
             Publish(new BombExplodeMessage());
-            Debug.Log("bom explode message");
 
             bomb.GetComponent<MeshRenderer>().enabled = false;
             bomb.transform.GetChild(0).gameObject.SetActive(true);

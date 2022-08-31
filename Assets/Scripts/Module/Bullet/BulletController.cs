@@ -32,14 +32,28 @@ namespace TankU.Module.Bullet
         private void OnCollisionEnter(Collision collision)
         {
             var damageable = collision.gameObject.GetComponent<IDamageableView>();
-            damageable?.TakeDamage(_model);
             _model.TakeDamage(1);
+            if (damageable != null)
+            {
+                damageable?.TakeDamage(_model);
+                _view.gameObject.SetActive(false);
+            }
+            else
+            {
+                _view.gameObject.SetActive(!_model.IsDeath);
+            }
         }
 
         public void Init(BulletModel bulletModel, BulletView bulletView)
         {
             SetView(bulletView);
             _model = bulletModel;
+        }
+
+        public void DeSpawn()
+        {
+            _model.DeSpawn();
+            _view.gameObject.SetActive(false);
         }
     }
 }

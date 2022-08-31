@@ -51,14 +51,21 @@ namespace TankU.Module.Timer
             {
                 _isAlreadyPublishCountDown = true;
                 Debug.Log("Count Down Finish");
-                Publish(new TimerCountDownMessage(_model.CountDown, _model.TimeLeft, TimerEvent.OnCountdownFinish));
+                Publish(new TimerCountDownMessage(_model.CountDown, _model.TimeLeft, TimerEventType.OnCountdownFinish));
             }
             else if (_model.IsFinished && !_isAlreadyPublishTimerFinished)
             {
                 _isAlreadyPublishTimerFinished = true;
                 Debug.Log("Timer Finish");
-                Publish(new TimerCountDownMessage(_model.CountDown, _model.TimeLeft, TimerEvent.OnTimerFinish));
+                Publish(new TimerCountDownMessage(_model.CountDown, _model.TimeLeft, TimerEventType.OnTimerFinish));
             }
+        }
+
+        public void HideView()
+        {
+            _view.gameObject.SetActive(false);
+            _isAlreadyPublishCountDown = true;
+            _isAlreadyPublishTimerFinished = true;
         }
     }
 }

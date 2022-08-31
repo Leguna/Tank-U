@@ -17,7 +17,7 @@ namespace TankU.Module.ColourPicker.ColorPickerItem
         {
             IsConfirm = false;
             PlayerName = "Player 1";
-            Color = Color.cyan;
+            Color = BaseColor.PlayerColors[0];
         }
 
         public void ChangeColor(Color color)
@@ -35,7 +35,9 @@ namespace TankU.Module.ColourPicker.ColorPickerItem
         public void NextColor()
         {
             ColorIndex++;
-            Color = BaseColor.PlayerColors[ColorIndex % 4];
+            if (ColorIndex == BaseColor.PlayerColors.Count)
+                ColorIndex = 0;
+            Color = BaseColor.PlayerColors[ColorIndex % BaseColor.PlayerColors.Count];
             SetDataAsDirty();
         }
 
@@ -44,7 +46,7 @@ namespace TankU.Module.ColourPicker.ColorPickerItem
             ColorIndex--;
             if (ColorIndex == -1)
                 ColorIndex = 3;
-            Color = BaseColor.PlayerColors[ColorIndex % 4];
+            Color = BaseColor.PlayerColors[ColorIndex % BaseColor.PlayerColors.Count];
             SetDataAsDirty();
         }
 

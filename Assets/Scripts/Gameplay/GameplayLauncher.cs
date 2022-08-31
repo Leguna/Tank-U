@@ -1,16 +1,23 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
 using TankU.Boot;
-using TankU.Module.BulletSpawner;
+using TankU.Message;
+using TankU.Module.Base;
 using TankU.Module.Bomb;
+using TankU.Module.BulletSpawner;
 using TankU.Module.ColourPicker;
+using TankU.Module.HUD;
+using TankU.Module.PlayerSpawner;
+using TankU.Module.Result;
 using TankU.Module.Timer;
 using TankU.Module.VisualEffect;
 using TankU.PowerUp;
-using TankU.Sound;
 using TankU.Setting;
-
+using TankU.Sound;
+using UnityEngine;
 
 namespace TankU.Gameplay
 {
@@ -19,19 +26,16 @@ namespace TankU.Gameplay
         public override string SceneName => "Gameplay";
 
         private SoundController _soundController;
-
         private TimerController _timerController;
-
         private ColorPickerController _colourPickerController;
         private PowerUpPoolerController _powerUpPooler;
-        private PlayerController _playerController;
         private PlayerInputController _playerInputController;
         private PlayerSpawnerController _playerSpawnerController;
         private BulletSpawnerController _bulletSpawnerController;
         private BombPoolController _bombPoolController;
         private HUDController _hudController;
         private VisualEffectController _visualEffectController;
-        
+        private ResultController _resultController;
         private SettingController _settingController;
 
         protected override IConnector[] GetSceneConnectors()
@@ -43,7 +47,9 @@ namespace TankU.Gameplay
                 new BombPoolConnector(),
                 new HUDConnector(),
                 new VisualEffectConnector(),
-                new PlayerInputConector()
+                new PlayerInputConector(),
+                new PlayerSpawnerConnector(),
+                new TimerConnector()
             };
         }
 
@@ -60,7 +66,8 @@ namespace TankU.Gameplay
                 new BombPoolController(),
                 new HUDController(),
                 new VisualEffectController(),
-                new PlayerSpawnerController()
+                new PlayerSpawnerController(),
+                new ResultController()
             };
         }
 
@@ -74,29 +81,56 @@ namespace TankU.Gameplay
             _hudController.SetView(_view.HUDView);
             _settingController.SetView(_view.setting);
             _timerController.SetView(_view.TimerView);
+            _resultController.SetView(_view.resultView);
 
+            _resultController.SetCallbacks(BackToMainMenu, TryAgain, CloseTutorial);
             yield return null;
+        }
+
+        private void CloseTutorial()
+        {
+            _colourPickerController.StartPickingCharacter();
+        }
+
+        private void TryAgain()
+        {
+            SceneLoader.Instance.LoadScene("Gameplay");
+        }
+
+        private void BackToMainMenu()
+        {
+            SceneLoader.Instance.LoadScene("MainMenu");
         }
 
         protected override IEnumerator LaunchScene()
         {
-            _soundController.PlayBgm(SoundBgmName.Game);
             yield return null;
+        }
+
+        public void GameOver(int indexResult, List<int> objListColorIndex)
+        {
+            _timerController.HideView();
+            _powerUpPooler.OnEndGame();
+            _resultController.ShowResult(indexResult);
+            Publish(new UpdateGameState(GameState.GameOver));
         }
 
         public void StartGame()
         {
             _timerController.OnStartGame();
+            _soundController.PlayBgm(SoundBgmName.Game);
         }
 
         public void ResumeGame()
         {
             _timerController.OnGameResume();
+            Publish(new UpdateGameState(GameState.Playing));
         }
 
         public void PauseGame()
         {
             _timerController.OnGamePause();
+            Publish(new UpdateGameState(GameState.Pause));
         }
 
         public void AddPlayer()
@@ -107,16 +141,19 @@ namespace TankU.Gameplay
         public void StartPickingPlayer()
         {
             _colourPickerController.StartPickingCharacter();
+            Publish(new UpdateGameState(GameState.PickingColor));
         }
 
         public void FinishPickingPlayer()
         {
             _colourPickerController.FinishPickingCharacter();
+            Publish(new UpdateGameState(GameState.Playing));
         }
 
         public void CancelPickingPlayer()
         {
             _colourPickerController.CancelPickingCharacter();
         }
+
     }
 }

@@ -33,6 +33,7 @@ namespace TankU.Module.BulletSpawner
             bulletController.Init(bulletModel, bulletView);
             InjectDependencies(bulletController);
             _model.AddBullet(bulletController);
+            bulletController.DeSpawn();
             return bulletController;
         }
     }
