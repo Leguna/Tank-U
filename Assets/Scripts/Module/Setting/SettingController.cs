@@ -2,6 +2,7 @@ using System.Collections;
 using Agate.MVC.Base;
 using TankU.Message;
 using TankU.Sound;
+using UnityEngine.Events;
 
 namespace TankU.Setting
 {
@@ -47,6 +48,11 @@ namespace TankU.Setting
         {
             base.SetView(view);
             _view.SetCallback(OnTurnSFX, OnTurnBGM, BackToMainMenu);
+        }
+
+        public void SetClickListener(UnityAction onMatchHistory, UnityAction onExit)
+        {
+            _view.SetClickListener(onMatchHistory, onExit);
         }
     }
 }

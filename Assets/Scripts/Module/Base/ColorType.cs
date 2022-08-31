@@ -1,6 +1,9 @@
+using System;
+
 namespace TankU.Module.Base
 {
-    public enum ColorType 
+    [Serializable]
+    public enum ColorType
     {
         Blue,
         Red,

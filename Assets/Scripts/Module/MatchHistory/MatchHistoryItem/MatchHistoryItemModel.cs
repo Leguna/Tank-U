@@ -1,24 +1,35 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using UnityEngine;
 using Agate.MVC.Base;
+using TankU.Module.Base;
 
-namespace TankU.Module.Base
+namespace TankU.Module.MatchHistory.MatchHistoryItem
 {
-    public class MatchHistoryItemModel : BaseModel
+    [Serializable]
+    public class MatchHistoryItemModel : BaseModel, IMatchHistoryItemModel
     {
-        private List<PlayerData> _playerDataList;
+        public MatchHistoryItemModel()
+        {
+        }
+
+        public MatchHistoryItemModel(List<PlayerData> playerDataList, int winnerIndex)
+        {
+            PlayerDataList = playerDataList;
+            WinnerIndex = winnerIndex;
+        }
+
+        public List<PlayerData> PlayerDataList { get; private set; }
         public int WinnerIndex { get; private set; }
 
         public void SetPlayerDataList(List<PlayerData> data)
         {
-            _playerDataList = data;
+            PlayerDataList = data;
             SetDataAsDirty();
         }
 
         public void AddPlayerDataToList(PlayerData player)
         {
-            _playerDataList.Add(player);
+            PlayerDataList.Add(player);
         }
 
         public void SetWinnerPlayerIndex(int index)

@@ -2,6 +2,7 @@ using System.Collections;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
 using SpacePlan.Module.SaveGame;
+using TankU.Module.Base;
 using TankU.Setting;
 using TankU.Sound;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace TankU.Boot
     public class GameMain : BaseMain<GameMain>, IMain
     {
         private SettingController _settingController;
+        private MatchHistoryController _matchHistoryController;
 
         protected override IController[] GetDependencies()
         {
@@ -20,14 +22,9 @@ namespace TankU.Boot
             {
                 new SaveDataController(),
                 new SettingController(),
-                new SoundController()
+                new SoundController(),
+                new MatchHistoryController()
             };
-        }
-
-        protected override IEnumerator StartInit()
-        {
-            CreateEventSystem();
-            yield return null;
         }
 
         protected override IConnector[] GetConnectors()
@@ -35,8 +32,15 @@ namespace TankU.Boot
             return new IConnector[]
             {
                 new SettingConnector(),
-                new SoundConnector()
+                new SoundConnector(),
+                new MatchHistoryConnector()
             };
+        }
+
+        protected override IEnumerator StartInit()
+        {
+            CreateEventSystem();
+            yield return null;
         }
 
         private void CreateEventSystem()

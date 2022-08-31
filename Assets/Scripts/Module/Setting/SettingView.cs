@@ -14,6 +14,8 @@ namespace TankU.Setting
         [SerializeField] private Button _sfxButton;
         [SerializeField] private Button _bgmButton;
         [SerializeField] private Button _backButton;
+        [SerializeField] private Button _exitButton;
+        [SerializeField] private Button _matchHistory;
         [SerializeField] private TMP_Text _sfxText;
         [SerializeField] private TMP_Text _bgmText;
 
@@ -39,13 +41,20 @@ namespace TankU.Setting
 
         protected override void InitRenderModel(ISettingModel model)
         {
-            
         }
 
         protected override void UpdateRenderModel(ISettingModel model)
         {
             _sfxText.text = $"SFX {(_model.IsSfxOn ? "On" : "Off")}";
             _bgmText.text = $"BGM {(_model.IsBgmOn ? "On" : "Off")}";
+        }
+
+        public void SetClickListener(UnityAction onMatchHistoryClick, UnityAction onExit)
+        {
+            _matchHistory.onClick.RemoveAllListeners();
+            _exitButton.onClick.RemoveAllListeners();
+            _matchHistory.onClick.AddListener(onMatchHistoryClick);
+            _exitButton.onClick.AddListener(onExit);
         }
     }
 }
