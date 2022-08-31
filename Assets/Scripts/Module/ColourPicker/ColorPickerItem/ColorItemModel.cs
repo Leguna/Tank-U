@@ -18,13 +18,14 @@ namespace TankU.Module.ColourPicker.ColorPickerItem
             IsConfirm = false;
             PlayerName = "Player 1";
             Color = BaseColor.PlayerColors[0];
-            ColorUnlocked = 4;
+            ColorUnlocked = 0;
         }
 
         public int ColorUnlocked { get; private set; }
 
         public void SetColorUnlocked(int value)
         {
+            if (value + 4 > BaseColor.PlayerColors.Count) return;
             ColorUnlocked = value;
         }
 
