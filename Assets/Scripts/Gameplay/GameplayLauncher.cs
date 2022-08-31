@@ -43,7 +43,7 @@ namespace TankU.Gameplay
                 new BombPoolConnector(),
                 new HUDConnector(),
                 new VisualEffectConnector(),
-                new PlayerInputConector()
+                new PlayerConector()
             };
         }
 
