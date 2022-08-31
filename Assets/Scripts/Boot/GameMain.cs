@@ -14,7 +14,6 @@ namespace TankU.Boot
     public class GameMain : BaseMain<GameMain>, IMain
     {
         private SettingController _settingController;
-        private MatchHistoryController _matchHistoryController;
 
         protected override IController[] GetDependencies()
         {
