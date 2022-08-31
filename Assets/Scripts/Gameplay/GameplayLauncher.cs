@@ -36,6 +36,7 @@ namespace TankU.Gameplay
         private VisualEffectController _visualEffectController;
         private ResultController _resultController;
         private SettingController _settingController;
+        private MatchHistoryController _matchHistoryController;
 
         protected override IConnector[] GetSceneConnectors()
         {
@@ -88,6 +89,9 @@ namespace TankU.Gameplay
         private void CloseTutorial()
         {
             _colourPickerController.StartPickingCharacter();
+            _matchHistoryController.Load();
+            _colourPickerController.SetColorUnlocked(_matchHistoryController.WinCount());
+
         }
 
         private void TryAgain()
@@ -139,6 +143,8 @@ namespace TankU.Gameplay
 
         public void StartPickingPlayer()
         {
+            _matchHistoryController.Load();
+            _colourPickerController.SetColorUnlocked(_matchHistoryController.WinCount());
             _colourPickerController.StartPickingCharacter();
             Publish(new UpdateGameState(GameState.PickingColor));
         }
