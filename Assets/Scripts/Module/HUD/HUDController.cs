@@ -1,60 +1,42 @@
-using Agate.MVC.Base;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using TankU.Message;
-using TankU.Module.Base;
+using Agate.MVC.Base;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace TankU.Gameplay
+namespace TankU.Module.HUD
 {
     public class HUDController : ObjectController<HUDController, HUDView>
     {
-        public override IEnumerator Initialize()
+        public void Init()
         {
-            yield return base.Initialize();
+            SetBar();
+            ShowBar();
         }
 
-        public override void SetView(HUDView view)
+        public void ShowBar()
         {
-            base.SetView(view);
         }
 
-        // set color player in HUD
-        private void SetColor(List<Color> obj)
+        public void SetBar()
         {
-            for (var i = 0; i <= (_view.barList.Count -1); i++)
-            {
-                _view.barList[i].Player.GetComponent<Image>().color = obj[i];
-            }
+            var barPlayerColor = Resources.Load<GameObject>("Prefabs/HUD/BarPlayerColor");
+            var barItem = Resources.Load<GameObject>("Prefabs/HUD/BarItem");
+            _view.AddBar( barItem, barPlayerColor, 2);
         }
 
-        //get color from pickedColorMesage
-        public void GetColorPlayer(List<Color> colorList, PickingState pickingState)
+        public void GetColorPlayer(List<int> colorList)
         {
-            if ( pickingState == PickingState.Finish)
-            {
-                SetColor(colorList);
-            }        
+            SetBar();
+            _view.ShowBar(colorList.Count);
+            _view.SetPlayerColor(colorList);
         }
 
-
-        public void GetPlayerHealth(int healthpoint)
+        public void GetStatusPowerUp(bool powerUpStatus, int playerIndex)
         {
-            for (int i = 0; i < _view.barList.Count; i++)
-            {
-                for (int j = 0; j < healthpoint; j++)
-                {
-                    _view.barList[i].Bar[j].gameObject.SetActive(true);
-                }
-            }
         }
 
-        public void GetStatusPowerUp(bool powerUpStatus)
+        public void GetPlayerHealth(int health, int playerIndex)
         {
-            
+            _view.SetHealth(playerIndex, health);
         }
-
     }
 }

@@ -6,13 +6,15 @@ namespace TankU.Message
 {
     public struct PlayerStatusMessage 
     {
-        public int HealtPoint { get; }
+        public int PlayerIndex { get; }
+        public int HealthPoint { get; }
         public bool PowerUpStatus { get; }
 
-        public PlayerStatusMessage(int healthPoint, bool powerUpStatus)
+        public PlayerStatusMessage(int healthPoint, bool powerUpStatus, int playerIndex)
         {
-            HealtPoint = healthPoint;
+            HealthPoint = healthPoint;
             PowerUpStatus = powerUpStatus;
+            PlayerIndex = playerIndex;
         }
     }
 }

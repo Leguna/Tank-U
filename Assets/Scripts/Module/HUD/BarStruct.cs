@@ -8,7 +8,8 @@ namespace TankU.Gameplay
 {
     [Serializable] public struct BarStruct
     {
-        public List<Transform> Bar;
+        public Transform Bar;
+        public List<Transform> BarItems;
         public Image Player;
     }
 }

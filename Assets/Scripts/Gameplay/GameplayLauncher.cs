@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
 using TankU.Boot;
@@ -17,7 +16,6 @@ using TankU.Module.VisualEffect;
 using TankU.PowerUp;
 using TankU.Setting;
 using TankU.Sound;
-using UnityEngine;
 
 namespace TankU.Gameplay
 {
@@ -74,7 +72,7 @@ namespace TankU.Gameplay
         protected override IEnumerator InitSceneObject()
         {
             _colourPickerController.SetView(_view.ColorPickerView);
-            _powerUpPooler.SetView(_view.powerUpPooler);
+            _powerUpPooler.SetView(_view.powerUpSpawner);
             _playerSpawnerController.SetView(_view.PlayerSpawnerView);
             _bulletSpawnerController.SetView(_view.bulletSpawnerView);
             _bombPoolController.SetView(_view.bombPoolView);
@@ -82,7 +80,7 @@ namespace TankU.Gameplay
             _settingController.SetView(_view.setting);
             _timerController.SetView(_view.TimerView);
             _resultController.SetView(_view.resultView);
-
+            _resultController.ShowTutorial();
             _resultController.SetCallbacks(BackToMainMenu, TryAgain, CloseTutorial);
             yield return null;
         }
@@ -154,6 +152,5 @@ namespace TankU.Gameplay
         {
             _colourPickerController.CancelPickingCharacter();
         }
-
     }
 }
