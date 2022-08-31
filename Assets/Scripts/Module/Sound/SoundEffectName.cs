@@ -1,6 +1,6 @@
 namespace TankU.Sound
 {
-    public enum SoundSfxName
+    public enum SoundEffectName
     {
         BombExplode,
         BulletFire,

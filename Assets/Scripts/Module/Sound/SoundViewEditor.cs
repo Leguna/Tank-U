@@ -35,7 +35,7 @@ namespace TankU.Sound
             {
                 //AudioClip sfxClip = _sfxBombExplode.clip;
                 //gv.PlaySfx(sfxClip);
-                _soundController.PlaySfx(SoundSfxName.BombExplode);
+                _soundController.PlaySfx(SoundEffectName.BombExplode);
             }
 
             if (GUILayout.Button("Play Bullet Fire SFX"))

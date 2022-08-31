@@ -1,6 +1,7 @@
 ﻿using Agate.MVC.Base;
 using TankU.Message;
 using TankU.Module.Bullet;
+using TankU.Sound;
 using UnityEngine;
 
 namespace TankU.Module.BulletSpawner
@@ -22,6 +23,7 @@ namespace TankU.Module.BulletSpawner
             var bulletController = _model.GetObjectController() ?? AddObjectToPool();
             bulletController.SpawnBullet(message.TransformSpawner.position,
                 message.TransformSpawner.rotation, message.IsPowerUp, message.PowerUpDuration, 1);
+            Publish(new PlaySoundEffectMessage(SoundEffectName.BulletFire));
         }
 
         private BulletController AddObjectToPool()

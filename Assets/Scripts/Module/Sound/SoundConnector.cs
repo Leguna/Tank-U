@@ -22,22 +22,19 @@ namespace TankU.Sound
         {
             Subscribe<SoundSettingsUpdateMessage>(ToggleBgmSound);
             Subscribe<SoundSettingsUpdateMessage>(ToggleSoundEffect);
+            Subscribe<PlaySoundEffectMessage>(PlaySoundEffect);
         }
 
         protected override void Disconnect()
         {
             Unsubscribe<SoundSettingsUpdateMessage>(ToggleBgmSound);
             Unsubscribe<SoundSettingsUpdateMessage>(ToggleSoundEffect);
+            Unsubscribe<PlaySoundEffectMessage>(PlaySoundEffect);
         }
-    }
 
-    public struct SoundSettingsUpdateMessage
-    {
-        public SoundSettingsUpdateMessage(bool isBGM)
+        private void PlaySoundEffect(PlaySoundEffectMessage message)
         {
-            IsBGM = isBGM;
+            _soundController.PlaySfx(message.SoundEffectName);
         }
-
-        public bool IsBGM { get; }
     }
 }

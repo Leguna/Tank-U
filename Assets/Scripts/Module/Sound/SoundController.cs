@@ -23,8 +23,8 @@ namespace TankU.Sound
         public void PlayBgm(SoundBgmName bgm)
             => _view.PlayBgm(_model.GetBgmClip(bgm));
 
-        public void PlaySfx(SoundSfxName sfx)
-            => _view.PlaySfx(_model.GetSfxClip(sfx));
+        public void PlaySfx(SoundEffectName effect)
+            => _view.PlaySfx(_model.GetSfxClip(effect));
 
     }
 }

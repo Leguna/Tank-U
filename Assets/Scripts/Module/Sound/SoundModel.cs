@@ -1,5 +1,5 @@
-using Agate.MVC.Base;
 using System.Collections.Generic;
+using Agate.MVC.Base;
 using UnityEngine;
 
 namespace TankU.Sound
@@ -49,8 +49,7 @@ namespace TankU.Sound
         public AudioClip GetBgmClip(SoundBgmName bgm)
             => _bgmLibrary["bgm_" + bgm.ToString().ToLower()];
 
-        public AudioClip GetSfxClip(SoundSfxName sfx)
-            => _bgmLibrary["sfx_" + sfx.ToString().ToLower()];
-
+        public AudioClip GetSfxClip(SoundEffectName effect)
+            => _sfxLibrary["sfx_" + effect.ToString().ToLower()];
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using Agate.MVC.Base;
 using TankU.Gameplay;
 using TankU.Message;
+using TankU.Sound;
 using UnityEngine;
 
 namespace TankU.Module.PlayerSpawner.Player
@@ -37,6 +38,7 @@ namespace TankU.Module.PlayerSpawner.Player
             }
 
             UpdateDataPlayer();
+            Publish(new PlaySoundEffectMessage(SoundEffectName.Hit));
             Publish(new UpdatePlayerHealth(_model.Health, _model.PlayerNumber));
         }
 
@@ -106,12 +108,14 @@ namespace TankU.Module.PlayerSpawner.Player
         public void OnGetPowerUpBounce(float duration)
         {
             _model.SetDurationPowerUp(duration);
+            Publish(new PlaySoundEffectMessage(SoundEffectName.PowerUpBounce));
             UpdateDataPlayer();
         }
 
         public void OnGetPowerUpHealth(int health)
         {
             _model.AddHealth(health);
+            Publish(new PlaySoundEffectMessage(SoundEffectName.PowerUpHealth));
             UpdateDataPlayer();
         }
 
