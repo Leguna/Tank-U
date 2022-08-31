@@ -45,7 +45,11 @@ namespace TankU.Gameplay
                 Resources.Load<Material>("Materials/Tank/blue"),
                 Resources.Load<Material>("Materials/Tank/red"),
                 Resources.Load<Material>("Materials/Tank/green"),
-                Resources.Load<Material>("Materials/Tank/yellow")
+                Resources.Load<Material>("Materials/Tank/yellow"),
+                Resources.Load<Material>("Materials/Tank/black"),
+                Resources.Load<Material>("Materials/Tank/white"),
+                Resources.Load<Material>("Materials/Tank/purple"),
+                Resources.Load<Material>("Materials/Tank/brown")
             };
         }
 

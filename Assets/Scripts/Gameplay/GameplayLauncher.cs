@@ -10,6 +10,7 @@ using TankU.Module.BulletSpawner;
 using TankU.Module.ColourPicker;
 using TankU.Module.HUD;
 using TankU.Module.PlayerSpawner;
+using TankU.Module.PlayerSpawner.Player;
 using TankU.Module.Result;
 using TankU.Module.Timer;
 using TankU.Module.VisualEffect;
@@ -45,7 +46,6 @@ namespace TankU.Gameplay
                 new BombPoolConnector(),
                 new HUDConnector(),
                 new VisualEffectConnector(),
-                new PlayerConector(),
                 new PlayerSpawnerConnector(),
                 new TimerConnector()
             };
@@ -77,7 +77,7 @@ namespace TankU.Gameplay
             _bulletSpawnerController.SetView(_view.bulletSpawnerView);
             _bombPoolController.SetView(_view.bombPoolView);
             _hudController.SetView(_view.HUDView);
-            _settingController.SetView(_view.setting);
+            _settingController.SetView(_view.settingView);
             _timerController.SetView(_view.TimerView);
             _resultController.SetView(_view.resultView);
             _resultController.ShowTutorial();

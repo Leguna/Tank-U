@@ -2,7 +2,7 @@ using System.Collections;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
 using SpacePlan.Module.SaveGame;
-using TankU.Main;
+using TankU.Module.Base;
 using TankU.Setting;
 using TankU.Sound;
 using UnityEngine;
@@ -13,21 +13,18 @@ namespace TankU.Boot
 {
     public class GameMain : BaseMain<GameMain>, IMain
     {
+        private SettingController _settingController;
+        private MatchHistoryController _matchHistoryController;
+
         protected override IController[] GetDependencies()
         {
             return new IController[]
             {
                 new SaveDataController(),
                 new SettingController(),
-                new SoundController()
+                new SoundController(),
+                new MatchHistoryController()
             };
-        }
-
-        protected override IEnumerator StartInit()
-        {
-            CreateEventSystem();
-            //SpawnSetting();
-            yield return null;
         }
 
         protected override IConnector[] GetConnectors()
@@ -35,8 +32,15 @@ namespace TankU.Boot
             return new IConnector[]
             {
                 new SettingConnector(),
-                new SoundConnector()
+                new SoundConnector(),
+                new MatchHistoryConnector()
             };
+        }
+
+        protected override IEnumerator StartInit()
+        {
+            CreateEventSystem();
+            yield return null;
         }
 
         private void CreateEventSystem()
@@ -49,22 +53,12 @@ namespace TankU.Boot
 
         public void SpawnSetting()
         {
-            GameObject prefab = Resources.Load<GameObject>("Prefabs/SettingPanel");
-            Transform canvas = GameObject.Find("Canvas").transform;
+            GameObject prefab = Resources.Load<GameObject>("Prefabs/UIMenu/SettingView");
             SettingView settingView =
-                Instantiate(prefab, canvas.position, Quaternion.identity).GetComponent<SettingView>();
-
-            if (canvas)
-            {
-                settingView.transform.SetParent(canvas);
-            }
-
-            MainView mainView = FindObjectOfType<MainView>().GetComponent<MainView>();
-            mainView._settingView = settingView;
+                Instantiate(prefab, Vector3.zero, Quaternion.identity, transform).GetComponent<SettingView>();
 
             SettingModel settingModel = new SettingModel();
-            SettingController settingController = new SettingController();
-            settingController.Init(settingModel);
+            _settingController.Init(settingModel, settingView);
         }
     }
 }

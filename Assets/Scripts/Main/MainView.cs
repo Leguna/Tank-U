@@ -1,8 +1,6 @@
 ﻿using Agate.MVC.Base;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
 using TankU.MainMenu;
+using TankU.Module.MatchHistory;
 using TankU.Setting;
 
 namespace TankU.Main
@@ -11,5 +9,6 @@ namespace TankU.Main
     {
         public MainMenuView _mainMenuView;
         public SettingView _settingView;
+        public MatchHistoryView _matchHistoryView;
     }
 }

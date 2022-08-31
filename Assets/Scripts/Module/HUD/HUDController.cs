@@ -1,21 +1,12 @@
 using System.Collections.Generic;
 using Agate.MVC.Base;
+using TankU.Message;
 using UnityEngine;
 
 namespace TankU.Module.HUD
 {
     public class HUDController : ObjectController<HUDController, HUDView>
     {
-        public void Init()
-        {
-            SetBar();
-            ShowBar();
-        }
-
-        public void ShowBar()
-        {
-        }
-
         public void SetBar()
         {
             var barPlayerColor = Resources.Load<GameObject>("Prefabs/HUD/BarPlayerColor");
@@ -42,6 +33,16 @@ namespace TankU.Module.HUD
         public void HideBar()
         {
             _view.HideBar();
+        }
+
+        public override void SetView(HUDView view)
+        {
+            base.SetView(view);
+            view.SetCallback(delegate
+            {
+                Debug.Log("TES");
+                Publish(new ShowSettingMessage());
+            });
         }
 
         public void ToggleOption()
