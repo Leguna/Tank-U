@@ -131,7 +131,7 @@ MonoBehaviour:
   - Bar: {fileID: 8289149083994517501}
     BarItems: []
     Player: {fileID: 0}
-  option: {fileID: 5951912218510213258}
+  option: {fileID: 5951912218510213300}
 --- !u!1 &5951912218510213258
 GameObject:
   m_ObjectHideFlags: 0

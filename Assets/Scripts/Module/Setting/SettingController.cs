@@ -7,10 +7,10 @@ namespace TankU.Setting
 {
     public class SettingController : ObjectController<SettingController, SettingModel, ISettingModel, SettingView>
     {
-        public void Init(SettingModel model)
+        public void Init(SettingModel model, SettingView settingView)
         {
             _model = model;
-            //SetView(view);
+            SetView(settingView);
         }
 
         public override IEnumerator Initialize()

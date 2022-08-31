@@ -45,7 +45,7 @@ namespace TankU.Module.ColourPicker.ColorPickerItem
         {
             ColorIndex--;
             if (ColorIndex == -1)
-                ColorIndex = 3;
+                ColorIndex = BaseColor.PlayerColors.Count - 1;
             Color = BaseColor.PlayerColors[ColorIndex % BaseColor.PlayerColors.Count];
             SetDataAsDirty();
         }

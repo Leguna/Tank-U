@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using Agate.MVC.Base;
 using TankU.Gameplay;
 using TankU.Module.Base;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace TankU.Module.HUD
@@ -10,7 +12,7 @@ namespace TankU.Module.HUD
     public class HUDView : BaseView
     {
         [SerializeField] public List<BarStruct> barList;
-        [SerializeField] public GameObject option;
+        [SerializeField] public Button option;
 
         public void AddBar(GameObject barItem, GameObject playerColor, int playerCount)
         {
@@ -32,7 +34,7 @@ namespace TankU.Module.HUD
 
         public void ShowBar(int playerCount)
         {
-            option.SetActive(true);
+            option.gameObject.SetActive(true);
             for (int i = 0; i < playerCount; i++)
             {
                 barList[i].Bar.gameObject.SetActive(true);
@@ -57,7 +59,7 @@ namespace TankU.Module.HUD
 
         public void HideBar()
         {
-            option.SetActive(false);
+            option.gameObject.SetActive(false);
             for (int i = 0; i < barList.Count; i++)
             {
                 barList[i].Bar.gameObject.SetActive(false);
@@ -66,7 +68,13 @@ namespace TankU.Module.HUD
 
         public void ToggleOptions()
         {
-            option.SetActive(!option.activeSelf);
+            option.gameObject.SetActive(!option.gameObject.activeSelf);
+        }
+
+        public void SetCallback(UnityAction action)
+        {
+            option.onClick.RemoveAllListeners();
+            option.onClick.AddListener(action);
         }
     }
 }
