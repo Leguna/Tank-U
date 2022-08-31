@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace TankU.Gameplay
 {
+#if UNITY_EDITOR
     [CustomEditor(typeof(GameplayLauncher))]
     public class GameplayLauncherEditor : Editor
     {
@@ -53,4 +54,5 @@ namespace TankU.Gameplay
             }
         }
     }
+#endif
 }

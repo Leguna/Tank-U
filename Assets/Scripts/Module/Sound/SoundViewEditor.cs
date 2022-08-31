@@ -1,8 +1,11 @@
+using TankU.Sound;
 using UnityEditor;
 using UnityEngine;
 
-namespace TankU.Sound
+namespace TankU.Module.Sound
 {
+#if UNITY_EDITOR
+
     [CustomEditor(typeof(SoundView))]
     public class SoundViewEditor : Editor
     {
@@ -51,4 +54,5 @@ namespace TankU.Sound
             }
         }
     }
+#endif
 }

@@ -6,7 +6,7 @@ namespace TankU.Sound
 {
     public class SoundController : ObjectController<SoundController, SoundModel, ISoundModel, SoundView>
     {
-        private const string _viewPrefabPath = "Prefabs/SoundView";
+        private const string _viewPrefabPath = "Prefabs/Sound/SoundView";
 
         public override IEnumerator Initialize()
         {
