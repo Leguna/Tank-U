@@ -20,7 +20,7 @@ namespace TankU.Module.HUD
         {
             var barPlayerColor = Resources.Load<GameObject>("Prefabs/HUD/BarPlayerColor");
             var barItem = Resources.Load<GameObject>("Prefabs/HUD/BarItem");
-            _view.AddBar( barItem, barPlayerColor, 2);
+            _view.AddBar(barItem, barPlayerColor, 2);
         }
 
         public void GetColorPlayer(List<int> colorList)
@@ -37,6 +37,16 @@ namespace TankU.Module.HUD
         public void GetPlayerHealth(int health, int playerIndex)
         {
             _view.SetHealth(playerIndex, health);
+        }
+
+        public void HideBar()
+        {
+            _view.HideBar();
+        }
+
+        public void ToggleOption()
+        {
+            _view.ToggleOptions();
         }
     }
 }

@@ -54,5 +54,19 @@ namespace TankU.Module.HUD
                 barList[player].BarItems[i].gameObject.SetActive(i < health);
             }
         }
+
+        public void HideBar()
+        {
+            option.SetActive(false);
+            for (int i = 0; i < barList.Count; i++)
+            {
+                barList[i].Bar.gameObject.SetActive(false);
+            }
+        }
+
+        public void ToggleOptions()
+        {
+            option.SetActive(!option.activeSelf);
+        }
     }
 }

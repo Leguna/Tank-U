@@ -10,7 +10,11 @@ namespace TankU.Module.Base
             Color.cyan,
             Color.red,
             Color.green,
-            Color.yellow
+            Color.yellow,
+            Color.black,
+            Color.white,
+            new Color(85, 10, 138),
+            new Color(150, 75, 0)
         };
     }
 }

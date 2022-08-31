@@ -109,6 +109,7 @@ namespace TankU.Gameplay
         {
             _timerController.HideView();
             _powerUpPooler.OnEndGame();
+            _hudController.HideBar();
             _resultController.ShowResult(indexResult);
             Publish(new UpdateGameState(GameState.GameOver));
         }
