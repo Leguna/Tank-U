@@ -64,7 +64,7 @@ namespace TankU.Module.PlayerSpawner.Player
             if (_coolDownBomb <= 0f)
             {
                 if (_model.PlayerNumber != playerNumber) return;
-                Transform bulletSpawner = _model.Head.GetChild(1);
+                Transform bulletSpawner = _model.Head.GetChild(0);
                 Publish(new BombSpawnMessage(bulletSpawner.transform));
                 // TODO @Leguna: Choose this or From Bomb Pool
                 // Transform bombPool = _model.Head.GetChild(2);
@@ -126,7 +126,7 @@ namespace TankU.Module.PlayerSpawner.Player
             if (_model.Health <= 0) return;
             if (_model.PlayerNumber != playerNumber) return;
             _model.SetFireCooldown(_model.FireRate);
-            Transform bulletSpawner = _model.Head.GetChild(1);
+            Transform bulletSpawner = _model.Head.GetChild(0);
             Publish(new SpawnBulletMessage(bulletSpawner.transform, _model.PowerUpDuration, _model.PowerUpIsActive));
         }
 
