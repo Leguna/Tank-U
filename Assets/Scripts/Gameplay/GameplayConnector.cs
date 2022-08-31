@@ -1,29 +1,74 @@
-﻿using Agate.MVC.Base;
-using SpacePlan.Message;
-using SpacePlan.Module.SaveGame;
-using SpacePlan.Module.SoundFx;
+using Agate.MVC.Base;
+using TankU.Message;
+using TankU.Module.PlayerSpawner;
+using TankU.PowerUp;
 
-namespace SpacePlan.Gameplay
+namespace TankU.Gameplay
 {
     public class GameplayConnector : BaseConnector
     {
-        private SaveDataController _saveData;
-        private SoundFxController _soundFx;
+        private PlayerSpawnerController _playerSpawner;
+        private PowerUpPoolerController _powerUpSpawnerController;
+        private GameplayLauncher _gameplayLauncher;
 
-        public void OnUpdateCoin(UpdateCoinMessage message)
+        private void OnMoveInput(InputMoveMessage message)
         {
-            _saveData.OnUpdateCoin(message.Coin);
-            _soundFx.OnUpdateCoin();
+            if (_playerSpawner.Model.PlayerControllerList.Count > 0)
+
+                _playerSpawner.Model.PlayerControllerList[message.PlayerNumber]
+                    .OnMove(message.Direction, message.PlayerNumber);
+        }
+
+        private void OnRotatedInput(InputRotateMessage message)
+        {
+            if (_playerSpawner.Model.PlayerControllerList.Count > 0)
+                _playerSpawner.Model.PlayerControllerList[message.PlayerNumber]
+                    .OnRotate(message.Direction, message.PlayerNumber);
+        }
+
+        private void OnFire(FireMessage message)
+        {
+            if (_playerSpawner.Model.PlayerControllerList.Count > 0)
+                _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnFire(message.PlayerNumber);
+        }
+
+        private void OnBomb(BombMessage message)
+        {
+            if (_playerSpawner.Model.PlayerControllerList.Count > 0)
+
+                _playerSpawner.Model.PlayerControllerList[message.PlayerNumber].OnBomb(message.PlayerNumber);
         }
 
         protected override void Connect()
         {
-            Subscribe<UpdateCoinMessage>(OnUpdateCoin);
+            Subscribe<InputMoveMessage>(OnMoveInput);
+            Subscribe<InputRotateMessage>(OnRotatedInput);
+            Subscribe<FireMessage>(OnFire);
+            Subscribe<BombMessage>(OnBomb);
+            Subscribe<TimerCountDownMessage>(OnTimerCountEvent);
+            Subscribe<GameOverMessage>(OnGameOverMessage);
+        }
+
+        private void OnTimerCountEvent(TimerCountDownMessage message)
+        {
+            _powerUpSpawnerController.OnTimerCountEvent(message);
+            if (message.TimerEventTypeType == TimerEventType.OnTimerFinish)
+                _gameplayLauncher.GameOver(-1, _playerSpawner.Model.ColorList);
         }
 
         protected override void Disconnect()
         {
-            Unsubscribe<UpdateCoinMessage>(OnUpdateCoin);
+            Unsubscribe<InputMoveMessage>(OnMoveInput);
+            Unsubscribe<InputRotateMessage>(OnRotatedInput);
+            Unsubscribe<FireMessage>(OnFire);
+            Unsubscribe<BombMessage>(OnBomb);
+            Unsubscribe<TimerCountDownMessage>(OnTimerCountEvent);
+            Unsubscribe<GameOverMessage>(OnGameOverMessage);
+        }
+
+        private void OnGameOverMessage(GameOverMessage obj)
+        {
+            _gameplayLauncher.GameOver(obj.Winner, obj.ListColorIndex);
         }
     }
 }

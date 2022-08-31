@@ -1,6 +1,6 @@
 using Agate.MVC.Base;
 
-namespace SpacePlan.Boot
+namespace TankU.Boot
 {
     public class SceneLoader : BaseLoader<SceneLoader>
 
