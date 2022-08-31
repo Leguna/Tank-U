@@ -1,8 +1,11 @@
+using TankU.Sound;
 using UnityEditor;
 using UnityEngine;
 
-namespace TankU.Sound
+namespace TankU.Module.Sound
 {
+#if UNITY_EDITOR
+
     [CustomEditor(typeof(SoundView))]
     public class SoundViewEditor : Editor
     {
@@ -35,7 +38,7 @@ namespace TankU.Sound
             {
                 //AudioClip sfxClip = _sfxBombExplode.clip;
                 //gv.PlaySfx(sfxClip);
-                _soundController.PlaySfx(SoundSfxName.BombExplode);
+                _soundController.PlaySfx(SoundEffectName.BombExplode);
             }
 
             if (GUILayout.Button("Play Bullet Fire SFX"))
@@ -51,4 +54,5 @@ namespace TankU.Sound
             }
         }
     }
+#endif
 }

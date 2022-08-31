@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
 using TankU.Boot;
@@ -11,13 +10,13 @@ using TankU.Module.BulletSpawner;
 using TankU.Module.ColourPicker;
 using TankU.Module.HUD;
 using TankU.Module.PlayerSpawner;
+using TankU.Module.PlayerSpawner.Player;
 using TankU.Module.Result;
 using TankU.Module.Timer;
 using TankU.Module.VisualEffect;
 using TankU.PowerUp;
 using TankU.Setting;
 using TankU.Sound;
-using UnityEngine;
 
 namespace TankU.Gameplay
 {
@@ -47,7 +46,6 @@ namespace TankU.Gameplay
                 new BombPoolConnector(),
                 new HUDConnector(),
                 new VisualEffectConnector(),
-                new PlayerInputConector(),
                 new PlayerSpawnerConnector(),
                 new TimerConnector()
             };
@@ -74,15 +72,15 @@ namespace TankU.Gameplay
         protected override IEnumerator InitSceneObject()
         {
             _colourPickerController.SetView(_view.ColorPickerView);
-            _powerUpPooler.SetView(_view.powerUpPooler);
+            _powerUpPooler.SetView(_view.powerUpSpawner);
             _playerSpawnerController.SetView(_view.PlayerSpawnerView);
             _bulletSpawnerController.SetView(_view.bulletSpawnerView);
             _bombPoolController.SetView(_view.bombPoolView);
             _hudController.SetView(_view.HUDView);
-            _settingController.SetView(_view.setting);
+            _settingController.SetView(_view.settingView);
             _timerController.SetView(_view.TimerView);
             _resultController.SetView(_view.resultView);
-
+            _resultController.ShowTutorial();
             _resultController.SetCallbacks(BackToMainMenu, TryAgain, CloseTutorial);
             yield return null;
         }
@@ -111,6 +109,7 @@ namespace TankU.Gameplay
         {
             _timerController.HideView();
             _powerUpPooler.OnEndGame();
+            _hudController.HideBar();
             _resultController.ShowResult(indexResult);
             Publish(new UpdateGameState(GameState.GameOver));
         }
@@ -154,6 +153,5 @@ namespace TankU.Gameplay
         {
             _colourPickerController.CancelPickingCharacter();
         }
-
     }
 }

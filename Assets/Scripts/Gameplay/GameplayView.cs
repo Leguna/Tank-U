@@ -2,6 +2,7 @@ using Agate.MVC.Base;
 using TankU.Module.Bomb;
 using TankU.Module.BulletSpawner;
 using TankU.Module.ColourPicker;
+using TankU.Module.HUD;
 using TankU.Module.Result;
 using TankU.Module.Timer;
 using TankU.PowerUp;
@@ -16,9 +17,9 @@ namespace TankU.Gameplay
         public BulletSpawnerView bulletSpawnerView;
         public BombPoolView bombPoolView;
         public PlayerSpawnerView PlayerSpawnerView;
-        public PowerUpPoolerView powerUpPooler;
+        public PowerUpPoolerView powerUpSpawner;
         public HUDView HUDView;
-        public SettingView setting;
         public ResultView resultView;
+        public SettingView settingView;
     }
 }

@@ -1,10 +1,9 @@
-using Agate.MVC.Base;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Agate.MVC.Base;
 using TankU.Message;
-using System;
 using TankU.Module.Base;
+using TankU.Sound;
+using UnityEngine;
 
 namespace TankU.Module.Bomb
 {
@@ -20,11 +19,11 @@ namespace TankU.Module.Bomb
         {
             if (_view.gameObject.activeInHierarchy)
             {
-                if (_model.SpawnTimer <= 0 )
+                if (_model.SpawnTimer <= 0)
                 {
                     _model.SetTimerSpawn(4f);
                     //_view.gameObject.SetActive(false);
-                    
+
                     Explode(_view.gameObject);
                 }
 
@@ -45,7 +44,7 @@ namespace TankU.Module.Bomb
         private void OnTriggerExplosionEvent(Collider obj)
         {
             obj.TryGetComponent(out IDamageableView damageableView);
-            if( damageableView != null)
+            if (damageableView != null)
             {
                 damageableView.TakeDamage(_model);
             }
@@ -72,12 +71,12 @@ namespace TankU.Module.Bomb
         public void Explode(GameObject bomb)
         {
             Publish(new BombExplodeMessage());
-
+            Publish(new PlaySoundEffectMessage(SoundEffectName.BombExplode));
             bomb.GetComponent<MeshRenderer>().enabled = false;
             bomb.transform.GetChild(0).gameObject.SetActive(true);
             bomb.transform.GetChild(1).gameObject.SetActive(true);
 
-            if(_model.Duration <= 0)
+            if (_model.Duration <= 0)
             {
                 bomb.GetComponent<MeshRenderer>().enabled = true;
                 bomb.transform.GetChild(0).gameObject.SetActive(false);

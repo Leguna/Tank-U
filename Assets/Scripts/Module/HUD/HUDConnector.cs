@@ -1,32 +1,36 @@
 using Agate.MVC.Base;
-using System.Collections;
-using System.Collections.Generic;
+using TankU.Gameplay;
 using TankU.Message;
-using TankU.Module.HUD;
-using UnityEngine;
+using TankU.Module.Base;
 
-namespace TankU.Gameplay
+namespace TankU.Module.HUD
 {
     public class HUDConnector : BaseConnector
-
     {
-
-        public HUDController _hud;
+        public HUDController hud;
 
         private void GetColorPlayer(ColorPickingMessage message)
         {
-            _hud.GetColorPlayer(message.PickedColorIndex, message.PickingState);
+            if (message.PickingState == PickingState.Finish)
+                hud.GetColorPlayer(message.PickedColorIndex);
+        }
+
+        private void GetPlayerStatus(PlayerStatusMessage message)
+        {
+            hud.GetPlayerHealth(message.HealthPoint, message.PlayerIndex);
+            hud.GetStatusPowerUp(message.PowerUpStatus, message.PlayerIndex);
         }
 
         protected override void Connect()
         {
-            Subscribe<ColorPickingMessage> (GetColorPlayer) ;
+            Subscribe<ColorPickingMessage>(GetColorPlayer);
+            Subscribe<PlayerStatusMessage>(GetPlayerStatus);
         }
 
         protected override void Disconnect()
         {
-            Unsubscribe<ColorPickingMessage> (GetColorPlayer) ;
-            
+            Unsubscribe<ColorPickingMessage>(GetColorPlayer);
+            Unsubscribe<PlayerStatusMessage>(GetPlayerStatus);
         }
     }
 }

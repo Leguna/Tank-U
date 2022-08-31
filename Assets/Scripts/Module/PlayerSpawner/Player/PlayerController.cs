@@ -2,6 +2,7 @@ using System.Collections;
 using Agate.MVC.Base;
 using TankU.Gameplay;
 using TankU.Message;
+using TankU.Sound;
 using UnityEngine;
 
 namespace TankU.Module.PlayerSpawner.Player
@@ -15,7 +16,7 @@ namespace TankU.Module.PlayerSpawner.Player
         public override void SetView(PlayerView view)
         {
             view.SetCallbacks(Move, Rotate, Init, OnMove, CoolDownTimer, OnTakeDamageEvent, OnUpdate,
-                OnGetPowerUpBounce, OnGetPowerUpHealth);
+                OnGetPowerUpBounce, OnGetPowerUpHealth, UpdateDataPlayer);
             view.TryGetComponent(out _rg);
             base.SetView(view);
             _model.SetHead(_view.transform.GetChild(0));
@@ -36,6 +37,8 @@ namespace TankU.Module.PlayerSpawner.Player
                 Publish(new PlayerDeadMessage(_model.PlayerNumber));
             }
 
+            UpdateDataPlayer();
+            Publish(new PlaySoundEffectMessage(SoundEffectName.Hit));
             Publish(new UpdatePlayerHealth(_model.Health, _model.PlayerNumber));
         }
 
@@ -105,11 +108,15 @@ namespace TankU.Module.PlayerSpawner.Player
         public void OnGetPowerUpBounce(float duration)
         {
             _model.SetDurationPowerUp(duration);
+            Publish(new PlaySoundEffectMessage(SoundEffectName.PowerUpBounce));
+            UpdateDataPlayer();
         }
 
         public void OnGetPowerUpHealth(int health)
         {
             _model.AddHealth(health);
+            Publish(new PlaySoundEffectMessage(SoundEffectName.PowerUpHealth));
+            UpdateDataPlayer();
         }
 
         public void OnFire(int playerNumber)
@@ -136,6 +143,11 @@ namespace TankU.Module.PlayerSpawner.Player
         public void SetCanMove(bool value)
         {
             _model.SetCanMove(value);
+        }
+
+        private void UpdateDataPlayer()
+        {
+            Publish(new PlayerStatusMessage(_model.Health, _model.PowerUpIsActive, _model.PlayerNumber));
         }
 
         public void SpawnPlayer(Transform transform, int index)
