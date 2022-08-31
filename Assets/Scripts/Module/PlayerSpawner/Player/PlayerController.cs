@@ -15,7 +15,7 @@ namespace TankU.Module.PlayerSpawner.Player
         public override void SetView(PlayerView view)
         {
             view.SetCallbacks(Move, Rotate, Init, OnMove, CoolDownTimer, OnTakeDamageEvent, OnUpdate,
-                OnGetPowerUpBounce, OnGetPowerUpHealth);
+                OnGetPowerUpBounce, OnGetPowerUpHealth,UpdateDataPlayer);
             view.TryGetComponent(out _rg);
             base.SetView(view);
             _model.SetHead(_view.transform.GetChild(0));
@@ -136,6 +136,11 @@ namespace TankU.Module.PlayerSpawner.Player
         public void SetCanMove(bool value)
         {
             _model.SetCanMove(value);
+        }
+
+        public void UpdateDataPlayer()
+        {
+            Publish(new PlayerStatusMessage(_model.Health, _model.PowerUpIsActive));
         }
 
         public void SpawnPlayer(Transform transform, int index)

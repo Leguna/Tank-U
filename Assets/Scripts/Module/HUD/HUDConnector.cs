@@ -18,14 +18,22 @@ namespace TankU.Gameplay
             _hud.GetColorPlayer(message.PickedColorIndex, message.PickingState);
         }
 
+        private void GetPlayerStatus(PlayerStatusMessage message)
+        {
+            _hud.GetPlayerHealth(message.HealtPoint);
+            _hud.GetStatusPowerUp(message.PowerUpStatus);
+        }
+
         protected override void Connect()
         {
             Subscribe<ColorPickingMessage> (GetColorPlayer) ;
+            Subscribe<PlayerStatusMessage>(GetPlayerStatus) ;
         }
 
         protected override void Disconnect()
         {
             Unsubscribe<ColorPickingMessage> (GetColorPlayer) ;
+            Unsubscribe<PlayerStatusMessage>(GetPlayerStatus) ;
             
         }
     }

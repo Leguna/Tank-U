@@ -1,11 +1,13 @@
+using Agate.MVC.Base;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Agate.MVC.Base;
-using TankU.Gameplay;
+using TankU.Message;
 using TankU.Module.Base;
+using UnityEngine;
 using UnityEngine.UI;
 
-namespace TankU.Module.HUD
+namespace TankU.Gameplay
 {
     public class HUDController : ObjectController<HUDController, HUDView>
     {
@@ -14,20 +16,45 @@ namespace TankU.Module.HUD
             yield return base.Initialize();
         }
 
-        private void SetColor(List<int> obj)
+        public override void SetView(HUDView view)
         {
-            for (var i = 0; i <= (_view.barList.Count - 1); i++)
+            base.SetView(view);
+        }
+
+        // set color player in HUD
+        private void SetColor(List<Color> obj)
+        {
+            for (var i = 0; i <= (_view.barList.Count -1); i++)
             {
-                _view.barList[i].Player.GetComponent<Image>().color = BaseColor.PlayerColors[obj[i]];
+                _view.barList[i].Player.GetComponent<Image>().color = obj[i];
             }
         }
 
-        public void GetColorPlayer(List<int> colorList, PickingState pickingState)
+        //get color from pickedColorMesage
+        public void GetColorPlayer(List<Color> colorList, PickingState pickingState)
         {
-            if (pickingState == PickingState.Finish)
+            if ( pickingState == PickingState.Finish)
             {
                 SetColor(colorList);
+            }        
+        }
+
+
+        public void GetPlayerHealth(int healthpoint)
+        {
+            for (int i = 0; i < _view.barList.Count; i++)
+            {
+                for (int j = 0; j < healthpoint; j++)
+                {
+                    _view.barList[i].Bar[j].gameObject.SetActive(true);
+                }
             }
         }
+
+        public void GetStatusPowerUp(bool powerUpStatus)
+        {
+            
+        }
+
     }
 }

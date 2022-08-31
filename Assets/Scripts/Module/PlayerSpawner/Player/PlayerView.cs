@@ -2,6 +2,7 @@ using System;
 using Agate.MVC.Base;
 using TankU.Module.Base;
 using UnityEngine;
+using TankU.Message;
 
 namespace TankU.Gameplay
 {
@@ -17,11 +18,12 @@ namespace TankU.Gameplay
         private MeshRenderer _meshRenderer;
         private Action<float> _onPowerUpBullet;
         private Action<int> _onHealthPowerUp;
+        private Action _upDateDataPlayer;
 
         internal void SetCallbacks(Action Move, Action Rotate, Action<PlayerModel, PlayerView> Init,
             Action<Vector3, int> OnMove, Action CoolDownTimer, Action<int> OnTakeDamage, Action<float> onUpdate,
             Action<float> onPowerUpBullet,
-            Action<int> onHealthPowerUp)
+            Action<int> onHealthPowerUp,Action UpdateDataPlayer)
         {
             _Move = Move;
             _onInit = Init;
@@ -32,6 +34,7 @@ namespace TankU.Gameplay
             _onPowerUpBullet = onPowerUpBullet;
             _onHealthPowerUp = onHealthPowerUp;
             _onUpdate = onUpdate;
+            _upDateDataPlayer = UpdateDataPlayer;
         }
 
         protected override void InitRenderModel(IPlayerModel model)
