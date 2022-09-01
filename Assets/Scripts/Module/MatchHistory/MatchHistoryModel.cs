@@ -18,7 +18,7 @@ namespace TankU.Module.Base
         public void Save()
         {
             var data = JsonHelper.ToJson(MatchHistoryItemModels.ToArray());
-            PlayerPrefs.SetString(_historyKey, data);
+            PlayerPrefs.SetString(_historyKey, data ?? "");
         }
 
         public List<MatchData> Load()
@@ -27,10 +27,6 @@ namespace TankU.Module.Base
             {
                 string json = PlayerPrefs.GetString(_historyKey);
                 MatchHistoryItemModels = new List<MatchData>(JsonHelper.FromJson<MatchData>(json));
-            }
-            else
-            {
-                Save();
             }
 
             return MatchHistoryItemModels;
@@ -44,7 +40,7 @@ namespace TankU.Module.Base
                 playerData.Add(new PlayerData(i, 0, objListColorIndex[i]));
             }
 
-            MatchHistoryItemModels.Add(new MatchData(objWinner, objListColorIndex,levelList));
+            MatchHistoryItemModels.Add(new MatchData(objWinner, objListColorIndex, levelList));
             Save();
         }
 
