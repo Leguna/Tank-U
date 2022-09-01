@@ -19,9 +19,13 @@ namespace TankU.Module.Result
         [SerializeField] private Button _backToMainMenu;
         [SerializeField] private Button _closeTutorial;
 
-        [SerializeField] private TMP_Text[] _playerExp;
-        [SerializeField] private TMP_Text[] _playerLevel;
-        [SerializeField] private TMP_Text[] _expToNextLevel;
+        [SerializeField] private TMP_Text _playerWinExp;
+        [SerializeField] private TMP_Text _playerWinLevel;
+        [SerializeField] private TMP_Text _expToWinNextLevel;
+
+        [SerializeField] private TMP_Text _playerLoseExp;
+        [SerializeField] private TMP_Text _playerLoseLevel;
+        [SerializeField] private TMP_Text _expToLoseNextLevel;
 
         public void SetCallbacks(UnityAction backToMainMenu, UnityAction tryAgain, UnityAction closeTutorial)
         {
@@ -46,16 +50,18 @@ namespace TankU.Module.Result
                 {
                     _playerWin.gameObject.SetActive(true);
                     _playerWin.text = "Player " + (i + 1) + " wins!";
+                    _playerWinExp.text = $"EXP: {levelUpDatas[i].Exp}";
+                    _playerWinLevel.text = $"Level: {levelUpDatas[i].Level}";
+                    _expToWinNextLevel.text = $"Next Level: {levelUpDatas[i].ExpToNextLevel}";
                 }
                 else
                 {
                     _playerLose.gameObject.SetActive(true);
                     _playerLose.text = "Player " + (i + 1) + " loses!";
+                    _playerLoseExp.text = $"EXP: {levelUpDatas[i].Exp}";
+                    _playerLoseLevel.text = $"Level: {levelUpDatas[i].Level}";
+                    _expToLoseNextLevel.text = $"Next Level: {levelUpDatas[i].ExpToNextLevel}";
                 }
-
-                _playerExp[i].text = $"EXP: {levelUpDatas[i].Exp}";
-                _playerLevel[i].text = $"Level: {levelUpDatas[i].Level}";
-                _expToNextLevel[i].text = $"Next Level: {levelUpDatas[i].ExpToNextLevel}";
             }
         }
 

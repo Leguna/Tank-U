@@ -91,7 +91,7 @@ namespace TankU.Module.ColourPicker
         {
             for (int i = 0; i < ListColorItemModel.Count; i++)
             {
-                ListColorItemModel[i].SetColorUnlocked(allColorUnlocked[i]);
+                ListColorItemModel[i].SetColorUnlocked(allColorUnlocked?[i]??0);
             }
         }
     }

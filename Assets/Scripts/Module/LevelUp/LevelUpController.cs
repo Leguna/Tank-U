@@ -43,6 +43,11 @@ namespace TankU.Module.LevelUp
 
         public int[] GetPlayerColorUnlocked()
         {
+            if (_model.levelUpData.LevelUpDataList.Count == 0)
+            {
+                return new[] { 0, 0, 0, 0 };
+            }
+
             return (from levelUpData in _model.levelUpData.LevelUpDataList select levelUpData.Inventory.ColorUnlocked)
                 .ToArray();
         }
