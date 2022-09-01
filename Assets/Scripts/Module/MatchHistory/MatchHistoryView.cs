@@ -61,19 +61,21 @@ namespace TankU.Module.MatchHistory
                 {
                     _matchHistoryViews[indexRow].numberText.text = $"{indexRow + 1}";
 
+                    string playerName;
+                    playerName = matchData[indexRow].Level is { Length: > 0 }
+                        ? $"Player {indexPlayer + 1} (Lv.{matchData[indexRow].Level[indexPlayer]})"
+                        : $"Player {indexPlayer + 1} (Lv.0)";
+
+
                     if (matchData[indexRow].WinnerIndex == indexPlayer)
                     {
-                        _matchHistoryViews[indexRow].winnerText.text = matchData[indexRow].Level != null
-                            ? $"Player {indexPlayer + 1} (Lv.{matchData[indexRow].Level[indexPlayer]})"
-                            : $"Player {indexPlayer + 1} (Lv.0)";
+                        _matchHistoryViews[indexRow].winnerText.text = playerName;
                         _matchHistoryViews[indexRow].winnerColor.color =
                             BaseColor.PlayerColors[matchData[indexRow].ColorIndex[matchData[indexRow].WinnerIndex]];
                         continue;
                     }
 
-                    _matchHistoryViews[indexRow].loseText.text = matchData[indexRow].Level != null
-                        ? $"Player {indexPlayer + 1} (Lv.{matchData[indexRow].Level[indexPlayer]})"
-                        : $"Player {indexPlayer + 1} (Lv.0)";
+                    _matchHistoryViews[indexRow].loseText.text = playerName;
                     _matchHistoryViews[indexRow].loseColor.color =
                         BaseColor.PlayerColors[matchData[indexRow].ColorIndex[indexPlayer]];
                 }
