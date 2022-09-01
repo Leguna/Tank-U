@@ -32,8 +32,8 @@ namespace TankU.Module.VisualEffect
             }
 
             if (spawnObject != null)
-                spawnObject = Object.Instantiate(spawnObject, spawnTransform);
-            if (visualEffectCategory != VisualEffectCategory.Trail)
+                 spawnObject = Object.Instantiate(spawnObject, spawnTransform);
+             if (visualEffectCategory != VisualEffectCategory.Trail)
                 Object.Destroy(spawnObject, 3f);
         }
     }

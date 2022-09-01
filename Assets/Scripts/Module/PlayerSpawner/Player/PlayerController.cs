@@ -57,7 +57,7 @@ namespace TankU.Module.PlayerSpawner.Player
             _model.SetPosition(_rg.velocity);
             Publish(new TankMoveMessage(_view.transform));
         }
-
+          
         internal void OnBomb(int playerNumber)
         {
             if (!_model.CanMove) return;
