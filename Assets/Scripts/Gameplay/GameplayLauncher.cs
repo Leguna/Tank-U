@@ -116,7 +116,11 @@ namespace TankU.Gameplay
             _timerController.HideView();
             _powerUpPooler.OnEndGame();
             _hudController.HideBar();
-            _levelUpController.OnMatchUpdate(new MatchData(indexResult, objListColorIndex.ToArray()));
+
+            _levelUpController.OnMatchUpdate(new MatchData(indexResult, objListColorIndex.ToArray(),
+                _levelUpController.GetAllPlayerLevel()));
+            Publish(new OnAddMatchMessage(indexResult, objListColorIndex.ToArray(),
+                _levelUpController.GetAllPlayerLevel()));
             _resultController.ShowResult(objListColorIndex.ToArray(), indexResult,
                 _levelUpController.GetAllPlayerData());
             Publish(new UpdateGameState(GameState.GameOver));

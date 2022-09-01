@@ -32,18 +32,19 @@ namespace TankU.Module.Base
             {
                 Save();
             }
+
             return MatchHistoryItemModels;
         }
 
-        public void AddMatch(int objWinner, List<int> objListColorIndex)
+        public void AddMatch(int objWinner, int[] objListColorIndex, int[] levelList)
         {
             List<PlayerData> playerData = new List<PlayerData>();
-            for (int i = 0; i < objListColorIndex.Count; i++)
+            for (int i = 0; i < objListColorIndex.Length; i++)
             {
                 playerData.Add(new PlayerData(i, 0, objListColorIndex[i]));
             }
 
-            MatchHistoryItemModels.Add(new MatchData(objWinner, objListColorIndex.ToArray()));
+            MatchHistoryItemModels.Add(new MatchData(objWinner, objListColorIndex,levelList));
             Save();
         }
 
@@ -54,6 +55,7 @@ namespace TankU.Module.Base
             {
                 winCount[t.WinnerIndex]++;
             }
+
             return winCount;
         }
     }
@@ -61,13 +63,15 @@ namespace TankU.Module.Base
     [Serializable]
     public class MatchData
     {
-        public MatchData(int winnerIndex, int[] colorIndex)
+        public MatchData(int winnerIndex, int[] colorIndex, int[] level)
         {
             WinnerIndex = winnerIndex;
             ColorIndex = colorIndex;
+            Level = level;
         }
 
         public int WinnerIndex;
         public int[] ColorIndex;
+        public int[] Level;
     }
 }

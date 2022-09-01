@@ -46,5 +46,10 @@ namespace TankU.Module.LevelUp
             return (from levelUpData in _model.levelUpData.LevelUpDataList select levelUpData.Inventory.ColorUnlocked)
                 .ToArray();
         }
+
+        public int[] GetAllPlayerLevel()
+        {
+            return (from levelData in _model.levelUpData.LevelUpDataList select levelData.Level).ToArray();
+        }
     }
 }

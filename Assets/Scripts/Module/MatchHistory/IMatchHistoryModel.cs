@@ -11,6 +11,6 @@ namespace TankU.Module.MatchHistory
         public void Save();
         public List<MatchData> Load();
 
-        public void AddMatch(int objWinner, List<int> objListColorIndex);
+        public void AddMatch(int objWinner, int[] objListColorIndex, int[] levelList);
     }
 }
