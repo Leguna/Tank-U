@@ -1,12 +1,14 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TankU.Message
 {
-    public struct BombExplodeMessage 
+    public struct TankMoveMessage
     {
         public Transform TransformSpawner { get; }
 
-        public BombExplodeMessage(Transform transform)
+        public TankMoveMessage(Transform transform)
         {
             TransformSpawner = transform;
         }

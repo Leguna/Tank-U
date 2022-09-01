@@ -33,8 +33,8 @@ namespace TankU.Module.PlayerSpawner.Player
             _model.TakeDamage(damage);
             if (_model.Health <= 0)
             {
-                _view.gameObject.SetActive(false);
                 Publish(new PlayerDeadMessage(_model.PlayerNumber));
+                _view.gameObject.SetActive(false);
             }
 
             UpdateDataPlayer();
@@ -55,6 +55,7 @@ namespace TankU.Module.PlayerSpawner.Player
 
             _rg.velocity = _model.Velocity * _model.Speed;
             _model.SetPosition(_rg.velocity);
+            Publish(new TankMoveMessage(_view.transform));
         }
 
         internal void OnBomb(int playerNumber)
