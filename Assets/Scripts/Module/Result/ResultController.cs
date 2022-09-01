@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Agate.MVC.Base;
+using TankU.Module.Base;
 using UnityEngine.Events;
 
 namespace TankU.Module.Result
@@ -16,9 +18,9 @@ namespace TankU.Module.Result
             _view.SetCallbacks(backToMainMenu, tryAgain, closeTutorial);
         }
 
-        public void ShowResult(int winnerIndex)
+        public void ShowResult(int[] playerColorList, int winnerIndex, List<LevelUpData> levelUpDatas)
         {
-            _view.SetResultText(winnerIndex == -1 ? "DRAW!" : $"Player {winnerIndex + 1} Win!");
+            _view.SetResultText(playerColorList, winnerIndex, levelUpDatas);
         }
 
         public void ShowTutorial()
