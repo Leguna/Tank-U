@@ -63,7 +63,7 @@ namespace TankU.Module.MatchHistory
 
                     if (matchData[indexRow].WinnerIndex == indexPlayer)
                     {
-                        _matchHistoryViews[indexRow].winnerText.text = matchData[indexRow].Level.Length > 0
+                        _matchHistoryViews[indexRow].winnerText.text = matchData[indexRow].Level != null
                             ? $"Player {indexPlayer + 1} (Lv.{matchData[indexRow].Level[indexPlayer]})"
                             : $"Player {indexPlayer + 1} (Lv.0)";
                         _matchHistoryViews[indexRow].winnerColor.color =
@@ -71,7 +71,7 @@ namespace TankU.Module.MatchHistory
                         continue;
                     }
 
-                    _matchHistoryViews[indexRow].loseText.text = matchData[indexRow].Level.Length > 0
+                    _matchHistoryViews[indexRow].loseText.text = matchData[indexRow].Level != null
                         ? $"Player {indexPlayer + 1} (Lv.{matchData[indexRow].Level[indexPlayer]})"
                         : $"Player {indexPlayer + 1} (Lv.0)";
                     _matchHistoryViews[indexRow].loseColor.color =
