@@ -239,6 +239,62 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameplayView
       objectReference: {fileID: 0}
+    - target: {fileID: 4530730329857824300, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6505216953656486258, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6505216953656486258, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6505216953656486258, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6505216953656486258, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085151117485227784, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085151117485227784, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleOptions
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085151117485227784, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TankU.Module.HUD.HUDView, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8152474289929072365, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8152474289929072365, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8152474289929072365, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8152474289929072365, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861651549174350448, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861651549174350460, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6afead78e3aaccc49bf6d1b46449fb67, type: 3}
 --- !u!114 &2103111714 stripped

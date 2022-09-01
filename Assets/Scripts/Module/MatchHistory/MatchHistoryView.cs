@@ -65,13 +65,13 @@ namespace TankU.Module.MatchHistory
 
                     if (matchData[indexRow].WinnerIndex == indexPlayer)
                     {
-                        _matchHistoryViews[indexRow].winnerText.text = $"Player {indexPlayer + 1}";
+                        _matchHistoryViews[indexRow].winnerText.text = $"Player {indexPlayer + 1} (Lv.1)";
                         _matchHistoryViews[indexRow].winnerColor.color =
                             BaseColor.PlayerColors[matchData[indexRow].ColorIndex[matchData[indexRow].WinnerIndex]];
                         continue;
                     }
 
-                    _matchHistoryViews[indexRow].loseText.text = $"Player {indexPlayer + 1}";
+                    _matchHistoryViews[indexRow].loseText.text = $"Player {indexPlayer + 1} (Lv.1)";
                     _matchHistoryViews[indexRow].loseColor.color =
                         BaseColor.PlayerColors[matchData[indexRow].ColorIndex[indexPlayer]];
                 }
