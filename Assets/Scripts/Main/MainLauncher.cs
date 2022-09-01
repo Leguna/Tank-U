@@ -42,8 +42,8 @@ namespace TankU.Main
             }
 
             _matchHistoryController.SetView(_view._matchHistoryView);
-            _settingController.SetClickListener(OnMatchHistory, OnExit);
-
+            //_settingController.SetClickListener(OnMatchHistory, OnExit);
+            // Publish(new GameOverMessage(new List<int>() { 1, 2 }, 1));
             yield return null;
         }
 
@@ -52,10 +52,10 @@ namespace TankU.Main
             Application.Quit();
         }
 
-        private void OnMatchHistory()
-        {
-            _matchHistoryController.ShowView(_matchHistoryController.Load());
-        }
+        //private void OnMatchHistory()
+        //{
+        //    _matchHistoryController.ShowView();
+        //}
 
         protected override IConnector[] GetSceneConnectors()
         {

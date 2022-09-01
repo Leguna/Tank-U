@@ -93,7 +93,6 @@ namespace TankU.Module.PlayerSpawner
         {
             _model.PlayerDeathList[objPlayerIndex] = true;
             _model.AddPlayerDeath(objPlayerIndex);
-
             for (int i = 0; i < _model.PlayerDeathList.Count; i++)
             {
                 if (_model.PlayerDeathList[i] == false)

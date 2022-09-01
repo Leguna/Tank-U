@@ -22,12 +22,19 @@ namespace TankU.Module.Bomb
                 if (_model.SpawnTimer <= 0)
                 {
                     _model.SetTimerSpawn(4f);
-                    //_view.gameObject.SetActive(false);
 
                     Explode(_view.gameObject);
                 }
 
-                _model.DecreaseTimer();
+                if (_model.Duration <= 0)
+                {
+                    _model.SetDuration(5.5f);
+
+                    DespawnExplosion(_view.gameObject);
+                }
+
+
+                    _model.DecreaseTimer();
             }
         }
 
@@ -70,19 +77,29 @@ namespace TankU.Module.Bomb
 
         public void Explode(GameObject bomb)
         {
-            Publish(new BombExplodeMessage());
+            Publish(new BombExplodeMessage(bomb.transform));
             Publish(new PlaySoundEffectMessage(SoundEffectName.BombExplode));
             bomb.GetComponent<MeshRenderer>().enabled = false;
             bomb.transform.GetChild(0).gameObject.SetActive(true);
             bomb.transform.GetChild(1).gameObject.SetActive(true);
 
-            if (_model.Duration <= 0)
+            /*if (_model.Duration <= 0)
             {
                 bomb.GetComponent<MeshRenderer>().enabled = true;
                 bomb.transform.GetChild(0).gameObject.SetActive(false);
                 bomb.transform.GetChild(1).gameObject.SetActive(false);
                 bomb.SetActive(false);
-            }
+
+                _model.SetDuration(5f);
+            }*/
+        }
+
+        public void DespawnExplosion(GameObject bomb)
+        {
+            bomb.GetComponent<MeshRenderer>().enabled = true;
+            bomb.transform.GetChild(0).gameObject.SetActive(false);
+            bomb.transform.GetChild(1).gameObject.SetActive(false);
+            bomb.SetActive(false);
         }
     }
 }

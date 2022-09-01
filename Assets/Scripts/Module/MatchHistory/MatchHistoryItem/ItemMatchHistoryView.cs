@@ -15,6 +15,7 @@ namespace TankU.Module.MatchHistory.MatchHistoryItem
 
         protected override void InitRenderModel(IMatchHistoryItemModel model)
         {
+            gameObject.SetActive(true);
         }
 
         protected override void UpdateRenderModel(IMatchHistoryItemModel model)
