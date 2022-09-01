@@ -36,7 +36,7 @@ namespace TankU.Gameplay
         public PlayerSpawnerModel()
         {
             PlayerDeathList = new List<bool>();
-            PlayerView = Resources.Load<PlayerView>("Prefabs/Player/TankView").GetComponent<PlayerView>();
+            PlayerView = Resources.Load<PlayerView>("Prefabs/Player/tankFutureBody").GetComponent<PlayerView>();
             SpawnerTransform = new List<Transform>();
             PlayerControllerList = new List<PlayerController>();
 

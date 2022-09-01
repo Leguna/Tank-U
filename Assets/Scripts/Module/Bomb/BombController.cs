@@ -77,7 +77,7 @@ namespace TankU.Module.Bomb
 
         public void Explode(GameObject bomb)
         {
-            Publish(new BombExplodeMessage());
+            Publish(new BombExplodeMessage(bomb.transform));
             Publish(new PlaySoundEffectMessage(SoundEffectName.BombExplode));
             bomb.GetComponent<MeshRenderer>().enabled = false;
             bomb.transform.GetChild(0).gameObject.SetActive(true);
