@@ -70,6 +70,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2399899348124465059}
     m_Modifications:
+    - target: {fileID: 5438493944106034113, guid: 28089ea06d60429ca888bd8cc6557991, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.555
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438493944106034113, guid: 28089ea06d60429ca888bd8cc6557991, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.093
+      objectReference: {fileID: 0}
     - target: {fileID: 5438493945269618019, guid: 28089ea06d60429ca888bd8cc6557991, type: 3}
       propertyPath: m_Name
       value: WorldGameplay

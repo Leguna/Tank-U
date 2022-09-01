@@ -29,7 +29,7 @@ namespace TankU.Module.LevelUp
         public void SaveData()
         {
             var levelDataString = JsonUtility.ToJson(this);
-                             PlayerPrefs.SetString(LevelDataKey, levelDataString);
+            PlayerPrefs.SetString(LevelDataKey, levelDataString ?? "{}");
         }
 
         public void UpdateLevelFromMatchData(MatchData matchData)
