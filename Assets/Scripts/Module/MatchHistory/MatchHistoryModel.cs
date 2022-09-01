@@ -27,7 +27,6 @@ namespace TankU.Module.Base
             {
                 string json = PlayerPrefs.GetString(_historyKey);
                 MatchHistoryItemModels = new List<MatchData>(JsonHelper.FromJson<MatchData>(json));
-                Debug.Log(json);
             }
             else
             {
@@ -38,7 +37,6 @@ namespace TankU.Module.Base
 
         public void AddMatch(int objWinner, List<int> objListColorIndex)
         {
-            Debug.Log($"{objWinner} {objListColorIndex.Count}");
             List<PlayerData> playerData = new List<PlayerData>();
             for (int i = 0; i < objListColorIndex.Count; i++)
             {
