@@ -18,6 +18,15 @@ namespace TankU.Module.ColourPicker.ColorPickerItem
             IsConfirm = false;
             PlayerName = "Player 1";
             Color = BaseColor.PlayerColors[0];
+            ColorUnlocked = 0;
+        }
+
+        public int ColorUnlocked { get; private set; }
+
+        public void SetColorUnlocked(int value)
+        {
+            if (value + 4 > BaseColor.PlayerColors.Count) return;
+            ColorUnlocked = value;
         }
 
         public void ChangeColor(Color color)
@@ -32,21 +41,21 @@ namespace TankU.Module.ColourPicker.ColorPickerItem
             SetDataAsDirty();
         }
 
-        public void NextColor()
+        public void NextColor(int inputLayout)
         {
             ColorIndex++;
-            if (ColorIndex == BaseColor.PlayerColors.Count)
+            if (ColorIndex == 4 + ColorUnlocked)
                 ColorIndex = 0;
-            Color = BaseColor.PlayerColors[ColorIndex % BaseColor.PlayerColors.Count];
+            Color = BaseColor.PlayerColors[ColorIndex % (4 + ColorUnlocked)];
             SetDataAsDirty();
         }
 
-        public void PrevColor()
+        public void PrevColor(int indexLayout)
         {
             ColorIndex--;
             if (ColorIndex == -1)
-                ColorIndex = BaseColor.PlayerColors.Count - 1;
-            Color = BaseColor.PlayerColors[ColorIndex % BaseColor.PlayerColors.Count];
+                ColorIndex = 4 + ColorUnlocked - 1;
+            Color = BaseColor.PlayerColors[ColorIndex % (4 + ColorUnlocked)];
             SetDataAsDirty();
         }
 

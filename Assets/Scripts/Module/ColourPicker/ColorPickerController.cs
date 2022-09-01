@@ -63,7 +63,7 @@ namespace TankU.Module.ColourPicker
             if (!_model.ListInputLayout.Contains(inputLayout)) return;
             var indexOf = _model.ListInputLayout.IndexOf(inputLayout);
             if (_model.ListColorItemModel[_model.GetIndexInputLayout(inputLayout)].IsConfirm) return;
-            _model.ListColorItemModel[indexOf].PrevColor();
+            _model.ListColorItemModel[indexOf].PrevColor(_model.GetIndexInputLayout(inputLayout));
         }
 
         private void Next(InputLayout inputLayout)
@@ -71,7 +71,7 @@ namespace TankU.Module.ColourPicker
             if (!_model.ListInputLayout.Contains(inputLayout)) return;
             var indexOf = _model.ListInputLayout.IndexOf(inputLayout);
             if (_model.ListColorItemModel[_model.GetIndexInputLayout(inputLayout)].IsConfirm) return;
-            _model.ListColorItemModel[indexOf].NextColor();
+            _model.ListColorItemModel[indexOf].NextColor(_model.GetIndexInputLayout(inputLayout));
         }
 
         public override IEnumerator Terminate()
@@ -138,6 +138,10 @@ namespace TankU.Module.ColourPicker
 
             _model.FinishPicking();
             Publish(new ColorPickingMessage(PickingState.Finish, _model.GetPickedColor()));
+        }
+        public void SetColorUnlocked(List<int> winCount)
+        {
+            _model.SetColorUnlocked(winCount);
         }
     }
 }

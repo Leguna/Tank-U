@@ -37,5 +37,10 @@ namespace TankU.Module.Base
         {
             _model.AddMatch(objWinner, objListColorIndex);
         }
+
+        public List<int> WinCount()
+        {
+            return _model.GetWinCount();
+        }
     }
 }

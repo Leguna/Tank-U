@@ -48,6 +48,16 @@ namespace TankU.Module.Base
             MatchHistoryItemModels.Add(new MatchData(objWinner, objListColorIndex.ToArray()));
             Save();
         }
+
+        public List<int> GetWinCount()
+        {
+            var winCount = new List<int> { 0, 0, 0, 0 };
+            foreach (var t in MatchHistoryItemModels)
+            {
+                winCount[t.WinnerIndex]++;
+            }
+            return winCount;
+        }
     }
 
     [Serializable]

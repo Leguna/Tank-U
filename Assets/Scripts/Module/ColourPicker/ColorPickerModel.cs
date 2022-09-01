@@ -18,12 +18,15 @@ namespace TankU.Module.ColourPicker
             ColorPickerViewTemplate = Resources.Load<ColorItemSubView>("Prefabs/ColourPicker/ColorPickerItemView");
         }
 
+        public List<int> ColorUnlocked { get; private set; }
+
         public List<ColorItemSubView> ListColorItemSubView { get; private set; }
         public List<ColorItemModel> ListColorItemModel { get; private set; }
         public List<InputLayout> ListInputLayout { get; private set; }
 
         public int GetIndexInputLayout(InputLayout inputLayout) => ListInputLayout.IndexOf(inputLayout);
         public bool IsPicking { get; private set; }
+
 
         public void StartPicking()
         {
@@ -35,6 +38,7 @@ namespace TankU.Module.ColourPicker
         }
 
         public ColorItemSubView ColorPickerViewTemplate { get; }
+
 
         public void ConfirmColor(InputLayout inputLayout)
         {
@@ -81,6 +85,14 @@ namespace TankU.Module.ColourPicker
             }
 
             SetDataAsDirty();
+        }
+
+        public void SetColorUnlocked(List<int> winCount)
+        {
+            for (int i = 0; i < ListColorItemModel.Count; i++)
+            {
+                ListColorItemModel[i].SetColorUnlocked(winCount[i] / 2);
+            }
         }
     }
 }

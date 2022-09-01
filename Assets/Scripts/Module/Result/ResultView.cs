@@ -7,7 +7,7 @@ namespace TankU.Module.Result
 {
     public class ResultView : BaseView
     {
-        [SerializeField] public GameObject tutorialCanvas;
+        public GameObject tutorialCanvas;
         [SerializeField] private GameObject resultCanvas;
         [SerializeField] private Text resultText;
         [SerializeField] private Button _tryAgain;

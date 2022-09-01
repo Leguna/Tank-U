@@ -10,7 +10,6 @@ namespace TankU.Boot
         where TLauncher : BaseLauncher<TLauncher, TView>
         where TView : View
     {
-        private SettingController settingController;
         protected override ILoad GetLoader()
         {
             return SceneLoader.Instance;
