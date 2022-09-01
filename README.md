@@ -9,4 +9,4 @@ Jadwal & Pembagian Tugas: https://docs.google.com/spreadsheets/d/1vTY7uASsbQiHw5
 
 Jira: https://tuflihun.atlassian.net/jira/software/projects/TU/boards/3
 
-Class Diagram: https://docs.google.com/document/d/1khBMSdFRsbao09g1MaUoSauXGA4sbqLuWeVNXnIN_K4/edit?usp=sharing
+Class Diagram: https://right-echidna-47f.notion.site/class-diagram-tugas-5-b534c92dda5d459fa2c8accc57c167b1
