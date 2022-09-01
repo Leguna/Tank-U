@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using Agate.MVC.Base;
+using TankU.Module.Base;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using TMPro;
 
 namespace TankU.Module.Result
 {
@@ -16,6 +18,10 @@ namespace TankU.Module.Result
         [SerializeField] private Button _tryAgain;
         [SerializeField] private Button _backToMainMenu;
         [SerializeField] private Button _closeTutorial;
+
+        [SerializeField] private TMP_Text[] _playerExp;
+        [SerializeField] private TMP_Text[] _playerLevel;
+        [SerializeField] private TMP_Text[] _expToNextLevel;
 
         public void SetCallbacks(UnityAction backToMainMenu, UnityAction tryAgain, UnityAction closeTutorial)
         {
@@ -31,10 +37,26 @@ namespace TankU.Module.Result
             });
         }
 
-        public void SetResultText(string result)
+        public void SetResultText(int[] playerColorList, int winnerIndex, List<LevelUpData> levelUpDatas)
         {
-            _playerWin.gameObject.SetActive(true);
-            _playerWin.text = result;
+            _resultCanvas.SetActive(true);
+            for (int i = 0; i < playerColorList.Length; i++)
+            {
+                if (i == winnerIndex)
+                {
+                    _playerWin.gameObject.SetActive(true);
+                    _playerWin.text = "Player " + (i + 1) + " wins!";
+                }
+                else
+                {
+                    _playerLose.gameObject.SetActive(true);
+                    _playerLose.text = "Player " + (i + 1) + " loses!";
+                }
+
+                _playerExp[i].text = $"EXP: {levelUpDatas[i].Exp}";
+                _playerLevel[i].text = $"Level: {levelUpDatas[i].Level}";
+                _expToNextLevel[i].text = $"Next Level: {levelUpDatas[i].ExpToNextLevel}";
+            }
         }
 
         public void ToggleGameOver()
