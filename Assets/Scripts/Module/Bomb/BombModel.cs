@@ -20,7 +20,7 @@ namespace TankU.Module.Bomb
             Damage = 1;
             Health = 0;
             SpawnTimer = 4f;
-            Duration = 8f;
+            Duration = 5.5f;
         }
 
         public void SpawnBomb(Vector3 spawnPosition, int damage, int health)
