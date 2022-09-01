@@ -2543,15 +2543,12 @@ MonoBehaviour:
   _tryAgain: {fileID: 8765047095829048389}
   _backToMainMenu: {fileID: 8765047094371227002}
   _closeTutorial: {fileID: 8765047094456464476}
-  _playerExp:
-  - {fileID: 1100211544541402359}
-  - {fileID: 1366214287488187828}
-  _playerLevel:
-  - {fileID: 3952340721040717577}
-  - {fileID: 8696892454517382426}
-  _expToNextLevel:
-  - {fileID: 7561533946358267819}
-  - {fileID: 796343128044639467}
+  _playerWinExp: {fileID: 1100211544541402359}
+  _playerWinLevel: {fileID: 3952340721040717577}
+  _expToWinNextLevel: {fileID: 7561533946358267819}
+  _playerLoseExp: {fileID: 1366214287488187828}
+  _playerLoseLevel: {fileID: 8696892454517382426}
+  _expToLoseNextLevel: {fileID: 796343128044639467}
 --- !u!1 &8765047094314627577
 GameObject:
   m_ObjectHideFlags: 0
