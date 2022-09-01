@@ -39,10 +39,8 @@ namespace TankU.Module.MatchHistory
 
         public void Init(MatchData[] matchData)
         {
-            for (int i = 0; i < _matchHistoryViews.Count; i++)
-            {
-                Destroy(_matchHistoryViews[i].gameObject);
-            }
+            foreach (var t in _matchHistoryViews)
+                Destroy(t.gameObject);
 
             _matchHistoryViews = new List<ItemMatchHistoryView>();
 
@@ -65,13 +63,17 @@ namespace TankU.Module.MatchHistory
 
                     if (matchData[indexRow].WinnerIndex == indexPlayer)
                     {
-                        _matchHistoryViews[indexRow].winnerText.text = $"Player {indexPlayer + 1} (Lv.1)";
+                        _matchHistoryViews[indexRow].winnerText.text = matchData[indexRow].Level.Length > 0
+                            ? $"Player {indexPlayer + 1} (Lv.{matchData[indexRow].Level[indexPlayer]})"
+                            : $"Player {indexPlayer + 1} (Lv.0)";
                         _matchHistoryViews[indexRow].winnerColor.color =
                             BaseColor.PlayerColors[matchData[indexRow].ColorIndex[matchData[indexRow].WinnerIndex]];
                         continue;
                     }
 
-                    _matchHistoryViews[indexRow].loseText.text = $"Player {indexPlayer + 1} (Lv.1)";
+                    _matchHistoryViews[indexRow].loseText.text = matchData[indexRow].Level.Length > 0
+                        ? $"Player {indexPlayer + 1} (Lv.{matchData[indexRow].Level[indexPlayer]})"
+                        : $"Player {indexPlayer + 1} (Lv.0)";
                     _matchHistoryViews[indexRow].loseColor.color =
                         BaseColor.PlayerColors[matchData[indexRow].ColorIndex[indexPlayer]];
                 }

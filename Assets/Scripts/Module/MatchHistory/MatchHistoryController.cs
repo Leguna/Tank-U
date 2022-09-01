@@ -36,9 +36,9 @@ namespace TankU.Module.Base
             return _model.Load();
         }
 
-        public void AddMatch(int objWinner, List<int> objListColorIndex)
+        public void AddMatch(int objWinner, int[] objListColorIndex,int[] levelList)
         {
-            _model.AddMatch(objWinner, objListColorIndex);
+            _model.AddMatch(objWinner, objListColorIndex,levelList);
         }
 
         public List<int> WinCount()
