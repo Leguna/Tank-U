@@ -2,14 +2,17 @@ using Agate.MVC.Base;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using TMPro;
 
 namespace TankU.Module.Result
 {
     public class ResultView : BaseView
     {
         public GameObject tutorialCanvas;
-        [SerializeField] private GameObject resultCanvas;
-        [SerializeField] private Text resultText;
+        [SerializeField] private GameObject _resultCanvas;
+        [SerializeField] private TMP_Text _playerWin;
+        [SerializeField] private TMP_Text _playerLose;
+
         [SerializeField] private Button _tryAgain;
         [SerializeField] private Button _backToMainMenu;
         [SerializeField] private Button _closeTutorial;
@@ -30,13 +33,13 @@ namespace TankU.Module.Result
 
         public void SetResultText(string result)
         {
-            resultCanvas.SetActive(true);
-            resultText.text = result;
+            _playerWin.gameObject.SetActive(true);
+            _playerWin.text = result;
         }
 
         public void ToggleGameOver()
         {
-            resultCanvas.SetActive(!resultCanvas.activeSelf);
+            _resultCanvas.SetActive(!_resultCanvas.activeSelf);
         }
 
         public void ToggleTutorial()
