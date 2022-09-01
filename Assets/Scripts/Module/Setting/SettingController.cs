@@ -27,15 +27,12 @@ namespace TankU.Setting
         public void OnTurnSFX()
         {
             _model.SetSfxToggle();
-            //TODO:
-            //Publish message to audio, send data bool
             Publish(new SoundSettingsUpdateMessage(false));
         }
 
         public void OnTurnBGM()
         {
             _model.SetBgmToggle();
-            //TODO:
             Publish(new SoundSettingsUpdateMessage(true));
         }
 

@@ -10,6 +10,7 @@ namespace TankU.Module.Base
         protected override void Connect()
         {
             Subscribe<GameOverMessage>(OnGameOverMessage);
+            Subscribe<ShowMatchHistoryMessage>(_matchHistoryController.ShowView);
         }
 
         private void OnGameOverMessage(GameOverMessage obj)
@@ -21,6 +22,7 @@ namespace TankU.Module.Base
         protected override void Disconnect()
         {
             Unsubscribe<GameOverMessage>(OnGameOverMessage);
+            Unsubscribe<ShowMatchHistoryMessage>(_matchHistoryController.ShowView);
         }
     }
 }
