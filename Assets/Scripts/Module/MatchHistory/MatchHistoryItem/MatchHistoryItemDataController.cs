@@ -19,8 +19,5 @@ namespace TankU.Module.Base
         {
             _model.AddPlayerDataToList(playerData);
         }
-
-        //todo:
-        //add playerdata to list from gameover (receive message from gameover)
     }
 }

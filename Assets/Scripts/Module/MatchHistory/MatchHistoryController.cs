@@ -2,15 +2,13 @@ using System.Collections.Generic;
 using Agate.MVC.Base;
 using TankU.Module.MatchHistory;
 using UnityEngine.Events;
+using TankU.Message;
 
 namespace TankU.Module.Base
 {
     public class MatchHistoryController : ObjectController<MatchHistoryController, MatchHistoryModel, IMatchHistoryModel
         , MatchHistoryView>
     {
-        public void SetMatchHistoryData()
-        {
-        }
 
         public override void SetView(MatchHistoryView view)
         {
@@ -23,9 +21,14 @@ namespace TankU.Module.Base
             _view.SetCallbacks(backToMainMenu);
         }
 
-        public void ShowView(List<MatchData> matchDatas)
+        //public void ShowView(List<MatchData> matchDatas)
+        //{
+        //    _view.ShowBoard(matchDatas);
+        //}
+
+        public void ShowView(ShowMatchHistoryMessage msg)
         {
-            _view.ShowBoard(matchDatas);
+            _view.ShowBoard(_model.Load());
         }
 
         public List<MatchData> Load()
@@ -33,9 +36,9 @@ namespace TankU.Module.Base
             return _model.Load();
         }
 
-        public void AddMatch(int objWinner, List<int> objListColorIndex)
+        public void AddMatch(int objWinner, int[] objListColorIndex,int[] levelList)
         {
-            _model.AddMatch(objWinner, objListColorIndex);
+            _model.AddMatch(objWinner, objListColorIndex,levelList);
         }
 
         public List<int> WinCount()
