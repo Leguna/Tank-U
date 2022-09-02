@@ -9,14 +9,15 @@ using TankU.Module.Bomb;
 using TankU.Module.BulletSpawner;
 using TankU.Module.ColourPicker;
 using TankU.Module.HUD;
+using TankU.Module.LevelUp;
 using TankU.Module.PlayerSpawner;
-using TankU.Module.PlayerSpawner.Player;
 using TankU.Module.Result;
 using TankU.Module.Timer;
 using TankU.Module.VisualEffect;
 using TankU.PowerUp;
 using TankU.Setting;
 using TankU.Sound;
+using UnityEngine;
 
 namespace TankU.Gameplay
 {
@@ -37,6 +38,7 @@ namespace TankU.Gameplay
         private ResultController _resultController;
         private SettingController _settingController;
         private MatchHistoryController _matchHistoryController;
+        private LevelUpController _levelUpController;
 
         protected override IConnector[] GetSceneConnectors()
         {
@@ -90,8 +92,8 @@ namespace TankU.Gameplay
         {
             _colourPickerController.StartPickingCharacter();
             _matchHistoryController.Load();
-            _colourPickerController.SetColorUnlocked(_matchHistoryController.WinCount());
-
+            _levelUpController.LoadData();
+            _colourPickerController.SetColorUnlocked(_levelUpController.GetPlayerColorUnlocked());
         }
 
         private void TryAgain()
@@ -114,7 +116,13 @@ namespace TankU.Gameplay
             _timerController.HideView();
             _powerUpPooler.OnEndGame();
             _hudController.HideBar();
-            _resultController.ShowResult(indexResult);
+
+            _levelUpController.OnMatchUpdate(new MatchData(indexResult, objListColorIndex.ToArray(),
+                _levelUpController.GetAllPlayerLevel()));
+            Publish(new OnAddMatchMessage(indexResult, objListColorIndex.ToArray(),
+                _levelUpController.GetAllPlayerLevel()));
+            _resultController.ShowResult(objListColorIndex.ToArray(), indexResult,
+                _levelUpController.GetAllPlayerData());
             Publish(new UpdateGameState(GameState.GameOver));
         }
 
@@ -143,10 +151,7 @@ namespace TankU.Gameplay
 
         public void StartPickingPlayer()
         {
-            _matchHistoryController.Load();
-            _colourPickerController.SetColorUnlocked(_matchHistoryController.WinCount());
-            _colourPickerController.StartPickingCharacter();
-            Publish(new UpdateGameState(GameState.PickingColor));
+            Debug.Log("Not Implemented Yet!");
         }
 
         public void FinishPickingPlayer()

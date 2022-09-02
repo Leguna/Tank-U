@@ -9,18 +9,20 @@ namespace TankU.Module.Base
 
         protected override void Connect()
         {
-            Subscribe<GameOverMessage>(OnGameOverMessage);
+            Subscribe<OnAddMatchMessage>(OnAddMatch);
+            Subscribe<ShowMatchHistoryMessage>(_matchHistoryController.ShowView);
         }
 
-        private void OnGameOverMessage(GameOverMessage obj)
+        private void OnAddMatch(OnAddMatchMessage obj)
         {
-            _matchHistoryController.AddMatch(obj.Winner,obj.ListColorIndex);
+            _matchHistoryController.AddMatch(obj.Winner, obj.ListColorIndex, obj.LevelList);
             //_gameplayLauncher.GameOver(obj.Winner, obj.ListColorIndex);
         }
 
         protected override void Disconnect()
         {
-            Unsubscribe<GameOverMessage>(OnGameOverMessage);
+            Unsubscribe<OnAddMatchMessage>(OnAddMatch);
+            Unsubscribe<ShowMatchHistoryMessage>(_matchHistoryController.ShowView);
         }
     }
 }

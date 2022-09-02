@@ -139,9 +139,10 @@ namespace TankU.Module.ColourPicker
             _model.FinishPicking();
             Publish(new ColorPickingMessage(PickingState.Finish, _model.GetPickedColor()));
         }
-        public void SetColorUnlocked(List<int> winCount)
+
+        public void SetColorUnlocked(int[] colorUnlocked)
         {
-            _model.SetColorUnlocked(winCount);
+            _model.SetColorUnlocked(colorUnlocked);
         }
     }
 }
